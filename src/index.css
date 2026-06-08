@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+
+  --color-brand-orange: #f97316;        /* Warna utama aksen */
+  --color-brand-orange-hover: #ea580c;  /* Warna saat tombol di-hover */
+  --color-brand-orange-light: #fff7ed;  /* Warna background tipis (untuk badge/box) */
+  --color-brand-orange-border: #ffedd5; /* Warna border tipis */
+}
+.fade-in-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-left-hidden {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-left-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 3. BARU: Efek Meluncur dari Kanan (Slide-In Right) */
+.slide-right-hidden {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-right-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-up-hidden {
+  opacity: 0;
+  transform: scale(0.92) translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scale-up-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.zoom-in-hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zoom-in-visible {
+  opacity: 1;
+  transform: scale(1);
+}
