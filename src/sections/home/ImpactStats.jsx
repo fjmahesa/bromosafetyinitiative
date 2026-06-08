@@ -29,16 +29,16 @@ function ImpactStats() {
     },
     {
       id: 2,
-      icon: <FaExclamationCircle className="text-2xl text-amber-500" />,
+      icon: <FaExclamationCircle className="text-2xl text-red-500" />,
       number: "400+", 
       label: t('statsLabel2'),
       desc: t('statsDesc2'),
       // Tema Amber (Risiko Rem Blong)
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
-      colorActive: "bg-amber-50/70 border-amber-500 shadow-2xl shadow-amber-500/15 text-amber-950",
+      colorActive: "bg-red-50/70 border-red-500 shadow-2xl shadow-red-500/15 text-red-950",
       iconIdle: "bg-white border-slate-200",
-      iconActive: "bg-white border-amber-300 scale-110 shadow-md",
-      numberActive: "text-amber-600"
+      iconActive: "bg-white border-red-300 scale-110 shadow-md",
+      numberActive: "text-red-600"
     },
     {
       id: 3,

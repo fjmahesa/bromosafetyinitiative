@@ -23,15 +23,15 @@ function SafetyPillars() {
     },
     {
       id: 2,
-      icon: <FaMountainSun className="text-3xl text-amber-600" />,
+      icon: <FaMountainSun className="text-3xl text-red-600" />,
       title: t('pillarLabel2'),
       desc: t('pillarDesc2'),
       colorIdle: "bg-white border-slate-200/80 shadow-xs text-slate-900",
-      colorActive: "bg-amber-50/70 border-amber-500 shadow-2xl shadow-amber-500/15 text-amber-950",
+      colorActive: "bg-red-50/70 border-red-500 shadow-2xl shadow-red-500/15 text-red-950",
       iconIdle: "bg-slate-50 border-slate-100",
-      iconActive: "bg-white border-amber-300 scale-110 shadow-md",
-      titleActive: "text-amber-700",
-      descActive: "text-amber-800/80"
+      iconActive: "bg-white border-red-300 scale-110 shadow-md",
+      titleActive: "text-red-700",
+      descActive: "text-red-800/80"
     },
     {
       id: 3,

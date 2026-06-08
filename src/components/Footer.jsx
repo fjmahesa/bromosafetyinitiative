@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaShieldAlt, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'; // Menyesuaikan FaShield yang stabil
+// Menghapus FaShieldAlt dari jajaran import ikon
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 function Footer() {
   const { t } = useTranslation();
@@ -13,17 +14,36 @@ function Footer() {
         {/* MULTI-COLUMN GRID */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-12">
           
-          {/* KOLOM 1: LOGO & DESKRIPSI */}
+          {/* KOLOM 1: LOGO AREA DENGAN SUB-TEKS INITIATIVE & DESKRIPSI */}
           <div className="md:col-span-5 flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <div className="p-2 bg-[var(--color-brand-orange-light)] rounded-lg border border-[var(--color-brand-orange-border)]">
-                <FaShieldAlt className="text-xl text-brand-orange" />
+            
+            {/* AREA LOGO YANG BISA DIKLIK MENUJU HOMEPAGE */}
+            <a 
+              href="#home" 
+              className="flex items-center gap-3 group transition-transform duration-200 active:scale-95 cursor-pointer w-fit select-none"
+              title="Back to top"
+            >
+              {/* Gambar Logo SVG - Border dan background oranye lama sudah dibersihkan */}
+              <div className="flex items-center justify-center">
+                <img 
+                  src="/logo_BSI.png" 
+                  alt="Bromo Safety Initiative Logo" 
+                  className="w-10 h-10 object-contain transition-transform duration-300"
+                />
               </div>
-              <span className="text-base font-bold tracking-wider text-slate-900 uppercase sm:text-lg">
-                Bromo<span className="text-brand-orange">Safety</span>
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium max-w-sm">
+              
+              {/* Struktur Vertikal Teks Identitas Brand (Presisi & Selaras dengan Navbar) */}
+              <div className="flex flex-col justify-center -space-y-1">
+                <span className="text-base font-black tracking-wider text-slate-900 uppercase transition-colors duration-300 group-hover:text-slate-700 leading-none">
+                  Bromo<span className="text-brand-orange transition-colors duration-300 group-hover:text-brand-orange-hover">Safety</span>
+                </span>
+                <span className="text-[9px] font-extrabold tracking-[0.22em] text-slate-400 uppercase leading-none pt-1 transition-colors duration-300 group-hover:text-brand-orange">
+                  Initiative
+                </span>
+              </div>
+            </a>
+
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium max-w-sm mt-2">
               {t('footerDesc')}
             </p>
           </div>

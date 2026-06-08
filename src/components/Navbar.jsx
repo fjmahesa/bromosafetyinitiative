@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaShieldAlt, FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
 
 function Navbar() {
   const { t, i18n } = useTranslation();
@@ -21,15 +21,34 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* LOGO AREA */}
-          <div className="flex-shrink-0 flex items-center gap-2">
-            <div className="p-2 bg-[var(--color-brand-orange-light)] rounded-lg border border-[var(--color-brand-orange-border)]">
-              <FaShieldAlt className="text-xl sm:text-2xl text-brand-orange" />
+          {/* LOGO AREA - DENGAN SUB-TEKS INITIATIVE YANG PRESISI */}
+          <a 
+            href="#home" 
+            className="flex-shrink-0 flex items-center gap-3 group transition-transform duration-200 active:scale-95 cursor-pointer"
+            title="Go to homepage"
+          >
+            {/* Wadah Logo SVG */}
+            <div className="flex items-center justify-center">
+              <img 
+                src="/logo_BSI.png" 
+                alt="Bromo Safety Initiative Logo" 
+                className="w-10 h-10 sm:w-11 sm:h-11 object-contain transition-transform duration-300 "
+              />
             </div>
-            <span className="text-base font-bold tracking-wider text-slate-900 uppercase sm:text-lg lg:text-xl">
-              Bromo<span className="text-brand-orange">Safety</span>
-            </span>
-          </div>
+            
+            {/* STRUKTUR VERTIKAL TEKS BRAND */}
+            <div className="flex flex-col justify-center -space-y-1">
+              {/* Baris Atas: BromoSafety */}
+              <span className="text-base font-black tracking-wider text-slate-900 uppercase sm:text-lg transition-colors duration-300 group-hover:text-slate-700 leading-none">
+                Bromo<span className="text-brand-orange transition-colors duration-300 group-hover:text-brand-orange-hover">Safety</span>
+              </span>
+              
+              {/* Baris Bawah: INITIATIVE (Presisi, Rapi, & Selaras) */}
+              <span className="text-[9px] sm:text-[10px] font-extrabold tracking-[0.22em] text-slate-400 uppercase leading-none pt-1 transition-colors duration-300 group-hover:text-brand-orange">
+                Initiative
+              </span>
+            </div>
+          </a>
 
           {/* DESKTOP & TABLET MENU */}
           <div className="hidden md:flex items-center gap-4 lg:gap-8">
