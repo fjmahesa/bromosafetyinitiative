@@ -21,7 +21,7 @@ function Hero() {
           alt="Mount Bromo Landscape" 
           className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-95"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/55 to-slate-50/90 mix-blend-normal" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-slate-50/90 mix-blend-normal" />
       </div>
 
       {/* 2. INNER CONTAINER: Di sinilah kita memindahkan `ref={domRef}` dan kelas animasinya.

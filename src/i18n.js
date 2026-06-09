@@ -61,6 +61,34 @@ const resources = {
       supportTitle: "Official Endorsement & Validation",
       supportSubtitle: "This movement operates under the official coordination, appreciation, and support from regional authorities and national park management.",
 
+      // SEKSI KAMPANYE O2O (Online to Offline)
+      o2oBadge: "O2O Intervention Strategy",
+      o2oTitleMain: "Online to Offline (O2O) Safety Campaign",
+      o2oSubtitle: "Connecting digital mitigation awareness prior to departure with real physical rescue actions on Bromo's extreme terrain.",
+      o2oTabOnlineTitle: "1. Online Movement",
+      o2oTabOnlineSub: "Digital Pre-Visit Education",
+      o2oTabOfflineTitle: "2. Offline Action",
+      o2oTabOfflineSub: "On-Ground Physical Intervention",
+      
+      o2oOnlineHeader: "Focus of Online Educational Activities",
+      o2oOnlineSubheader: "Building risk awareness for tourists before stepping foot onto the Bromo caldera.",
+      o2oOnlinePointTitle1: "Interactive Risk Map",
+      o2oOnlinePointDesc1: "Digital mapping of hazard routes (Tosari & Cemorolawang) accessible via mobile browsers throughout the journey.",
+      o2oOnlinePointTitle2: "Anti Vapor Lock Campaign",
+      o2oOnlinePointDesc2: "Infographics & short educational video distribution on how to prevent automatic scooter brake failure due to overheating on downhills.",
+      o2oOnlinePointTitle3: "Real-Time Route Status",
+      o2oOnlinePointDesc3: "A centralized monitoring portal for weather conditions, fog visibility, and tourist route traffic density.",
+
+      o2oOfflineHeader: "On-Ground Physical Interventions",
+      o2oOfflineSubheader: "Implementation of direct physical protection in the field to minimize accident fatalities.",
+      o2oOfflinePointTitle1: "Intercept & Cooling Stations",
+      o2oOfflinePointDesc1: "Voluntary action by locals stopping 400+ automatic scooters per day to cool down overheated brake discs.",
+      o2oOfflinePointTitle2: "Emergency Runaway Ramps",
+      o2oOfflinePointDesc2: "Recommendations for structuring emergency runaway pockets made of loose sand & gravel at the bottom of steep slopes.",
+      o2oOfflinePointTitle3: "10,000+ High-Contrast Signs",
+      o2oOfflinePointDesc3: "Installation of highly visible neon warning signs at every critical blind spot prone to incidents.",
+      o2oFootnote: "Connected System: Digital Website Emergency Button Links Directly to Sukapura Ambulance Outpost.",
+
       // TNBTS
       tnbtsQuote: "Expressing our highest appreciation for this initiative aimed at supporting visitor safety improvements and strengthening the positive image of tourism in the Mount Bromo Tengger Semeru National Park area.",
       tnbtsSign: "Bambang Suriyono, S.Hut., M.Si.",
@@ -159,6 +187,34 @@ const resources = {
       btnMap: "Lihat Peta Posko Cooling Point",
       supportTitle: "Dukungan & Validasi Otoritas Resmi",
       supportSubtitle: "Gerakan ini berjalan atas koordinasi, apresiasi, dan dukungan resmi dari otoritas pengelola kawasan dan pemerintah daerah setempat.",
+
+      // SEKSI KAMPANYE O2O (Online to Offline)
+      o2oBadge: "Strategi Intervensi O2O",
+      o2oTitleMain: "Kampanye Keselamatan Online to Offline (O2O)",
+      o2oSubtitle: "Menghubungkan kesadaran mitigasi digital sebelum keberangkatan dengan aksi penyelamatan fisik nyata di medan ekstrem kawasan Bromo.",
+      o2oTabOnlineTitle: "1. Gerakan Online",
+      o2oTabOnlineSub: "Edukasi & Pra-Kunjungan Digital",
+      o2oTabOfflineTitle: "2. Aksi Offline",
+      o2oTabOfflineSub: "Intervensi & Mitigasi Fisik Lapangan",
+      
+      o2oOnlineHeader: "Fokus Kegiatan Edukasi Online",
+      o2oOnlineSubheader: "Membentuk pemahaman risiko bagi wisatawan sebelum menginjakkan kaki di kaldera Bromo.",
+      o2oOnlinePointTitle1: "Peta Risiko Interaktif",
+      o2oOnlinePointDesc1: "Pemetaan digital rute *hazard* (Tosari & Cemorolawang) yang dapat dibuka via mobile browser sepanjang perjalanan.",
+      o2oOnlinePointTitle2: "Kampanye Anti Vapor Lock",
+      o2oOnlinePointDesc2: "Infografis & penyebaran video pendek edukasi cara mencegah rem matic blong akibat panas berlebih di turunan.",
+      o2oOnlinePointTitle3: "Status Jalur Real-Time",
+      o2oOnlinePointDesc3: "Portal pantauan cuaca, visibilitas kabut asap, dan tingkat kepadatan lalu lintas jalur wisata secara terpusat.",
+
+      o2oOfflineHeader: "Aksi & Intervensi Fisik Offline",
+      o2oOfflineSubheader: "Implementasi perlindungan fisik langsung di lapangan demi meminimalisir fatalitas kecelakaan.",
+      o2oOfflinePointTitle1: "Pos Penghentian & Pendinginan",
+      o2oOfflinePointDesc1: "Aksi warga lokal menghentikan 400+ motor matic per hari secara sukarela untuk mendinginkan rem cakram yang panas.",
+      o2oOfflinePointTitle2: "Jalur Pasir Penyelamat",
+      o2oOfflinePointDesc2: "Rekomendasi penataan dinding/kantong penyelamat darurat berbahan pasir & kerikil lepas di dasar turunan curam.",
+      o2oOfflinePointTitle3: "10.000+ Rambu High-Contrast",
+      o2oOfflinePointDesc3: "Pemasangan papan peringatan neon mencolok mata di setiap tikungan buta (*blind spot*) rawan insiden.",
+      o2oFootnote: "Sistem Terkoneksi: Tombol Darurat Digital Website Terhubung Langsung ke Posko Ambulans Sukapura.",
 
       // TNBTS
       tnbtsQuote: "Menyampaikan apresiasi atas inisiatif yang bertujuan mendukung peningkatan keselamatan pengunjung serta penguatan citra positif pariwisata di kawasan Taman Nasional Bromo Tengger Semeru.",
