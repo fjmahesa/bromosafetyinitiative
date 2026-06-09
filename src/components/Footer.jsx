@@ -87,7 +87,7 @@ function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <FaEnvelope className="text-slate-400 flex-shrink-0" />
-                <span className="break-all">info@bromosafetyinitiative.org</span>
+                <span className="break-all">info@bromosafetyinitiative.com</span>
               </li>
             </ul>
             
