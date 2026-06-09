@@ -14,63 +14,63 @@ const resources = {
       navContact: "Contact",
       btnEmergency: "Emergency Call",
 
-      // Konten Riil dari Berkas
+      // Konten Riil dari Berkas - Sinkron dengan Bahasa Indonesia
       heroBadge: "National Priority Campaign",
-      heroTitle: "Towards Zero Accident Tourism",
-      heroSubtitle: "Strategic campaign for safe, orderly, and sustainable tourism in Mount Bromo volcanic ecosystem.",
+      heroTitle: "Safety Campaign for Safe, Orderly, and Sustainable Tourism in Mount Bromo Area",
+      heroSubtitle: "Safety on Bromo pathways is the result of precise education, measured intervention, and tourism ecosystem readiness. Together, we realize the mandate for safe and sustainable tourism.",
       btnGuide: "Safety Guidelines",
       btnStatus: "Volcanic Status",
       statsTitle: "Bromo in Numbers: Scale & Urgency",
-      statsSubtitle: "The rapid surge in global tourist arrivals drives the urgent need for systemic, on-ground safety monitoring.",
+      statsSubtitle: "The sharp surge in global tourist arrivals drives the urgent need for systemic, on-ground safety monitoring.",
       statsLabel1: "Annual Global Tourists",
       statsDesc1: "Total tourists recorded in the latest annual surge, combining local and international visitors.",
       statsLabel2: "Matic Bikes Intercepted/Day",
-      statsDesc2: "Average number of automatic motorcycles safely stopped and checked by local residents daily to prevent brake failure.",
+      statsDesc2: "Average number of automatic motorcycles stopped and checked by local residents daily to prevent brake failure accidents.",
       statsLabel3: "Lebaran Peak Surge",
-      statsDesc3: "Significant volume increase compared to the previous holiday season, creating immense traffic load.",
+      statsDesc3: "Significant volume growth compared to the previous holiday season.",
       statsLabel4: "Target Protected Tourists",
-      statsDesc4: "Target number of visitors directly educated and protected through on-ground safety interventions.",
+      statsDesc4: "Target number of visitors directly educated and protected through physical interventions on hazardous routes.",
       pathTitle: "Anatomy of Extreme Topography",
-      pathSubtitle: "The infrastructure leading to Bromo consists of limited nature conservation access paths, not high-capacity mass transportation routes.",
+      pathSubtitle: "This infrastructure consists of limited nature conservation access paths, not high-capacity mass transportation routes.",
       pathWarning: "WARNING: High accident risks stem from systemic structural road hazards.",
 
       // Titik 1
       pointTitle1: "Steep Inclines & Long Declines",
-      pointDesc1: "Drains engine power on the way up, and drastically overburdens the vehicle's braking system during prolonged descents.",
+      pointDesc1: "Drains engine power on the way up, and drastically overburdens the braking system during prolonged descents.",
 
       // Titik 2
       pointTitle2: "Sharp Hairpin Turns",
-      pointDesc2: "Extremely limited visibility creates critical blind spots along the mountain ridges and steep slopes.",
+      pointDesc2: "Extremely limited visibility (blind spots) along the mountain ridges that demands full driver focus.",
 
       // Titik 3
       pointTitle3: "Narrow Passing Roads",
-      pointDesc3: "Flanked tightly by sheer vertical cliffs on one side and deep ravines on the other, leaving zero room for error.",
+      pointDesc3: "Flanked tightly by steep vertical cliffs prone to landslides and deep ravines without adequate safety barriers.",
       brakeTitle: "Matic Brake Failure Prevention",
-      brakeSubtitle: "An average of 400+ automatic motorbikes are intercepted daily by locals to check brake conditions and prevent fatal accidents.",
+      brakeSubtitle: "An average of 400+ automatic motorbikes are stopped by locals daily on the Sukapura-Cemoro Lawang route to check brake components and prevent fatalities.",
 
       cardTitle1: "Absence of Engine Brake",
-      cardDesc1: "Automatic scooters naturally lose engine braking deceleration when coasting downhill with the engine idling. Acceleration must be locked actively.",
+      cardDesc1: "Automatic scooters lose engine braking deceleration on steep downhills when the throttle is released. Engine RPM must be maintained to keep the drive wheel locked.",
 
       cardTitle2: "Brake Overheating Crisis",
-      cardDesc2: "Continuous friction without intervals boils brake fluid and burns pads, causing sudden total brake loss (fading).",
+      cardDesc2: "Continuous brake application without intervals burns the brake disc, boils the brake fluid, and triggers sudden total brake failure.",
 
-      cardTitle3: "Relief Cooling Points",
-      cardDesc3: "Locals provide free mandatory rest areas equipped with water sprays, mechanics, and rescue teams to cool down your vehicle's braking system safely.",
+      cardTitle3: "Rest Area & Cooling Point",
+      cardDesc3: "Free physical posts are provided by volunteers and residents to spray the brakes, rest the vehicle, and provide emergency medical teams.",
 
       btnMap: "View Cooling Points Map",
-      supportTitle: "Institutional Endorsements",
-      supportSubtitle: "This initiative operates with official acknowledgments and alignment from local authorities and national park management.",
+      supportTitle: "Official Endorsement & Validation",
+      supportSubtitle: "This movement operates under the official coordination, appreciation, and support from regional authorities and national park management.",
 
       // TNBTS
-      tnbtsQuote: "We highly appreciate this initiative aimed at improving visitor safety and strengthening the positive image of tourism in the Mount Bromo Tengger Semeru National Park area.",
+      tnbtsQuote: "Expressing our highest appreciation for this initiative aimed at supporting visitor safety improvements and strengthening the positive image of tourism in the Mount Bromo Tengger Semeru National Park area.",
       tnbtsSign: "Bambang Suriyono, S.Hut., M.Si.",
-      tnbtsRole: "Plh. Head of BB-TNBTS",
+      tnbtsRole: "Acting Head of BB-TNBTS",
 
       // Sukapura
-      sukapuraQuote: "The Sukapura District Government fully supports the implementation of the Bromo Safety Initiative as an effort to educate and raise awareness among tourists regarding the importance of travel safety.",
+      sukapuraQuote: "The Sukapura District Government fully supports the implementation of the Bromo Safety Initiative (BSI) program as an effort to educate and raise awareness among tourists regarding the importance of safety.",
       sukapuraSign: "Nur Rachmad Sholeh",
-      sukapuraRole: "Head of Sukapura District",
-      sponsorTitle: "Executive Partnership & CSR Opportunities",
+      sukapuraRole: "Head of Sukapura District, Probolinggo",
+      sponsorTitle: "Strategic Partnership & Executive Sponsorship Opportunities",
       sponsorSubtitle: "Join forces as a strategic partner to build a permanent digital platform and slash traffic accident rates down to zero.",
       btnDownload: "Download Full Proposal (PDF)",
       tierExclusive: "Exclusive Rights",
@@ -78,25 +78,25 @@ const resources = {
       tierEssential: "Community Support",
 
       // Deskripsi Singkat Paket
-      descBronze: "Digital poster placement and collective mention on campaign social media channels.",
-      descSilver: "Targeted small logo placement on physical banners and specific printed guidelines.",
-      descGold: "Medium logo exposure on on-ground banners, digital content, and direct distribution rights.",
-      descPlatinum: "Dominant co-branding on physical posts, volunteer vests, activation booths, and professional visual assets.",
-      descTitle: "Absolute industry exclusivity, naming rights integration, maximum digital PR, and prime on-ground branding.",
+      descBronze: "Logo participation on the campaign's digital poster and collective mention on social media channels.",
+      descSilver: "Small logo placement on banners along hazardous routes and specific printed leaflets.",
+      descGold: "Medium logo exposure on on-ground banners, digital content, and direct brochure distribution rights.",
+      descPlatinum: "Dominant co-branding on physical posts, volunteer vests, activation booths, and visual documentation assets.",
+      descTitle: "Absolute industry exclusivity, program naming rights integration, along with dominant digital and PR exposure.",
       pillarsTitle: "The Four Pillars of Conservation",
-      pillarsSubtitle: "Every step of safety you take helps preserve the invaluable world-class strategic assets of Bromo Tengger Semeru.",
+      pillarsSubtitle: "Every safety measure you comply with helps preserve invaluable world-class national strategic assets.",
 
       pillarLabel1: "Ecological Value",
-      pillarDesc1: "Protecting the rich, pristine biodiversity and fragile flora-fauna throughout the conservation zone.",
+      pillarDesc1: "Protecting vulnerable biodiversity and fragile endemic flora-fauna throughout the conservation zone.",
 
       pillarLabel2: "Geological Value",
-      pillarDesc2: "Respecting and preserving the ancient, majestic volcanic landscapes and giant caldera formations.",
+      pillarDesc2: "Respecting and preserving ancient majestic volcanic landscapes and giant caldera formations.",
 
       pillarLabel3: "Cultural Value",
-      pillarDesc3: "Honoring the sacred ancestral heritage, traditions, and spiritual wisdom of the Tengger community.",
+      pillarDesc3: "Honoring the sacred ancestral heritage, traditions, and local wisdom of the Tengger community.",
 
       pillarLabel4: "Tourism Value",
-      pillarDesc4: "Sustaining a world-class economic engine driven by safe, safe, and responsible travel ecosystems.",
+      pillarDesc4: "Sustaining a world-class economic engine driven by a safe, orderly, and responsible travel ecosystem.",
       footerDesc: "A digital ecosystem dedicated to education, real-time monitoring, and accident mitigation across the Mount Bromo Tengger Semeru strategic tourism zone.",
       footerNavTitle: "Quick Links",
       footerContactTitle: "Emergency Contacts",
@@ -115,8 +115,8 @@ const resources = {
 
       // Konten Riil dari Berkas
       heroBadge: "Kampanye Prioritas Nasional",
-      heroTitle: "Mewujudkan Perjalanan Zero Accident",
-      heroSubtitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Gunung Bromo yang Aman, Tertib dan Berkelanjutan.",
+      heroTitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Gunung Bromo yang Aman, Tertib dan Berkelanjutan",
+      heroSubtitle: "Keselamatan di jalur Bromo adalah hasil dari edukasi yang presisi, intervensi yang terukur, dan kesiapan ekosistem wisata. Bersama, kita wujudkan mandat pariwisata yang aman dan berkelanjutan.",
       btnGuide: "Panduan Keselamatan",
       btnStatus: "Status Vulkanik",
       statsTitle: "Bromo dalam Angka: Skala & Urgensi",
@@ -170,7 +170,7 @@ const resources = {
       sukapuraSign: "Nur Rachmad Sholeh",
       sukapuraRole: "Camat Sukapura, Probolinggo",
       sponsorTitle: "Peluang Kemitraan & Sponsorship Eksekutif",
-      supportSubtitle: "Bergabung bersama sebagai mitra strategis untuk membangun platform digital permanen dan menekan angka kecelakaan hingga titik nol.",
+      sponsorSubtitle: "Bergabung bersama sebagai mitra strategis untuk membangun platform digital permanen dan menekan angka kecelakaan hingga titik nol.",
       btnDownload: "Unduh Proposal Lengkap (PDF)",
       tierExclusive: "Hak Eksklusif",
       tierPopular: "Visibilitas Tinggi",
@@ -196,7 +196,7 @@ const resources = {
 
       pillarLabel4: "Nilai Pariwisata",
       pillarDesc4: "Menjaga daya tarik ekonomi kelas dunia melalui ekosistem perjalanan yang aman dan tertib.",
-      footerDesc: "Keselamatan di jalur Bromo adalah hasil dari edukasi yang presisi, intervensi yang terukur, dan kesiapan ekosistem wisata. Bersama, kita wujudkan mandat pariwisata yang aman dan berkelanjutan.",
+      footerDesc: "Ekosistem digital yang didedikasikan untuk edukasi, pemantauan riil, dan mitigasi kecelakaan di seluruh kawasan strategis pariwisata Taman Nasional Bromo Tengger Semeru.",
       footerNavTitle: "Navigasi Ringkas",
       footerContactTitle: "Kontak Darurat",
       footerEmergencyCall: "Hubungi Posko Fisik",
@@ -206,13 +206,13 @@ const resources = {
 };
 
 i18n
-  .use(LanguageDetector) // Deteksi bahasa otomatis
-  .use(initReactI18next) // Hubungkan dengan react-i18next
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'id', // Bahasa utama jika deteksi gagal
+    fallbackLng: 'id',
     interpolation: {
-      escapeValue: false // React sudah aman dari XSS
+      escapeValue: false
     }
   });
 

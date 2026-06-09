@@ -12,7 +12,7 @@ function Hero() {
     /* 1. KONTEN UTAMA & PEMBUNGKUS UTAMA SEKARANG DIPISAH.
          Tag utama <section> sekarang bersih dari ref animasi agar background langsung render 100%.
     */
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50 py-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50 py-18 px-4 sm:px-6 lg:px-8">
       
       {/* BACKGROUND LAYER: Sekarang bebas dari efek animasi fade-in, langsung tampil instan */}
       <div className="absolute inset-0 z-0">
@@ -29,7 +29,7 @@ function Hero() {
       */}
       <div 
         ref={domRef}
-        className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} relative z-10 max-w-5xl mx-auto text-center mt-4 w-full`}
+        className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} relative z-10 max-w-5xl mx-auto text-center w-full`}
       >
         
         {/* Badge */}
@@ -38,7 +38,7 @@ function Hero() {
         </div>
         
         {/* Judul Utama */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 mb-6 leading-[1.1]">
+        <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-[1.1]">
           {t('heroTitle').split(' ').map((word, i) => {
             const isHighlight = word === 'Confidence' || word === 'Percaya' || word === 'Diri';
             return (
