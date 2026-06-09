@@ -83,7 +83,7 @@ function Footer() {
             <ul className="space-y-3 text-xs sm:text-sm font-semibold text-slate-500">
               <li className="flex items-start gap-2.5">
                 <FaMapMarkerAlt className="text-slate-400 mt-0.5 flex-shrink-0" />
-                <span>Kecamatan Sukapura, Kabupaten Probolinggo, Jawa Timur</span>
+                <span>Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <FaEnvelope className="text-slate-400 flex-shrink-0" />

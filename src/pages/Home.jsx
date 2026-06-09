@@ -5,7 +5,9 @@ import PathAnatomy from '../sections/home/PathAnatomy';
 import BrakeEducation from '../sections/home/BrakeEducation';
 import OfficialSupport from '../sections/home/OfficialSupport';
 // import SponsorshipCall from '../sections/home/SponsorshipCall';
-import SafetyPillars from '../sections/home/SafetyPillars';
+// import SafetyPillars from '../sections/home/SafetyPillars';
+import InstagramFeed from '../sections/home/InstagramFeed';
+import O2OCampaign from '../sections/home/O2OCampaign';
 
 function Home() {
   return (
@@ -15,7 +17,9 @@ function Home() {
       <PathAnatomy />
       <BrakeEducation />
       <OfficialSupport />
-      <SafetyPillars />
+      <O2OCampaign />
+      <InstagramFeed />
+      {/* <SafetyPillars /> */}
       {/* <SponsorshipCall /> */}
     </>
   );

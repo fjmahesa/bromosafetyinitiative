@@ -68,7 +68,7 @@ const resources = {
 
       // Sukapura
       sukapuraQuote: "The Sukapura District Government fully supports the implementation of the Bromo Safety Initiative as an effort to educate and raise awareness among tourists regarding the importance of travel safety.",
-      sukapuraSign: "Ino Rachmad Sholeh, S.STP., M.Si.",
+      sukapuraSign: "Nur Rachmad Sholeh",
       sukapuraRole: "Head of Sukapura District",
       sponsorTitle: "Executive Partnership & CSR Opportunities",
       sponsorSubtitle: "Join forces as a strategic partner to build a permanent digital platform and slash traffic accident rates down to zero.",
@@ -116,7 +116,7 @@ const resources = {
       // Konten Riil dari Berkas
       heroBadge: "Kampanye Prioritas Nasional",
       heroTitle: "Mewujudkan Perjalanan Zero Accident",
-      heroSubtitle: "Strategi taktis pariwisata kawasan Gunung Bromo yang aman, tertib, dan berkelanjutan.",
+      heroSubtitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Gunung Bromo yang Aman, Tertib dan Berkelanjutan.",
       btnGuide: "Panduan Keselamatan",
       btnStatus: "Status Vulkanik",
       statsTitle: "Bromo dalam Angka: Skala & Urgensi",
@@ -167,7 +167,7 @@ const resources = {
 
       // Sukapura
       sukapuraQuote: "Pemerintah Kecamatan Sukapura mendukung penuh pelaksanaan Program Bromo Safety Initiative (BSI) sebagai upaya edukasi dan peningkatan kesadaran wisatawan terhadap pentingnya keselamatan.",
-      sukapuraSign: "Ino Rachmad Sholeh, S.STP., M.Si.",
+      sukapuraSign: "Nur Rachmad Sholeh",
       sukapuraRole: "Camat Sukapura, Probolinggo",
       sponsorTitle: "Peluang Kemitraan & Sponsorship Eksekutif",
       supportSubtitle: "Bergabung bersama sebagai mitra strategis untuk membangun platform digital permanen dan menekan angka kecelakaan hingga titik nol.",
@@ -196,7 +196,7 @@ const resources = {
 
       pillarLabel4: "Nilai Pariwisata",
       pillarDesc4: "Menjaga daya tarik ekonomi kelas dunia melalui ekosistem perjalanan yang aman dan tertib.",
-      footerDesc: "Ekosistem digital yang didedikasikan untuk edukasi, pemantauan riil, dan mitigasi kecelakaan di seluruh kawasan strategis pariwisata Taman Nasional Bromo Tengger Semeru.",
+      footerDesc: "Keselamatan di jalur Bromo adalah hasil dari edukasi yang presisi, intervensi yang terukur, dan kesiapan ekosistem wisata. Bersama, kita wujudkan mandat pariwisata yang aman dan berkelanjutan.",
       footerNavTitle: "Navigasi Ringkas",
       footerContactTitle: "Kontak Darurat",
       footerEmergencyCall: "Hubungi Posko Fisik",

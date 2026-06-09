@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-
-  --color-brand-orange: #f97316;        /* Warna utama aksen */
-  --color-brand-orange-hover: #ea580c;  /* Warna saat tombol di-hover */
-  --color-brand-orange-light: #fff7ed;  /* Warna background tipis (untuk badge/box) */
-  --color-brand-orange-border: #ffedd5; /* Warna border tipis */
+  --color-brand-orange: #2CB3F2;        /* Diubah ke Biru Utama Logo */
+  --color-brand-orange-hover: #1099DC;  /* Diubah ke Biru Hover Logo */
+  --color-brand-orange-light: #EDF8FF;  /* Diubah ke Biru Pastel Lembut */
+  --color-brand-orange-border: #9ADAFF; /* Border biru muda tipis */
 }
+
 .fade-in-hidden {
   opacity: 0;
   transform: translateY(20px);
