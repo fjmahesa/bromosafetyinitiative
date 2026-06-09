@@ -16,7 +16,7 @@ function ImpactStats() {
   const statsData = [
     {
       id: 1,
-      icon: <FaUsers className="text-2xl text-brand-orange" />,
+      icon: <FaUsers className="text-2xl text-orange-400" />,
       number: "536.984", 
       label: t('statsLabel1'),
       desc: t('statsDesc1'),
@@ -25,7 +25,7 @@ function ImpactStats() {
       colorActive: "bg-orange-50/70 border-orange-500 shadow-2xl shadow-orange-500/15 text-orange-950",
       iconIdle: "bg-white border-slate-200",
       iconActive: "bg-white border-orange-300 scale-110 shadow-md",
-      numberActive: "text-brand-orange"
+      numberActive: "text-orange-400"
     },
     {
       id: 2,
