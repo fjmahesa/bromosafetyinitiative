@@ -23,7 +23,7 @@ function Navbar() {
           
           {/* LOGO AREA - DENGAN SUB-TEKS INITIATIVE YANG PRESISI */}
           <a 
-            href="#home" 
+            href="/" 
             className="flex-shrink-0 flex items-center gap-3 group transition-transform duration-200 active:scale-95 cursor-pointer"
             title="Go to homepage"
           >
@@ -52,8 +52,8 @@ function Navbar() {
 
           {/* DESKTOP & TABLET MENU */}
           <div className="hidden md:flex items-center gap-4 lg:gap-8">
-            <a href="#home" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navHome')}</a>
-            <a href="#articles" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navArticles')}</a>
+            <a href="/" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navHome')}</a>
+            <a href="/articles" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navArticles')}</a>
             <a href="#safety" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navSafety')}</a>
             <a href="#about" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navAbout')}</a>
             <a href="#contact" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navContact')}</a>
@@ -106,8 +106,8 @@ function Navbar() {
       {/* MOBILE & TABLET DROPDOWN MENU */}
       <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-72 opacity-100 border-b border-slate-200' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-4 pt-2 pb-6 space-y-3 bg-white">
-          <a href="#home" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navHome')}</a>
-          <a href="#articles" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navArticles')}</a>
+          <a href="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navHome')}</a>
+          <a href="/articles" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navArticles')}</a>
           <a href="#safety" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navSafety')}</a>
           <a href="#about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navAbout')}</a>
           <a href="#contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navContact')}</a>

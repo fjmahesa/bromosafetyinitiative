@@ -8,6 +8,7 @@ import OfficialSupport from '../sections/home/OfficialSupport';
 // import SafetyPillars from '../sections/home/SafetyPillars';
 import InstagramFeed from '../sections/home/InstagramFeed';
 import O2OCampaign from '../sections/home/O2OCampaign';
+import ArticlesSection from '../sections/home/ArticlesSection';
 
 function Home() {
   return (
@@ -19,6 +20,7 @@ function Home() {
       <OfficialSupport />
       <O2OCampaign />
       <InstagramFeed />
+      <ArticlesSection />
       {/* <SafetyPillars /> */}
       {/* <SponsorshipCall /> */}
     </>
