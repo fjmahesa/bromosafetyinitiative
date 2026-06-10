@@ -74,7 +74,7 @@ function ArticlesSection() {
               return (
                 <Link 
                   key={post.id}
-                  to={`/post/${post.id}`} // <-- TUJUAN DIREDIREKSI KE HALAMAN POST DETAIL
+                  to={`/post/${post.slug}`} // <-- TUJUAN DIREDIREKSI KE HALAMAN POST DETAIL
                   className="flex flex-col rounded-3xl border-2 border-slate-200/80 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-orange)] hover:shadow-2xl hover:shadow-[var(--color-brand-orange)]/5 group cursor-pointer select-none"
                 >
                   {/* Foto Utama Artikel */}

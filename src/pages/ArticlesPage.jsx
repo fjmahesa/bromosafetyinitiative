@@ -160,7 +160,7 @@ function ArticlesPage() {
               return (
                 <Link 
                   key={post.id}
-                  to={`/post/${post.id}`}
+                  to={`/post/${post.slug}`}
                   className="flex flex-col rounded-3xl border-2 border-slate-200/80 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-orange)] hover:shadow-2xl hover:shadow-[var(--color-brand-orange)]/5 group cursor-pointer select-none"
                 >
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">

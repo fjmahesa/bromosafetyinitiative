@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import PostDetail from './pages/PostDetail';
 import ArticlesPage from './pages/ArticlesPage';
+import CategoryPage from './pages/CategoryPage';
 
 // 1. Komponen Layout Global
 function GlobalLayout() {
@@ -35,8 +36,9 @@ function App() {
           <Route index element={<Home />} />
           
           {/* Halaman Detail Artikel Berdasarkan ID WordPress */}
-          <Route path="post/:id" element={<PostDetail />} />
           <Route path="articles" element={<ArticlesPage />} />
+          <Route path="post/:slug" element={<PostDetail />} />
+          <Route path="category/:categorySlug" element={<CategoryPage />} />
         </Route>
       </Routes>
     </Router>

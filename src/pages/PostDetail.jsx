@@ -3,31 +3,28 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   FaCalendarAlt,
-  FaUser,
-  FaArrowLeft,
   FaClock,
   FaFacebook,
   FaWhatsapp,
   FaInstagram,
   FaTiktok,
   FaCopy,
-  FaCheck
+  FaCheck,
+  FaFolderOpen
 } from 'react-icons/fa';
-// Menggunakan komponen khusus dari react-icons/fa6 untuk logo X (Twitter) terbaru
 import { FaXTwitter } from 'react-icons/fa6';
 
 function PostDetail() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const { t, i18n } = useTranslation();
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState([]);
+  const [wpCategories, setWpCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // State untuk animasi feedback saat menyalin tautan
   const [isCopied, setIsCopied] = useState(false);
 
   const currentLang = i18n.language.startsWith('en') ? 'en' : 'id';
-  const currentUrl = window.location.href; // Mengambil URL artikel aktif secara otomatis
+  const currentUrl = window.location.href;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -36,45 +33,52 @@ function PostDetail() {
     window.scrollTo(0, 0);
     setIsLoading(true);
 
-    // 1. Fetch Detail Artikel Utama
-    fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts/${id}?_embed`, { signal })
+    const fetchMainPost = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&slug=${slug}`, { signal })
       .then((res) => {
         if (!res.ok) throw new Error('Gagal memuat artikel utama');
         return res.json();
+      });
+
+    const fetchAllCategories = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/categories`, { signal })
+      .then((res) => {
+        if (!res.ok) throw new Error('Gagal memuat kategori');
+        return res.json();
+      });
+
+    Promise.all([fetchMainPost, fetchAllCategories])
+      .then(([postsData, catsData]) => {
+        if (postsData && postsData.length > 0) {
+          const mainPost = postsData[0];
+          setPost(mainPost);
+
+          const cleanCats = catsData.filter(cat => cat.slug !== 'uncategorized');
+          setWpCategories(cleanCats);
+
+          return fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=4&exclude=${mainPost.id}`, { signal });
+        } else {
+          setPost(null);
+          setIsLoading(false);
+        }
       })
-      .then((data) => {
-        setPost(data);
+      .then(res => res ? res.json() : null)
+      .then((recentData) => {
+        if (recentData) setRecentPosts(recentData);
         setIsLoading(false);
       })
       .catch((err) => {
         if (err.name !== 'AbortError') {
-          console.error('Gagal memuat artikel utama:', err);
+          console.error('Error memuat data PostDetail:', err);
           setIsLoading(false);
         }
       });
 
-    // 2. Fetch 4 Artikel Lainnya untuk Sidebar Kanan
-    fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=4&exclude=${id}`, { signal })
-      .then((res) => {
-        if (!res.ok) throw new Error('Gagal memuat artikel bilah samping');
-        return res.json();
-      })
-      .then((data) => setRecentPosts(data))
-      .catch((err) => {
-        if (err.name !== 'AbortError') {
-          console.error('Gagal memuat artikel bilah samping:', err);
-        }
-      });
-
     return () => controller.abort();
-  }, [id, i18n.language]);
+  }, [slug, i18n.language]);
 
-  // FUNGSI COPY LINK (MENYALIN TAUTAN)
   const handleCopyLink = () => {
     navigator.clipboard.writeText(currentUrl)
       .then(() => {
         setIsCopied(true);
-        // Kembalikan ikon menjadi semula setelah 2 detik
         setTimeout(() => setIsCopied(false), 2000);
       })
       .catch((err) => console.error('Gagal menyalin tautan:', err));
@@ -83,7 +87,6 @@ function PostDetail() {
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 animate-pulse space-y-8">
-        <div className="h-6 bg-slate-200 rounded-md w-24" />
         <div className="h-12 bg-slate-200 rounded-xl w-3/4" />
         <div className="aspect-[16/7] bg-slate-200 rounded-3xl w-full" />
       </div>
@@ -104,48 +107,111 @@ function PostDetail() {
   });
   const articleTitle = post.title.rendered;
 
+  const activeCategory = wpCategories.find(cat => post.categories.includes(cat.id));
+
   return (
-    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10">
 
-      {/* TOMBOL KEMBALI */}
-      <Link
-        to="/"
-        className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest uppercase text-slate-400 hover:text-[var(--color-brand-orange)] transition-colors mb-8 group"
-      >
-        <FaArrowLeft className="transition-transform duration-300 group-hover:-translate-x-1" /> Kembali ke Beranda
-      </Link>
+      {/* GRID LAYOUT UTAMA */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        
+        {/* KOLOM 1: DAFTAR KATEGORI SISI KIRI (STICKY) */}
+        <aside className="hidden lg:block lg:col-span-2 lg:sticky lg:top-28 bg-white border border-slate-200/60 rounded-3xl p-4 shadow-xs">
+          <h3 className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-4 pb-2 border-b border-slate-100 flex items-center gap-1.5">
+            <FaFolderOpen /> Kategori
+          </h3>
+          <nav className="flex flex-col gap-2.5">
+            {wpCategories.map((cat) => {
+              const isCurrentCategory = post.categories.includes(cat.id);
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/category/${cat.slug}`}
+                  className={`text-xs font-bold tracking-wide transition-all rounded-xl px-3 py-2 block capitalize group/cat ${
+                    isCurrentCategory 
+                      ? 'bg-[var(--color-brand-orange-light)] text-[var(--color-brand-orange)] border border-[var(--color-brand-orange-border)]' 
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  }`}
+                >
+                  <span className="flex items-center justify-between">
+                    <span className="truncate">{cat.name}</span>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-extrabold ${
+                      isCurrentCategory ? 'bg-[var(--color-brand-orange)] text-white' : 'bg-slate-100 text-slate-400 group-hover/cat:bg-slate-200'
+                    }`}>
+                      {cat.count}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+        </aside>
 
-      {/* GRID LAYOUT: 8 KOLOM KONTEN, 4 KOLOM SIDEBAR */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* KOLOM 2: AREA ARTIKEL UTAMA DI TENGAH */}
+        <article className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-5 sm:p-10 shadow-xs">
 
-        {/* LINGKUP ARTIKEL UTAMA (8 KOLOM) */}
-        <article className="lg:col-span-8 bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-10 shadow-xs">
-
-          {/* KATEGORI & ESTIMASI BACA */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="text-[10px] font-black tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-2.5 py-1 rounded-md border border-[var(--color-brand-orange-border)]">
-              Edukasi Jalur
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-400">
-              <FaClock /> 4 Menit Baca
-            </span>
+          {/* PERUBAHAN: BREADCRUMB MENJADI HOME > ARTIKEL > KATEGORI */}
+          <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-5 select-none">
+            <Link to="/" className="hover:text-slate-600 transition-colors">Home</Link>
+            <span className="text-slate-300 font-normal">&gt;</span>
+            <Link to="/articles" className="hover:text-slate-600 transition-colors">Artikel</Link>
+            <span className="text-slate-300 font-normal">&gt;</span>
+            {activeCategory ? (
+              <Link 
+                to={`/category/${activeCategory.slug}`} 
+                className="text-[var(--color-brand-orange)] hover:text-[var(--color-brand-orange-hover)] transition-colors capitalize font-extrabold"
+              >
+                {activeCategory.name}
+              </Link>
+            ) : (
+              <span className="capitalize">General</span>
+            )}
           </div>
 
           {/* JUDUL UTAMA */}
           <h1
-            className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 leading-tight mb-6"
+            className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-6"
             dangerouslySetInnerHTML={{ __html: articleTitle }}
           />
 
-          {/* METADATA PENULIS */}
-          <div className="flex items-center gap-6 border-b border-slate-100 pb-6 mb-8 text-xs font-bold text-slate-400 uppercase tracking-wider">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-[var(--color-brand-orange)] text-white text-[10px] flex items-center justify-center font-black">BSI</div>
-              <span className="text-slate-700">Admin Bromo Safety</span>
+          {/* PERUBAHAN: AREA METADATA YANG SUDAH DIRAPIKAN TOTAL SEPERTI PADA IMAGE_FD7AA2.PNG */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5 mb-8 text-xs font-bold text-slate-400 tracking-wide">
+            
+            {/* Sisi Kiri: Penulis, Tanggal, dan Kategori (Menggunakan text-slate-500 netral tanpa paksaan uppercase global) */}
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <div className="w-5 h-5 rounded-full bg-[var(--color-brand-orange)] text-white text-[9px] flex items-center justify-center font-black">BSI</div>
+                <span className="text-slate-700 font-extrabold">by Admin Bromo Safety</span>
+              </div>
+              
+              <span className="text-slate-300 font-normal">—</span>
+              
+              <div className="flex items-center gap-1">
+                <FaCalendarAlt className="text-slate-300 text-[11px]" /> 
+                <span className="text-slate-500">{formattedDate}</span>
+              </div>
+              
+              <span className="text-slate-300 font-normal">in</span>
+              
+              <div className="inline-flex items-center">
+                {activeCategory ? (
+                  <Link 
+                    to={`/category/${activeCategory.slug}`} 
+                    className="text-[var(--color-brand-orange)] hover:text-[var(--color-brand-orange-hover)] transition-colors font-black capitalize bg-[var(--color-brand-orange-light)] px-2 py-0.5 rounded-md border border-[var(--color-brand-orange-border)]"
+                  >
+                    {activeCategory.name}
+                  </Link>
+                ) : (
+                  <span className="text-slate-500 font-black capitalize bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100">General</span>
+                )}
+              </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <FaCalendarAlt /> {formattedDate}
+
+            {/* Sisi Kanan: Reading Time Box (Mencegah teks terlipat berantakan ke bawah) */}
+            <div className="inline-flex items-center gap-1.5 text-slate-500 font-extrabold bg-slate-50/80 px-2.5 py-1 rounded-lg border border-slate-100 whitespace-nowrap self-start sm:self-auto">
+              <FaClock className="text-slate-400 text-[11px]" /> 4 Mins Read
             </div>
+
           </div>
 
           {/* HERO IMAGE ARTIKEL */}
@@ -156,7 +222,7 @@ function PostDetail() {
           {/* ISI BODY ARTIKEL */}
           <div
             className="prose prose-slate max-w-none 
-              prose-p:text-base prose-p:sm:text-lg prose-p:text-slate-600 prose-p:leading-relaxed prose-p:mb-6
+              prose-p:text-base prose-p:text-slate-600 prose-p:leading-relaxed prose-p:mb-6
               prose-headings:font-black prose-headings:text-slate-900 prose-headings:tracking-tight prose-headings:mt-8 prose-headings:mb-4
               prose-h2:text-xl prose-h2:sm:text-2xl
               prose-strong:font-black prose-strong:text-slate-900
@@ -165,93 +231,80 @@ function PostDetail() {
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />
 
-          {/* ==================== PANEL TOMBOL SHARE KE SOSIAL MEDIA ==================== */}
+          {/* PANEL TOMBOL SHARE KE SOSIAL MEDIA */}
           <div className="border-t border-slate-100 pt-8 mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h4 className="text-sm font-black uppercase tracking-wider text-slate-800">Bagikan Informasi Ini</h4>
-              <p className="text-xs text-slate-400 font-medium mt-0.5">Satu kepedulian Anda bisa menyelamatkan nyawa pengendara lain.</p>
+              <p className="text-xs text-slate-400 font-medium mt-0.5">Satu kepedulian Anda bisa menyelamatkan nyawa.</p>
             </div>
 
-            {/* Jajaran Ikon Bulat */}
             <div className="flex flex-wrap items-center gap-3">
-
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Share to Facebook"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#1877F2] hover:bg-[#166FE5] hover:scale-110 shadow-md shadow-[#1877F2]/20 transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#1877F2] hover:bg-[#166FE5] hover:scale-110 transition-all duration-300"
               >
-                {/* Pastikan sudah meng-import FaFacebook dari 'react-icons/fa' di bagian atas file */}
                 <FaFacebook className="text-lg" />
               </a>
 
-              {/* WHATSAPP */}
               <a
                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(articleTitle + ' - ' + currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Share to WhatsApp"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#25D366] hover:bg-[#20ba5a] hover:scale-110 shadow-md shadow-[#25D366]/20 transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#25D366] hover:bg-[#20ba5a] hover:scale-110 transition-all duration-300"
               >
                 <FaWhatsapp className="text-lg" />
               </a>
 
-              {/* INSTAGRAM (Catatan: API Web IG tidak mendukung direct text share, dialihkan membuka web IG) */}
               <a
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Open Instagram"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#E1306C] hover:bg-[#c2255c] hover:scale-110 shadow-md shadow-[#E1306C]/20 transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#E1306C] hover:bg-[#c2255c] hover:scale-110 transition-all duration-300"
               >
                 <FaInstagram className="text-lg" />
               </a>
 
-              {/* TIKTOK (Catatan: API Web Tiktok mengarah ke beranda untuk upload/posting berkas edukasi) */}
               <a
                 href="https://www.tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Open TikTok"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#000000] hover:bg-[#1a1a1a] hover:scale-110 shadow-md shadow-black/20 border border-slate-800 transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#000000] hover:bg-[#1a1a1a] hover:scale-110 transition-all duration-300"
               >
                 <FaTiktok className="text-sm" />
               </a>
 
-              {/* X (TWITTER) */}
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(articleTitle)}&url=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Share to X"
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#000000] hover:bg-[#1a1a1a] hover:scale-110 shadow-md shadow-black/20 border border-slate-800 transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#000000] hover:bg-[#1a1a1a] hover:scale-110 transition-all duration-300"
               >
                 <FaXTwitter className="text-sm" />
               </a>
 
-              {/* COPY LINK BUTTON (Dengan icon Kertas & Feedback Sukses) */}
               <button
                 onClick={handleCopyLink}
                 title="Salin Tautan"
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer select-none hover:scale-110 shadow-md
-                  ${isCopied
-                    ? 'bg-emerald-500 shadow-emerald-500/20'
-                    : 'bg-slate-500 hover:bg-slate-600 shadow-slate-500/20'
-                  }
+                  ${isCopied ? 'bg-emerald-500' : 'bg-slate-500 hover:bg-slate-600'}
                 `}
               >
-                {isCopied ? <FaCheck className="text-sm animate-fade-in-quick" /> : <FaCopy className="text-sm" />}
+                {isCopied ? <FaCheck className="text-sm" /> : <FaCopy className="text-sm" />}
               </button>
-
             </div>
           </div>
-          {/* ============================================================================ */}
 
         </article>
 
-        {/* SIDEBAR REKOMENDASI (4 KOLOM) - STICKY POSITION */}
-        <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-8">
+        {/* KOLOM 3: SIDEBAR REKOMENDASI DI KANAN */}
+        <aside className="lg:col-span-3 lg:sticky lg:top-28 space-y-8">
           <div className="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-xs">
             <h3 className="text-sm font-black tracking-wider text-slate-900 uppercase mb-6 pb-3 border-b border-slate-100 flex items-center justify-between">
               <span>Artikel Lainnya</span>
@@ -268,7 +321,7 @@ function PostDetail() {
                 return (
                   <Link
                     key={recent.id}
-                    to={`/post/${recent.id}`}
+                    to={`/post/${recent.slug}`}
                     className="flex gap-4 items-start group select-none cursor-pointer"
                   >
                     <div className="w-20 h-20 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 border border-slate-100 shadow-xs">
@@ -279,7 +332,7 @@ function PostDetail() {
                         {recentDate}
                       </span>
                       <h4
-                        className="text-sm font-extrabold text-slate-800 group-hover:text-[var(--color-brand-orange)] transition-colors leading-snug line-clamp-2"
+                        className="text-sm font-extrabold text-slate-800 group-hover:text-[var(--color-brand-orange)] transition-colors leading-snug line-clamp-3"
                         dangerouslySetInnerHTML={{ __html: recent.title.rendered }}
                       />
                     </div>
@@ -295,7 +348,7 @@ function PostDetail() {
             <p className="text-xs text-slate-400 font-medium leading-relaxed mb-4">Tekan tombol darurat fisik untuk langsung tersambung ke Command Center Ambulans Sukapura.</p>
             <a
               href="tel:112"
-              className="inline-flex w-full justify-center items-center text-center bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-hover)] text-white text-xs font-extrabold tracking-widest uppercase py-3 rounded-xl transition-all duration-300 shadow-md shadow-[var(--color-brand-orange)]/20"
+              className="inline-flex w-full justify-center items-center text-center bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-hover)] text-white text-xs font-extrabold tracking-widest uppercase py-3 rounded-xl transition-all duration-300 shadow-md"
             >
               Hubungi 112 Sekarang
             </a>
