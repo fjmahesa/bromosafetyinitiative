@@ -1,12 +1,13 @@
 import React from 'react';
 // Pastikan 'Route' sudah dimasukkan ke dalam daftar import di bawah ini
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import PostDetail from './pages/PostDetail';
 import ArticlesPage from './pages/ArticlesPage';
 import CategoryPage from './pages/CategoryPage';
+import NotFound from './pages/NotFound';
 
 // 1. Komponen Layout Global
 function GlobalLayout() {
@@ -39,6 +40,8 @@ function App() {
           <Route path="articles" element={<ArticlesPage />} />
           <Route path="post/:slug" element={<PostDetail />} />
           <Route path="category/:categorySlug" element={<CategoryPage />} />
+          <Route path="post" element={<Navigate to="/articles" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Router>

@@ -69,7 +69,7 @@ const resources = {
       o2oTabOnlineSub: "Digital Pre-Visit Education",
       o2oTabOfflineTitle: "2. Offline Action",
       o2oTabOfflineSub: "On-Ground Physical Intervention",
-      
+
       o2oOnlineHeader: "Focus of Online Educational Activities",
       o2oOnlineSubheader: "Building risk awareness for tourists before stepping foot onto the Bromo caldera.",
       o2oOnlinePointTitle1: "Interactive Risk Map",
@@ -130,6 +130,10 @@ const resources = {
       footerContactTitle: "Emergency Contacts",
       footerEmergencyCall: "Call Command Center",
       footerRights: "All Rights Reserved.",
+      errorTitle: "Oops! You Are Lost in Bromo's Fog",
+      errorDesc: "The page you are looking for could not be found or has been moved to a different path.",
+      btnHome: "Back to Home",
+      btnEmergency: "Emergency Call",
     }
   },
   id: {
@@ -196,7 +200,7 @@ const resources = {
       o2oTabOnlineSub: "Edukasi & Pra-Kunjungan Digital",
       o2oTabOfflineTitle: "2. Aksi Offline",
       o2oTabOfflineSub: "Intervensi & Mitigasi Fisik Lapangan",
-      
+
       o2oOnlineHeader: "Fokus Kegiatan Edukasi Online",
       o2oOnlineSubheader: "Membentuk pemahaman risiko bagi wisatawan sebelum menginjakkan kaki di kaldera Bromo.",
       o2oOnlinePointTitle1: "Peta Risiko Interaktif",
@@ -256,7 +260,11 @@ const resources = {
       footerNavTitle: "Navigasi Ringkas",
       footerContactTitle: "Kontak Darurat",
       footerEmergencyCall: "Hubungi Posko Fisik",
-      footerRights: "Hak Cipta Dilindungi Undang-Undang."
+      footerRights: "Hak Cipta Dilindungi Undang-Undang.",
+      errorTitle: "Opps! Anda Tersesat di Kabut Bromo",
+      errorDesc: "Halaman yang Anda cari tidak dapat ditemukan atau telah dipindahkan ke jalur yang berbeda.",
+      btnHome: "Kembali ke Beranda",
+      btnEmergency: "Panggilan Darurat",
     }
   }
 };
