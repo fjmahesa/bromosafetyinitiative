@@ -48,7 +48,7 @@ function ArticlesSection() {
             {t('navArticles')}
           </span>
           <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mt-4">
-            Wawasan & Kabar Edukasi
+            {t('articlesSectionHeading')}
           </h2>
         </div>
 
@@ -94,7 +94,7 @@ function ArticlesSection() {
                         <FaCalendarAlt /> {formattedDate}
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <FaUser /> Admin BSI
+                        <FaUser /> {t('articlesSectionAuthor')}
                       </div>
                     </div>
 
@@ -112,7 +112,7 @@ function ArticlesSection() {
 
                     {/* Penanda Tombol Aksi */}
                     <div className="inline-flex items-center gap-2 text-xs font-extrabold text-[var(--color-brand-orange)] uppercase tracking-widest pt-4 border-t border-slate-100 w-full group-hover:text-[var(--color-brand-orange-hover)] transition-colors">
-                      Selengkapnya <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                      {t('articlesSectionReadMore')} <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </div>
                   </div>
                 </Link>

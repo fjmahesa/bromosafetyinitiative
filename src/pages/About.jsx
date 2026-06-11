@@ -5,9 +5,14 @@ import {
   FaUserShield, 
   FaUsers 
 } from 'react-icons/fa';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 function About() {
   const { t } = useTranslation();
+  const [heroRef, heroVisible] = useFadeIn(0);
+  const [bgRef, bgVisible] = useFadeIn(100);
+  const [pillarRef, pillarVisible] = useFadeIn(200);
+  const [ctaRef, ctaVisible] = useFadeIn(300);
 
   return (
     <div className="bg-slate-50 min-h-screen">
@@ -17,7 +22,7 @@ function About() {
         <div className="absolute -right-32 -top-32 w-96 h-96 bg-[var(--color-brand-orange)]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-slate-800 rounded-full blur-3xl pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div ref={heroRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center transition-all duration-700 ${heroVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
           <span className="text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/30 text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full inline-block mb-4">
             {t('aboutBadge')}
           </span>
@@ -30,8 +35,10 @@ function About() {
         </div>
       </section>
 
+      <div className="page-enter">
+
       {/* ==================== LATAR BELAKANG & MISI ==================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <section ref={bgRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 transition-all duration-700 ${bgVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Sisi Kiri: Narasi */}
@@ -83,7 +90,7 @@ function About() {
 
       {/* ==================== 3 PILAR UTAMA (FEATURES GRID) ==================== */}
       <section className="bg-white border-y border-slate-200/60 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={pillarRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${pillarVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
           
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
@@ -141,7 +148,7 @@ function About() {
       </section>
 
       {/* ==================== CALL TO ACTION SECTION ==================== */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+      <section ref={ctaRef} className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center transition-all duration-700 ${ctaVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
         <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden border border-slate-800">
           <div className="absolute -right-20 -bottom-20 w-48 h-48 bg-[var(--color-brand-orange)]/10 rounded-full blur-3xl" />
           
@@ -162,6 +169,7 @@ function About() {
         </div>
       </section>
 
+      </div>
     </div>
   );
 }

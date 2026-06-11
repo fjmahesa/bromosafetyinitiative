@@ -10,6 +10,7 @@ import CategoryPage from './pages/CategoryPage';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Safety from './pages/Safety';
 
 // 1. Komponen Layout Global
 function GlobalLayout() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="articles" element={<ArticlesPage />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="safety" element={<Safety />} />
           <Route path="post/:slug" element={<PostDetail />} />
           <Route path="category/:categorySlug" element={<CategoryPage />} />
           <Route path="post" element={<Navigate to="/articles" replace />} />

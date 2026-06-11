@@ -12,18 +12,20 @@ import ArticlesSection from '../sections/home/ArticlesSection';
 
 function Home() {
   return (
-    <>
+    <div>
       <Hero />
-      <ImpactStats />
-      <PathAnatomy />
-      <BrakeEducation />
-      <OfficialSupport />
-      <O2OCampaign />
-      <InstagramFeed />
-      <ArticlesSection />
-      {/* <SafetyPillars /> */}
-      {/* <SponsorshipCall /> */}
-    </>
+      <div className="page-enter">
+        <ImpactStats />
+        <PathAnatomy />
+        <BrakeEducation />
+        <OfficialSupport />
+        <O2OCampaign />
+        <InstagramFeed />
+        <ArticlesSection />
+        {/* <SafetyPillars /> */}
+        {/* <SponsorshipCall /> */}
+      </div>
+    </div>
   );
 }
 

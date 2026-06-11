@@ -13,7 +13,7 @@ import {
 } from 'react-icons/fa';
 
 function Contact() {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -21,10 +21,8 @@ function Contact() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
-        
         // Pemicu animasi loading saat proses pengiriman data sedang berjalan
-        const loadingToast = toast.loading(currentLang === 'id' ? 'Sedang mengirim pesan...' : 'Sending message...');
+        const loadingToast = toast.loading(t('contactToastSending'));
 
         const FORMSPREE_ID = 'mjgderdq'; 
         const endpoint = `https://formspree.io/f/${FORMSPREE_ID}`;
@@ -44,10 +42,7 @@ function Contact() {
             }
 
             // 2. KUSTOMISASI PESAN SUKSES DENGAN DESAIN KHAS BROMO SAFETY
-            toast.success(
-                currentLang === 'id' 
-                    ? 'Pesan diterima! Terima kasih telah ikut peduli dan mendukung keselamatan di kawasan Bromo.' 
-                    : 'Message received! Thank you for supporting safety in the Bromo region.',
+            toast.success(t('contactToastSuccess'),
                 {
                     id: loadingToast, // Menggantikan animasi loading secara instan
                     duration: 5000,
@@ -73,8 +68,7 @@ function Contact() {
             console.error('Error integrasi form via Formspree:', error);
             
             // 3. TAMPILAN JIKA TERJADI GANGGUAN KONEKSI
-            toast.error(
-                currentLang === 'id' ? 'Gagal terhubung dengan server.' : 'Server connection failed.',
+            toast.error(t('contactToastError'),
                 { id: loadingToast }
             );
         } finally {
@@ -83,7 +77,7 @@ function Contact() {
     };
 
     return (
-        <div className="bg-slate-50 min-h-screen py-12 md:py-20">
+        <div className="bg-slate-50 min-h-screen py-12 md:py-20 page-enter">
             {/* 4. WAJIB DILETAKKAN DI SINI SEBAGAI WADAH POP-UP TOAST */}
             <Toaster position="bottom-center" reverseOrder={false} />
 
@@ -165,7 +159,7 @@ function Contact() {
                                     isSubmitting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                                 }`}
                             >
-                                {isSubmitting ? 'Sending...' : t('formBtn')}
+                                {isSubmitting ? t('contactBtnSending') : t('formBtn')}
                             </button>
                         </form>
                     </div>
@@ -182,7 +176,7 @@ function Contact() {
                                     <FaEnvelope />
                                 </div>
                                 <div className="min-w-0">
-                                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5">Official Email</h4>
+                                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5">{t('contactOfficialEmail')}</h4>
                                     <a href="mailto:info@bromosafetyinitiative.com" className="text-sm font-bold text-slate-800 hover:text-[var(--color-brand-orange)] transition-colors block break-all">
                                         info@bromosafetyinitiative.com
                                     </a>
@@ -190,7 +184,7 @@ function Contact() {
                             </div>
 
                             <div className="pt-2">
-                                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-3">Media Sosial Gerakan</h4>
+                                <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-3">{t('contactSocialMedia')}</h4>
                                 <div className="flex flex-wrap gap-3">
                                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl border border-slate-200/80 bg-white text-[#1877F2] flex items-center justify-center hover:bg-slate-50 hover:scale-110 transition-all duration-300">
                                         <FaFacebook className="text-lg" />

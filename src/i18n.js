@@ -19,7 +19,7 @@ const resources = {
       heroTitle: "Safety Campaign for Safe, Orderly, and Sustainable Tourism in Mount Bromo Area",
       heroSubtitle: "Safety on Bromo pathways is the result of precise education, measured intervention, and tourism ecosystem readiness. Together, we realize the mandate for safe and sustainable tourism.",
       btnGuide: "Safety Guidelines",
-      btnStatus: "Volcanic Status",
+      btnStatus: "Check Mount Bromo Status",
       statsTitle: "Bromo in Numbers: Scale & Urgency",
       statsSubtitle: "The sharp surge in global tourist arrivals drives the urgent need for systemic, on-ground safety monitoring.",
       statsLabel1: "Annual Global Tourists",
@@ -170,6 +170,166 @@ const resources = {
       contactEmergencyTitle: "Physical Emergency Line",
       contactEmergencyDesc: "For medical emergencies or accidents within the Bromo area, immediately contact the Command Center.",
       contactEmergencyBtn: "Call Sukapura 112",
+
+      // Safety Hub
+      safetyBadge: "Safety Hub",
+      safetyHeroTitle: "Your Safety Guide to Bromo Tourism",
+      safetyHeroDesc: "Comprehensive information, emergency contacts, and safety guidelines to ensure a safe and memorable adventure in the Mount Bromo Tengger Semeru National Park area.",
+      safetyEmergencyBtn: "Call Emergency 112",
+      safetyGuideBtn: "Read Safety Articles",
+
+      safetyEmergency112: "Emergency Call 112",
+      safetyEmergencyPost: "Sukapura Command Post",
+      safetyEmergencyPostPhone: "Command Center Sukapura",
+      safetyCoolingPoint: "Brake Cooling Post",
+      safetyCoolingPointPhone: "Cooling Point Posko",
+
+      safetyGuideBadge: "Safety Guidelines",
+      safetyGuideSectionTitle: "Essential Safety Guidelines for Bromo Visitors",
+      safetyGuideSectionDesc: "Key principles to follow before and during your visit to ensure your safety and the preservation of the national park.",
+      safetyGuideTitle1: "Automatic Motorcycle Brake Safety",
+      safetyGuideDesc1: "Automatic scooters lack engine braking on steep descents. Always stop at cooling points along the Sukapura-Cemoro Lawang route to let your brakes cool down and prevent vapor lock failure.",
+      safetyGuideTitle2: "Extreme Terrain Awareness",
+      safetyGuideDesc2: "Bromo's roads feature steep inclines, sharp blind corners, and narrow cliffside passages. Drive at low speed, use engine braking when possible, and stay fully focused on the road.",
+      safetyGuideTitle3: "Weather & Volcanic Alertness",
+      safetyGuideDesc3: "Weather conditions can change rapidly. Check the latest volcanic status and weather forecast before departure. Fog, strong winds, and extreme cold require proper clothing and preparation.",
+      safetyGuideTitle4: "First Aid & Emergency Readiness",
+      safetyGuideDesc4: "Carry a basic first aid kit, warm clothing, and sufficient supplies. Save emergency numbers (112) before your trip and inform your accommodation of your travel itinerary.",
+
+      safetyCheckBadge: "Preparation Checklist",
+      safetyCheckTitle: "Pre-Departure Safety Checklist",
+      safetyCheckDesc: "Make sure you have completed all these items before starting your journey to Bromo. This checklist helps you prepare for a safe trip.",
+      safetyCheck1: "Check vehicle condition: brakes, tires, lights, and engine oil",
+      safetyCheck2: "Pack warm layered clothing and rain gear",
+      safetyCheck3: "Download offline maps and save emergency contacts (112)",
+      safetyCheck4: "Inform your hotel or accommodation of your departure schedule",
+      safetyCheck5: "Bring basic supplies: water, snacks, flashlight, power bank",
+      safetyCheck6: "Check the latest weather forecast and volcanic alert status",
+
+      safetyCoolingTitle: "Brake Cooling Points Location",
+      safetyCoolingDesc: "Free cooling points are available along the hazardous routes, operated by local volunteers. Stop your vehicle, let the brakes cool down, and take a rest before continuing your journey downhill.",
+      safetyCoolingBtn: "Learn More in Articles",
+      safetyReportTitle: "Report Safety Issues",
+      safetyReportDesc: "If you encounter hazardous road conditions, damaged signs, or witness an accident within the Bromo area, please report it immediately through our contact page so we can coordinate with the relevant authorities.",
+      safetyReportBtn: "Contact Us Now",
+
+      safetyCtaTitle: "Your Safety is Our Priority",
+      safetyCtaDesc: "Don't let your dream vacation be disrupted by lack of preparation. Always monitor the latest information and save emergency numbers before starting your journey.",
+      safetyBackBtn: "Back to Homepage",
+
+      // Articles Page
+      articlesBadge: "BSI Education & Literacy Center",
+      articlesTitleMain: "Articles Collection & ",
+      articlesTitleHighlight: "Safety Guide",
+      articlesDesc: "Find updated route info, automatic motorcycle braking tips, conservation area regulations, and official news from the Bromo Safety Initiative movement.",
+      articlesSearchPlaceholder: "Search article title or keywords...",
+      articlesFilterAll: "All Articles",
+      articlesEmptyTitle: "Articles Not Found",
+      articlesEmptyDesc: "No results match your keywords or selected category. Try searching with different keywords.",
+      articlesAuthor: "Admin BSI",
+      articlesReadMore: "Read More",
+
+      // Post Detail
+      postNotFound: "Article not found.",
+      postCategory: "Category",
+      postBreadcrumbHome: "Home",
+      postBreadcrumbArticles: "Articles",
+      postBreadcrumbGeneral: "General",
+      postAuthor: "by Admin Bromo Safety",
+      postIn: "in",
+      postMinsRead: "Mins Read",
+      postShareTitle: "Share This Information",
+      postShareDesc: "Your care can save lives.",
+      postShareFacebook: "Share to Facebook",
+      postShareWhatsApp: "Share to WhatsApp",
+      postShareInstagram: "Open Instagram",
+      postShareTikTok: "Open TikTok",
+      postShareX: "Share to X",
+      postShareCopy: "Copy Link",
+      postOtherArticles: "Other Articles",
+      postCtaTitle: "Need Medical Help in Bromo?",
+      postCtaDesc: "Press the emergency button to connect directly to the Sukapura Ambulance Command Center.",
+      postCtaBtn: "Call 112 Now",
+
+      // Category Page
+      catBadge: "Article Category",
+      catArchive: "Archive:",
+      catEmpty: "No articles in this category yet.",
+      catReadMore: "Read More",
+
+      // Contact
+      contactToastSending: "Sending message...",
+      contactToastSuccess: "Message received! Thank you for supporting safety in the Bromo region.",
+      contactToastError: "Server connection failed.",
+      contactBtnSending: "Sending...",
+      contactOfficialEmail: "Official Email",
+      contactSocialMedia: "Movement Social Media",
+
+      // Navbar
+      navTitleHome: "Go to homepage",
+      navLogoAlt: "Bromo Safety Initiative Logo",
+
+      // Footer
+      footerTitleBack: "Back to top",
+      footerLogoAlt: "Bromo Safety Initiative Logo",
+      footerAddress: "Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820",
+      footerEmergencySuffix: "(112)",
+      footerCopyright: "Bromo Safety Initiative",
+      footerPrivacy: "Privacy Policy",
+      footerTerms: "Terms of Service",
+
+      // Hero
+      heroAlt: "Mount Bromo Landscape",
+      heroScrollDown: "Scroll Down",
+
+      // Path Anatomy
+      pathBadge1: "Brake Critical",
+      pathBadge2: "Blind Spot",
+      pathBadge3: "Cliff Risk",
+      pathAlt: "Extreme Route of Bromo Area",
+      pathNoticeTitle: "Safety Notice",
+      pathSectionBadge: "Tourist Route Conditions",
+
+      // Brake Education
+      brakeTag1: "Vehicle Mechanics",
+      brakeTag2: "Thermal Hazard",
+      brakeTag3: "Field Facility",
+      brakeSectionBadge: "Main Education Focus",
+
+      // Safety Pillars
+      pillarsSectionBadge: "Sustainable Campaign Vision",
+
+      // Sponsorship
+      sponsorBadge: "Cross-Sector CSR Funding",
+      sponsorTierBronze: "Bronze",
+      sponsorTierSilver: "Silver",
+      sponsorTierGold: "Gold",
+      sponsorTierPlatinum: "Platinum",
+      sponsorTierTitle: "Title Sponsor",
+
+      // Instagram Feed
+      igBadge: "Connect Social Media",
+      igTitle: "Latest Updates from @bromosafety",
+      igDesc: "Follow field action documentation, riding tips infographics, and real-time traffic condition reports directly from our official Instagram account.",
+      igFollowBtn: "Follow on Instagram",
+      igAlt: "Instagram Post Content",
+      igUsername: "@bromosafety",
+
+      // Articles Section (Home)
+      articlesSectionHeading: "Insights & Educational News",
+      articlesSectionAuthor: "Admin BSI",
+      articlesSectionReadMore: "Read More",
+
+      // Official Support
+      supportBadge: "Movement Credibility",
+      supportInstitution1: "BB-TNBTS",
+      supportInstitution2: "Local Government",
+
+      // Error messages (used in fetch)
+      errorFetchArticles: "Failed to fetch articles",
+      errorFetchCategories: "Failed to fetch categories",
+      errorFetchPost: "Failed to load article",
+      errorFetchCategory: "Category not found",
     }
   },
   id: {
@@ -186,7 +346,7 @@ const resources = {
       heroTitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Gunung Bromo yang Aman, Tertib dan Berkelanjutan",
       heroSubtitle: "Keselamatan di jalur Bromo adalah hasil dari edukasi yang presisi, intervensi yang terukur, dan kesiapan ekosistem wisata. Bersama, kita wujudkan mandat pariwisata yang aman dan berkelanjutan.",
       btnGuide: "Panduan Keselamatan",
-      btnStatus: "Status Vulkanik",
+      btnStatus: "Cek Status Gunung Bromo",
       statsTitle: "Bromo dalam Angka: Skala & Urgensi",
       statsSubtitle: "Lonjakan tajam kunjungan wisatawan global mendorong kebutuhan mendesak akan pengawasan keselamatan sistemik di lapangan.",
       statsLabel1: "Wisatawan Global Tahunan",
@@ -337,6 +497,166 @@ const resources = {
       contactEmergencyTitle: "Saluran Darurat Fisik",
       contactEmergencyDesc: "Untuk insiden medis darurat atau kecelakaan di kawasan Bromo, segera hubungi Command Center.",
       contactEmergencyBtn: "Hubungi Sukapura 112",
+
+      // Pusat Keselamatan
+      safetyBadge: "Pusat Keselamatan",
+      safetyHeroTitle: "Panduan Keselamatan Wisata Bromo untuk Anda",
+      safetyHeroDesc: "Informasi lengkap, kontak darurat, dan panduan keselamatan untuk memastikan petualangan yang aman dan berkesan di kawasan Taman Nasional Bromo Tengger Semeru.",
+      safetyEmergencyBtn: "Hubungi Darurat 112",
+      safetyGuideBtn: "Baca Artikel Keselamatan",
+
+      safetyEmergency112: "Panggilan Darurat 112",
+      safetyEmergencyPost: "Posko Sukapura",
+      safetyEmergencyPostPhone: "Command Center Sukapura",
+      safetyCoolingPoint: "Pos Pendingin Rem",
+      safetyCoolingPointPhone: "Posko Cooling Point",
+
+      safetyGuideBadge: "Panduan Keselamatan",
+      safetyGuideSectionTitle: "Panduan Keselamatan Penting untuk Pengunjung Bromo",
+      safetyGuideSectionDesc: "Prinsip-prinsip utama yang harus diikuti sebelum dan selama kunjungan Anda untuk menjamin keselamatan dan kelestarian kawasan taman nasional.",
+      safetyGuideTitle1: "Keselamatan Rem Motor Matic",
+      safetyGuideDesc1: "Motor matic tidak memiliki engine brake di turunan curam. Selalu berhenti di pos pendingin sepanjang jalur Sukapura-Cemoro Lawang untuk mendinginkan rem dan mencegah rem blong.",
+      safetyGuideTitle2: "Waspada Medan Ekstrem",
+      safetyGuideDesc2: "Jalan menuju Bromo memiliki tanjakan curam, tikungan buta tajam, dan jalur sempit di tepi jurang. Berkendaralah dengan kecepatan rendah dan fokus penuh pada jalan.",
+      safetyGuideTitle3: "Kewaspadaan Cuaca & Vulkanik",
+      safetyGuideDesc3: "Kondisi cuaca dapat berubah drastis. Periksa status vulkanik dan prakiraan cuaca terkini sebelum keberangkatan. Kabut, angin kencang, dan dingin ekstrem memerlukan persiapan khusus.",
+      safetyGuideTitle4: "Kesiapan P3K & Darurat",
+      safetyGuideDesc4: "Bawalah kotak P3K dasar, pakaian hangat, dan perlengkapan yang memadai. Simpan nomor darurat (112) sebelum perjalanan dan informasikan rencana perjalanan Anda ke penginapan.",
+
+      safetyCheckBadge: "Daftar Persiapan",
+      safetyCheckTitle: "Cek List Persiapan Sebelum Keberangkatan",
+      safetyCheckDesc: "Pastikan Anda telah menyelesaikan semua item ini sebelum memulai perjalanan menuju Bromo. Cek list ini membantu Anda mempersiapkan perjalanan yang aman.",
+      safetyCheck1: "Periksa kondisi kendaraan: rem, ban, lampu, dan oli mesin",
+      safetyCheck2: "Bawa pakaian hangat berlapis dan perlengkapan hujan",
+      safetyCheck3: "Unduh peta offline dan simpan kontak darurat (112)",
+      safetyCheck4: "Informasikan jadwal keberangkatan ke hotel atau penginapan",
+      safetyCheck5: "Bawa perlengkapan dasar: air minum, camilan, senter, power bank",
+      safetyCheck6: "Cek prakiraan cuaca dan status waspada vulkanik terkini",
+
+      safetyCoolingTitle: "Lokasi Pos Pendingin Rem",
+      safetyCoolingDesc: "Pos pendingin gratis tersedia di sepanjang jalur rawan, dioperasikan oleh relawan lokal. Hentikan kendaraan, dinginkan rem, dan beristirahatlah sebelum melanjutkan perjalanan menuruni bukit.",
+      safetyCoolingBtn: "Pelajari di Artikel",
+      safetyReportTitle: "Laporkan Masalah Keselamatan",
+      safetyReportDesc: "Jika Anda menemukan kondisi jalan berbahaya, rambu rusak, atau menyaksikan kecelakaan di kawasan Bromo, segera laporkan melalui halaman kontak kami agar dapat dikoordinasikan dengan pihak berwenang.",
+      safetyReportBtn: "Hubungi Kami Sekarang",
+
+      safetyCtaTitle: "Keselamatan Anda adalah Prioritas Kami",
+      safetyCtaDesc: "Jangan biarkan liburan impian terganggu oleh minimnya persiapan. Selalu pantau informasi terkini dan simpan nomor darurat sebelum memulai perjalanan Anda.",
+      safetyBackBtn: "Kembali ke Beranda",
+
+      // Articles Page
+      articlesBadge: "Pusat Edukasi & Literasi BSI",
+      articlesTitleMain: "Kumpulan Artikel & ",
+      articlesTitleHighlight: "Panduan Keselamatan",
+      articlesDesc: "Temukan info rute terupdate, tips pengereman motor matic, regulasi kawasan konservasi, serta berita resmi gerakan Bromo Safety Initiative.",
+      articlesSearchPlaceholder: "Cari judul artikel atau kata kunci...",
+      articlesFilterAll: "Semua Artikel",
+      articlesEmptyTitle: "Artikel Tidak Ditemukan",
+      articlesEmptyDesc: "Tidak ada hasil yang cocok dengan kata kunci atau kategori terpilih. Coba cari kata kunci lainnya.",
+      articlesAuthor: "Admin BSI",
+      articlesReadMore: "Selengkapnya",
+
+      // Post Detail
+      postNotFound: "Artikel tidak ditemukan.",
+      postCategory: "Kategori",
+      postBreadcrumbHome: "Beranda",
+      postBreadcrumbArticles: "Artikel",
+      postBreadcrumbGeneral: "Umum",
+      postAuthor: "oleh Admin Bromo Safety",
+      postIn: "di",
+      postMinsRead: "Menit Baca",
+      postShareTitle: "Bagikan Informasi Ini",
+      postShareDesc: "Satu kepedulian Anda bisa menyelamatkan nyawa.",
+      postShareFacebook: "Bagikan ke Facebook",
+      postShareWhatsApp: "Bagikan ke WhatsApp",
+      postShareInstagram: "Buka Instagram",
+      postShareTikTok: "Buka TikTok",
+      postShareX: "Bagikan ke X",
+      postShareCopy: "Salin Tautan",
+      postOtherArticles: "Artikel Lainnya",
+      postCtaTitle: "Butuh Bantuan Medis di Bromo?",
+      postCtaDesc: "Tekan tombol darurat fisik untuk langsung tersambung ke Command Center Ambulans Sukapura.",
+      postCtaBtn: "Hubungi 112 Sekarang",
+
+      // Category Page
+      catBadge: "Kategori Artikel",
+      catArchive: "Arsip:",
+      catEmpty: "Belum ada artikel di kategori ini.",
+      catReadMore: "Selengkapnya",
+
+      // Contact
+      contactToastSending: "Sedang mengirim pesan...",
+      contactToastSuccess: "Pesan diterima! Terima kasih telah ikut peduli dan mendukung keselamatan di kawasan Bromo.",
+      contactToastError: "Gagal terhubung dengan server.",
+      contactBtnSending: "Mengirim...",
+      contactOfficialEmail: "Email Resmi",
+      contactSocialMedia: "Media Sosial Gerakan",
+
+      // Navbar
+      navTitleHome: "Pergi ke halaman utama",
+      navLogoAlt: "Logo Bromo Safety Initiative",
+
+      // Footer
+      footerTitleBack: "Kembali ke atas",
+      footerLogoAlt: "Logo Bromo Safety Initiative",
+      footerAddress: "Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820",
+      footerEmergencySuffix: "(112)",
+      footerCopyright: "Bromo Safety Initiative",
+      footerPrivacy: "Kebijakan Privasi",
+      footerTerms: "Ketentuan Layanan",
+
+      // Hero
+      heroAlt: "Lanskap Gunung Bromo",
+      heroScrollDown: "Gulir ke Bawah",
+
+      // Path Anatomy
+      pathBadge1: "Kritis Pengereman",
+      pathBadge2: "Blind Spot",
+      pathBadge3: "Risiko Jurang",
+      pathAlt: "Jalur Ekstrem Kawasan Bromo",
+      pathNoticeTitle: "Pemberitahuan Keselamatan",
+      pathSectionBadge: "Kondisi Jalur Wisata",
+
+      // Brake Education
+      brakeTag1: "Mekanika Kendaraan",
+      brakeTag2: "Bahaya Termal",
+      brakeTag3: "Fasilitas Lapangan",
+      brakeSectionBadge: "Fokus Edukasi Utama",
+
+      // Safety Pillars
+      pillarsSectionBadge: "Visi Kampanye Berkelanjutan",
+
+      // Sponsorship
+      sponsorBadge: "Pendanaan CSR Lintas Sektor",
+      sponsorTierBronze: "Bronze",
+      sponsorTierSilver: "Silver",
+      sponsorTierGold: "Gold",
+      sponsorTierPlatinum: "Platinum",
+      sponsorTierTitle: "Title Sponsor",
+
+      // Instagram Feed
+      igBadge: "Hubungkan Sosial Media",
+      igTitle: "Kabar Terbaru dari @bromosafety",
+      igDesc: "Ikuti dokumentasi aksi lapangan, infografis tips berkendara, dan laporan kondisi lalu lintas riil langsung dari akun Instagram resmi kami.",
+      igFollowBtn: "Ikuti di Instagram",
+      igAlt: "Konten Postingan Instagram",
+      igUsername: "@bromosafety",
+
+      // Articles Section (Home)
+      articlesSectionHeading: "Wawasan & Kabar Edukasi",
+      articlesSectionAuthor: "Admin BSI",
+      articlesSectionReadMore: "Selengkapnya",
+
+      // Official Support
+      supportBadge: "Kredibilitas Gerakan",
+      supportInstitution1: "Balai Besar TNBTS",
+      supportInstitution2: "Pemerintah Daerah",
+
+      // Error messages (used in fetch)
+      errorFetchArticles: "Gagal mengambil artikel",
+      errorFetchCategories: "Gagal mengambil kategori",
+      errorFetchPost: "Gagal memuat artikel",
+      errorFetchCategory: "Kategori tidak ditemukan",
     }
   }
 };

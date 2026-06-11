@@ -86,7 +86,7 @@ function PostDetail() {
 
   if (isLoading) {
     return (
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 animate-pulse space-y-8">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 animate-pulse space-y-8 page-enter">
         <div className="h-12 bg-slate-200 rounded-xl w-3/4" />
         <div className="aspect-[16/7] bg-slate-200 rounded-3xl w-full" />
       </div>
@@ -95,8 +95,8 @@ function PostDetail() {
 
   if (!post) {
     return (
-      <div className="text-center py-32 font-black text-slate-400 uppercase tracking-widest text-sm">
-        Artikel tidak ditemukan.
+      <div className="text-center py-32 font-black text-slate-400 uppercase tracking-widest text-sm page-enter">
+        {t('postNotFound')}
       </div>
     );
   }
@@ -110,7 +110,7 @@ function PostDetail() {
   const activeCategory = wpCategories.find(cat => post.categories.includes(cat.id));
 
   return (
-    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10 page-enter">
 
       {/* GRID LAYOUT UTAMA */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
@@ -118,7 +118,7 @@ function PostDetail() {
         {/* KOLOM 1: DAFTAR KATEGORI SISI KIRI (STICKY) */}
         <aside className="hidden lg:block lg:col-span-2 lg:sticky lg:top-28 bg-white border border-slate-200/60 rounded-3xl p-4 shadow-xs">
           <h3 className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-4 pb-2 border-b border-slate-100 flex items-center gap-1.5">
-            <FaFolderOpen /> Kategori
+            <FaFolderOpen /> {t('postCategory')}
           </h3>
           <nav className="flex flex-col gap-2.5">
             {wpCategories.map((cat) => {
@@ -152,9 +152,9 @@ function PostDetail() {
 
           {/* PERUBAHAN: BREADCRUMB MENJADI HOME > ARTIKEL > KATEGORI */}
           <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-5 select-none">
-            <Link to="/" className="hover:text-slate-600 transition-colors">Home</Link>
+            <Link to="/" className="hover:text-slate-600 transition-colors">{t('postBreadcrumbHome')}</Link>
             <span className="text-slate-300 font-normal">&gt;</span>
-            <Link to="/articles" className="hover:text-slate-600 transition-colors">Artikel</Link>
+            <Link to="/articles" className="hover:text-slate-600 transition-colors">{t('postBreadcrumbArticles')}</Link>
             <span className="text-slate-300 font-normal">&gt;</span>
             {activeCategory ? (
               <Link 
@@ -164,7 +164,7 @@ function PostDetail() {
                 {activeCategory.name}
               </Link>
             ) : (
-              <span className="capitalize">General</span>
+              <span className="capitalize">{t('postBreadcrumbGeneral')}</span>
             )}
           </div>
 
@@ -181,7 +181,7 @@ function PostDetail() {
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-slate-400">
               <div className="flex items-center gap-1.5">
                 <div className="w-5 h-5 rounded-full bg-[var(--color-brand-orange)] text-white text-[9px] flex items-center justify-center font-black">BSI</div>
-                <span className="text-slate-700 font-extrabold">by Admin Bromo Safety</span>
+                <span className="text-slate-700 font-extrabold">{t('postAuthor')}</span>
               </div>
               
               <span className="text-slate-300 font-normal">—</span>
@@ -191,7 +191,7 @@ function PostDetail() {
                 <span className="text-slate-500">{formattedDate}</span>
               </div>
               
-              <span className="text-slate-300 font-normal">in</span>
+              <span className="text-slate-300 font-normal">{t('postIn')}</span>
               
               <div className="inline-flex items-center">
                 {activeCategory ? (
@@ -202,14 +202,14 @@ function PostDetail() {
                     {activeCategory.name}
                   </Link>
                 ) : (
-                  <span className="text-slate-500 font-black capitalize bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100">General</span>
+                  <span className="text-slate-500 font-black capitalize bg-slate-50 px-2 py-0.5 rounded-md border border-slate-100">{t('postBreadcrumbGeneral')}</span>
                 )}
               </div>
             </div>
 
             {/* Sisi Kanan: Reading Time Box (Mencegah teks terlipat berantakan ke bawah) */}
             <div className="inline-flex items-center gap-1.5 text-slate-500 font-extrabold bg-slate-50/80 px-2.5 py-1 rounded-lg border border-slate-100 whitespace-nowrap self-start sm:self-auto">
-              <FaClock className="text-slate-400 text-[11px]" /> 4 Mins Read
+              <FaClock className="text-slate-400 text-[11px]" /> 4 {t('postMinsRead')}
             </div>
 
           </div>
@@ -234,8 +234,8 @@ function PostDetail() {
           {/* PANEL TOMBOL SHARE KE SOSIAL MEDIA */}
           <div className="border-t border-slate-100 pt-8 mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h4 className="text-sm font-black uppercase tracking-wider text-slate-800">Bagikan Informasi Ini</h4>
-              <p className="text-xs text-slate-400 font-medium mt-0.5">Satu kepedulian Anda bisa menyelamatkan nyawa.</p>
+              <h4 className="text-sm font-black uppercase tracking-wider text-slate-800">{t('postShareTitle')}</h4>
+              <p className="text-xs text-slate-400 font-medium mt-0.5">{t('postShareDesc')}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -243,7 +243,7 @@ function PostDetail() {
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Share to Facebook"
+                title={t('postShareFacebook')}
                 className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#1877F2] hover:bg-[#166FE5] hover:scale-110 transition-all duration-300"
               >
                 <FaFacebook className="text-lg" />
@@ -253,7 +253,7 @@ function PostDetail() {
                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(articleTitle + ' - ' + currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Share to WhatsApp"
+                title={t('postShareWhatsApp')}
                 className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#25D366] hover:bg-[#20ba5a] hover:scale-110 transition-all duration-300"
               >
                 <FaWhatsapp className="text-lg" />
@@ -263,7 +263,7 @@ function PostDetail() {
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Open Instagram"
+                title={t('postShareInstagram')}
                 className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#E1306C] hover:bg-[#c2255c] hover:scale-110 transition-all duration-300"
               >
                 <FaInstagram className="text-lg" />
@@ -273,7 +273,7 @@ function PostDetail() {
                 href="https://www.tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Open TikTok"
+                title={t('postShareTikTok')}
                 className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#000000] hover:bg-[#1a1a1a] hover:scale-110 transition-all duration-300"
               >
                 <FaTiktok className="text-sm" />
@@ -283,7 +283,7 @@ function PostDetail() {
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(articleTitle)}&url=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Share to X"
+                title={t('postShareX')}
                 className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#000000] hover:bg-[#1a1a1a] hover:scale-110 transition-all duration-300"
               >
                 <FaXTwitter className="text-sm" />
@@ -291,7 +291,7 @@ function PostDetail() {
 
               <button
                 onClick={handleCopyLink}
-                title="Salin Tautan"
+                title={t('postShareCopy')}
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer select-none hover:scale-110 shadow-md
                   ${isCopied ? 'bg-emerald-500' : 'bg-slate-500 hover:bg-slate-600'}
                 `}
@@ -307,7 +307,7 @@ function PostDetail() {
         <aside className="lg:col-span-3 lg:sticky lg:top-28 space-y-8">
           <div className="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-xs">
             <h3 className="text-sm font-black tracking-wider text-slate-900 uppercase mb-6 pb-3 border-b border-slate-100 flex items-center justify-between">
-              <span>Artikel Lainnya</span>
+              <span>{t('postOtherArticles')}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-orange)]" />
             </h3>
 
@@ -344,13 +344,13 @@ function PostDetail() {
 
           <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden border border-slate-800">
             <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-[var(--color-brand-orange)]/10 rounded-full blur-2xl" />
-            <h4 className="text-base font-black tracking-tight mb-2">Butuh Bantuan Medis di Bromo?</h4>
-            <p className="text-xs text-slate-400 font-medium leading-relaxed mb-4">Tekan tombol darurat fisik untuk langsung tersambung ke Command Center Ambulans Sukapura.</p>
+            <h4 className="text-base font-black tracking-tight mb-2">{t('postCtaTitle')}</h4>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed mb-4">{t('postCtaDesc')}</p>
             <a
               href="tel:112"
               className="inline-flex w-full justify-center items-center text-center bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-hover)] text-white text-xs font-extrabold tracking-widest uppercase py-3 rounded-xl transition-all duration-300 shadow-md"
             >
-              Hubungi 112 Sekarang
+              {t('postCtaBtn')}
             </a>
           </div>
         </aside>

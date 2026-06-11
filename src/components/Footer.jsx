@@ -21,13 +21,13 @@ function Footer() {
             <a 
               href="#home" 
               className="flex items-center gap-3 group transition-transform duration-200 active:scale-95 cursor-pointer w-fit select-none"
-              title="Back to top"
+              title={t('footerTitleBack')}
             >
               {/* Gambar Logo SVG - Border dan background oranye lama sudah dibersihkan */}
               <div className="flex items-center justify-center">
                 <img 
                   src="/logo_BSI.png" 
-                  alt="Bromo Safety Initiative Logo" 
+                  alt={t('footerLogoAlt')} 
                   className="w-10 h-10 object-contain transition-transform duration-300"
                 />
               </div>
@@ -60,17 +60,17 @@ function Footer() {
               
               {/* PENAMBAHAN MENU BARU: ARTIKEL (FOOTER) */}
               <li>
-                <a href="#articles" className="hover:text-brand-orange transition-colors">{t('navArticles')}</a>
+                <a href="/articles" className="hover:text-brand-orange transition-colors">{t('navArticles')}</a>
               </li>
               
               <li>
-                <a href="#safety" className="hover:text-brand-orange transition-colors">{t('navSafety')}</a>
+                <a href="/safety" className="hover:text-brand-orange transition-colors">{t('navSafety')}</a>
               </li>
               <li>
-                <a href="#about" className="hover:text-brand-orange transition-colors">{t('navAbout')}</a>
+                <a href="/about" className="hover:text-brand-orange transition-colors">{t('navAbout')}</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-brand-orange transition-colors">{t('navContact')}</a>
+                <a href="/contact" className="hover:text-brand-orange transition-colors">{t('navContact')}</a>
               </li>
             </ul>
           </div>
@@ -83,7 +83,7 @@ function Footer() {
             <ul className="space-y-3 text-xs sm:text-sm font-semibold text-slate-500">
               <li className="flex items-start gap-2.5">
                 <FaMapMarkerAlt className="text-slate-400 mt-0.5 flex-shrink-0" />
-                <span>Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820</span>
+                <span>{t('footerAddress')}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <FaEnvelope className="text-slate-400 flex-shrink-0" />
@@ -95,7 +95,7 @@ function Footer() {
               href="tel:112" 
               className="inline-flex items-center justify-center gap-2 mt-2 px-4 py-3 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold rounded-xl border border-red-200 transition-colors shadow-xs w-fit cursor-pointer"
             >
-              <FaPhoneAlt className="animate-pulse" /> {t('footerEmergencyCall')} (112)
+              <FaPhoneAlt className="animate-pulse" /> {t('footerEmergencyCall')} {t('footerEmergencySuffix')}
             </a>
           </div>
 
@@ -104,11 +104,11 @@ function Footer() {
         {/* BOTTOM SECTION: COPYRIGHT */}
         <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] sm:text-xs font-semibold text-slate-400">
           <div>
-            &copy; {currentYear} Bromo Safety Initiative. {t('footerRights')}
+            &copy; {currentYear} {t('footerCopyright')}. {t('footerRights')}
           </div>
           <div className="flex gap-4">
-            <a href="#privacy" className="hover:text-slate-600 transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-slate-600 transition-colors">Terms of Service</a>
+            <a href="#privacy" className="hover:text-slate-600 transition-colors">{t('footerPrivacy')}</a>
+            <a href="#terms" className="hover:text-slate-600 transition-colors">{t('footerTerms')}</a>
           </div>
         </div>
 

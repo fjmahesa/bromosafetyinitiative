@@ -18,7 +18,7 @@ function Hero() {
       <div className="absolute inset-0 z-0">
         <img 
           src={bromoBg} 
-          alt="Mount Bromo Landscape" 
+          alt={t('heroAlt')} 
           className="w-full h-full object-cover object-center scale-105 select-none pointer-events-none filter brightness-95"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-slate-50/90 mix-blend-normal" />
@@ -60,14 +60,17 @@ function Hero() {
             {t('btnGuide')}
           </button>
           
-          <button className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border-2 border-slate-900 bg-white px-8 py-4 text-sm font-bold text-slate-900 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+          <a href="https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/BRO"
+             target="_blank"
+             rel="noopener noreferrer"
+             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border-2 border-slate-900 bg-white px-8 py-4 text-sm font-bold text-slate-900 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
             <FaExclamationTriangle className="text-amber-500" /> {t('btnStatus')}
-          </button>
+          </a>
         </div>
 
         {/* Indikator Scroll Down */}
         <div className="animate-bounce hidden sm:flex flex-col items-center justify-center text-slate-400 text-xs font-semibold gap-1">
-          <span className="tracking-widest uppercase">Scroll Down</span>
+          <span className="tracking-widest uppercase">{t('heroScrollDown')}</span>
           <FaChevronDown />
         </div>
 

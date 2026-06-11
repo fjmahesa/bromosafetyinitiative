@@ -22,7 +22,7 @@ function BrakeEducation() {
       icon: <FaGear className="text-3xl text-orange-600" />,
       title: t('cardTitle1'),
       desc: t('cardDesc1'),
-      tag: "Mekanika Kendaraan",
+      tag: t('brakeTag1'),
       activeStyles: "border-brand-orange shadow-xl bg-white scale-[1.01]" // Gaya saat aktif disentuh
     },
     {
@@ -32,7 +32,7 @@ function BrakeEducation() {
       icon: <FaFire className="text-3xl text-amber-600" />,
       title: t('cardTitle2'),
       desc: t('cardDesc2'),
-      tag: "Bahaya Termal",
+      tag: t('brakeTag2'),
       activeStyles: "border-brand-orange shadow-xl bg-white scale-[1.01]"
     },
     {
@@ -42,7 +42,7 @@ function BrakeEducation() {
       icon: <FaWater className="text-3xl text-blue-600" />,
       title: t('cardTitle3'),
       desc: t('cardDesc3'),
-      tag: "Fasilitas Lapangan",
+      tag: t('brakeTag3'),
       activeStyles: "border-brand-orange shadow-xl bg-white scale-[1.01]"
     }
   ];
@@ -54,7 +54,7 @@ function BrakeEducation() {
         {/* HEADER MODUL */}
         <div ref={headerRef} className={`fade-in-hidden ${headerVisible ? 'fade-in-visible' : ''} text-center max-w-3xl mx-auto mb-16 md:mb-24`}>
           <span className="text-xs font-extrabold tracking-widest text-brand-orange uppercase bg-orange-50 px-3 py-1 rounded-md border border-orange-100">
-            Fokus Edukasi Utama
+            {t('brakeSectionBadge')}
           </span>
           <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mt-4 mb-4 leading-tight">
             {t('brakeTitle')}

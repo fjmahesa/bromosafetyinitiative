@@ -7,7 +7,7 @@ function NotFound() {
   const { t } = useTranslation(); // <-- 2. Inisialisasi fungsi t()
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 bg-slate-50 relative overflow-hidden">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 bg-slate-50 relative overflow-hidden page-enter">
       
       {/* Efek Elemen Blur di Latar Belakang (Menyimulasikan Kabut Bromo) */}
       <div className="absolute -right-20 -top-20 w-80 h-80 bg-[var(--color-brand-orange)]/10 rounded-full blur-3xl pointer-events-none" />

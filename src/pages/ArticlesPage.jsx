@@ -69,19 +69,19 @@ function ArticlesPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-screen">
+    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-screen page-enter">
       
       {/* HEADER HALAMAN */}
       <div className="max-w-3xl mb-12">
         <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)] mb-4">
-          Pusat Edukasi & Literasi BSI
+          {t('articlesBadge')}
         </span>
         <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-5xl leading-tight">
-          Kumpulan Artikel & <br />
-          <span className="text-[var(--color-brand-orange)]">Panduan Keselamatan</span>
+          {t('articlesTitleMain')}<br />
+          <span className="text-[var(--color-brand-orange)]">{t('articlesTitleHighlight')}</span>
         </h1>
         <p className="text-base text-slate-500 font-medium mt-4">
-          Temukan info rute terupdate, tips pengereman motor matic, regulasi kawasan konservasi, serta berita resmi gerakan Bromo Safety Initiative.
+          {t('articlesDesc')}
         </p>
       </div>
 
@@ -93,7 +93,7 @@ function ArticlesPage() {
           <FaSearch className="absolute left-4 text-slate-400 text-sm pointer-events-none" />
           <input 
             type="text"
-            placeholder="Cari judul artikel atau kata kunci..."
+            placeholder={t('articlesSearchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-white border border-slate-200 rounded-2xl pl-11 pr-4 py-3 text-sm font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[var(--color-brand-orange)] focus:ring-4 focus:ring-[var(--color-brand-orange)]/5 transition-all"
@@ -111,7 +111,7 @@ function ArticlesPage() {
               }
             `}
           >
-            Semua Artikel
+            {t('articlesFilterAll')}
           </button>
 
           {categories.map((cat) => (
@@ -145,8 +145,8 @@ function ArticlesPage() {
             <div className="w-12 h-12 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mb-4 border border-slate-100">
               <FaInbox className="text-xl" />
             </div>
-            <h3 className="text-base font-black text-slate-900 uppercase tracking-wide">Artikel Tidak Ditemukan</h3>
-            <p className="text-xs text-slate-400 font-semibold mt-1">Tidak ada hasil yang cocok dengan kata kunci atau kategori terpilih. Coba cari kata kunci lainnya.</p>
+            <h3 className="text-base font-black text-slate-900 uppercase tracking-wide">{t('articlesEmptyTitle')}</h3>
+            <p className="text-xs text-slate-400 font-semibold mt-1">{t('articlesEmptyDesc')}</p>
           </div>
         ) : (
           /* GRID ARTIKEL */
@@ -177,7 +177,7 @@ function ArticlesPage() {
                         <FaCalendarAlt /> {formattedDate}
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <FaUser /> Admin BSI
+                        <FaUser /> {t('articlesAuthor')}
                       </div>
                     </div>
 
@@ -192,7 +192,7 @@ function ArticlesPage() {
                     />
 
                     <div className="inline-flex items-center gap-2 text-xs font-extrabold text-[var(--color-brand-orange)] uppercase tracking-widest pt-4 border-t border-slate-100 w-full group-hover:text-[var(--color-brand-orange-hover)] transition-colors">
-                      Selengkapnya <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                      {t('articlesReadMore')} <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </div>
                   </div>
                 </Link>

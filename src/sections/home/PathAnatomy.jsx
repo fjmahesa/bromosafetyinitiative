@@ -17,7 +17,7 @@ function PathAnatomy() {
       icon: <FaAngleDoubleUp className="text-xl" />,
       title: t('pointTitle1'),
       desc: t('pointDesc1'),
-      badge: "Kritis Pengereman",
+      badge: t('pathBadge1'),
       accentColor: "group-hover:text-orange-600 group-hover:bg-orange-50 group-hover:border-orange-200",
       iconColor: "text-orange-600 bg-orange-50 border-orange-100"
     },
@@ -26,7 +26,7 @@ function PathAnatomy() {
       icon: <FaExchangeAlt className="text-xl" />,
       title: t('pointTitle2'),
       desc: t('pointDesc2'),
-      badge: "Blind Spot",
+      badge: t('pathBadge2'),
       accentColor: "group-hover:text-amber-600 group-hover:bg-amber-50 group-hover:border-amber-200",
       iconColor: "text-amber-600 bg-amber-50 border-amber-100"
     },
@@ -35,7 +35,7 @@ function PathAnatomy() {
       icon: <FaCompressArrowsAlt className="text-xl" />,
       title: t('pointTitle3'),
       desc: t('pointDesc3'),
-      badge: "Risiko Jurang",
+      badge: t('pathBadge3'),
       accentColor: "group-hover:text-red-600 group-hover:bg-red-50 group-hover:border-red-200",
       iconColor: "text-red-600 bg-red-50 border-red-100"
     },
@@ -58,7 +58,7 @@ function PathAnatomy() {
             <div className="relative rounded-2xl overflow-hidden border border-slate-250 shadow-lg aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5]">
               <img 
                 src={pathExtremeImg} 
-                alt="Jalur Ekstrem Kawasan Bromo" 
+                alt={t('pathAlt')} 
                 className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
@@ -68,7 +68,7 @@ function PathAnatomy() {
                   <FaExclamationTriangle className="animate-pulse" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900 tracking-wide uppercase mb-0.5">Safety Notice</h4>
+                  <h4 className="text-xs font-bold text-slate-900 tracking-wide uppercase mb-0.5">{t('pathNoticeTitle')}</h4>
                   <p className="text-xs text-slate-600 font-medium leading-relaxed">{t('pathWarning')}</p>
                 </div>
               </div>
@@ -82,7 +82,7 @@ function PathAnatomy() {
           >
             <div className="mb-10 text-left">
               <span className="text-xs font-extrabold tracking-widest text-brand-orange uppercase bg-orange-50 px-3 py-1 rounded-md border border-orange-100">
-                Kondisi Jalur Wisata
+                {t('pathSectionBadge')}
               </span>
               <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mt-4 mb-4 leading-tight">
                 {t('pathTitle')}

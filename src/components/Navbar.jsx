@@ -25,13 +25,13 @@ function Navbar() {
           <a 
             href="/" 
             className="flex-shrink-0 flex items-center gap-3 group transition-transform duration-200 active:scale-95 cursor-pointer"
-            title="Go to homepage"
+            title={t('navTitleHome')}
           >
             {/* Wadah Logo SVG */}
             <div className="flex items-center justify-center">
               <img 
                 src="/logo_BSI.png" 
-                alt="Bromo Safety Initiative Logo" 
+                alt={t('navLogoAlt')} 
                 className="w-10 h-10 sm:w-11 sm:h-11 object-contain transition-transform duration-300 "
               />
             </div>
@@ -108,7 +108,7 @@ function Navbar() {
         <div className="px-4 pt-2 pb-6 space-y-3 bg-white">
           <a href="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navHome')}</a>
           <a href="/articles" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navArticles')}</a>
-          <a href="#safety" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navSafety')}</a>
+          <a href="/safety" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navSafety')}</a>
           <a href="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navAbout')}</a>
           <a href="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navContact')}</a>
           <div className="pt-2 px-3">

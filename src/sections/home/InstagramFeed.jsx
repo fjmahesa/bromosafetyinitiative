@@ -55,13 +55,13 @@ function InstagramFeed() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 md:mb-24">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-pink-600 uppercase bg-pink-50 px-3 py-1 rounded-md border border-pink-100 mb-4">
-              <FaInstagram className="text-sm animate-bounce" /> Hubungkan Sosial Media
+              <FaInstagram className="text-sm animate-bounce" /> {t('igBadge')}
             </span>
             <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl leading-tight">
-              Kabar Terbaru dari @bromosafety
+              {t('igTitle')}
             </h2>
             <p className="text-base sm:text-lg text-slate-500 font-medium leading-relaxed mt-2">
-              Ikuti dokumentasi aksi lapangan, infografis tips berkendara, dan laporan kondisi lalu lintas riil langsung dari akun Instagram resmi kami.
+              {t('igDesc')}
             </p>
           </div>
           
@@ -72,7 +72,7 @@ function InstagramFeed() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white text-sm font-bold rounded-xl hover:shadow-lg hover:shadow-pink-500/20 active:scale-95 transition-all cursor-pointer w-fit h-fit"
           >
-            <FaInstagram className="text-lg" /> Ikuti di Instagram
+            <FaInstagram className="text-lg" /> {t('igFollowBtn')}
           </a>
         </div>
 
@@ -89,7 +89,6 @@ function InstagramFeed() {
                 rel="noopener noreferrer"
                 // DUAL DEVICE TRIGGERS: Sempurna untuk Desktop & Mobile-Touch
                 onTouchStart={() => setActiveFeedId(post.id)}
-                onMouseEnter={() => setActiveStatId(post.id)} // opsional jika mau hover sinkron
                 onMouseEnter={() => setActiveFeedId(post.id)}
                 onMouseLeave={() => setActiveFeedId(null)}
                 className={`flex flex-col rounded-2xl border-2 overflow-hidden bg-slate-50 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer select-none relative group
@@ -101,7 +100,7 @@ function InstagramFeed() {
                 <div className="relative aspect-square w-full overflow-hidden bg-slate-200">
                   <img 
                     src={post.media_url} 
-                    alt="Instagram Post Content" 
+                    alt={t('igAlt')} 
                     className={`w-full h-full object-cover transition-transform duration-700 ${isCurrentActive ? 'scale-110' : ''}`}
                     loading="lazy"
                   />

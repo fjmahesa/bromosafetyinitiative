@@ -14,7 +14,7 @@ function SponsorshipCall() {
   const sponsorTiers = [
     {
       id: 1,
-      name: "Bronze",
+      name: t('sponsorTierBronze'),
       price: "Rp 10.000.000",
       desc: t('descBronze'),
       badge: t('tierEssential'),
@@ -23,7 +23,7 @@ function SponsorshipCall() {
     },
     {
       id: 2,
-      name: "Silver",
+      name: t('sponsorTierSilver'),
       price: "Rp 25.000.000",
       desc: t('descSilver'),
       badge: t('tierEssential'),
@@ -32,7 +32,7 @@ function SponsorshipCall() {
     },
     {
       id: 3,
-      name: "Gold",
+      name: t('sponsorTierGold'),
       price: "Rp 50.000.000",
       desc: t('descGold'),
       badge: t('tierPopular'),
@@ -41,7 +41,7 @@ function SponsorshipCall() {
     },
     {
       id: 4,
-      name: "Platinum",
+      name: t('sponsorTierPlatinum'),
       price: "Rp 100.000.000",
       desc: t('descPlatinum'),
       badge: t('tierPopular'),
@@ -50,7 +50,7 @@ function SponsorshipCall() {
     },
     {
       id: 5,
-      name: "Title Sponsor",
+      name: t('sponsorTierTitle'),
       price: "Rp 239.000.000",
       desc: t('descTitle'),
       badge: t('tierExclusive'),
@@ -69,7 +69,7 @@ function SponsorshipCall() {
           className={`fade-in-hidden ${headerVisible ? 'fade-in-visible' : ''} text-center max-w-3xl mx-auto mb-16 md:mb-24`}
         >
           <span className="text-xs font-extrabold tracking-widest text-brand-orange uppercase bg-orange-50 px-3 py-1 rounded-md border border-orange-100">
-            Pendanaan CSR Lintas Sektor
+            {t('sponsorBadge')}
           </span>
           <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mt-4 mb-4 leading-tight">
             {t('sponsorTitle')}

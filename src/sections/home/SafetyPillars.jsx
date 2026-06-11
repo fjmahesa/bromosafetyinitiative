@@ -69,7 +69,7 @@ function SafetyPillars() {
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
           <span className="text-xs font-extrabold tracking-widest text-brand-orange uppercase bg-orange-50 px-3 py-1 rounded-md border border-orange-100">
-            Visi Kampanye Berkelanjutan
+            {t('pillarsSectionBadge')}
           </span>
           <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mt-4 mb-4 leading-tight">
             {t('pillarsTitle')}

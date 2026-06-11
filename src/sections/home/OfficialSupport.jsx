@@ -20,7 +20,7 @@ function OfficialSupport() {
         {/* HEADER - Warna badge disesuaikan ke Biru Perisai Bromo */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
           <span className="text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)]">
-            Kredibilitas Gerakan
+            {t('supportBadge')}
           </span>
           <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mt-4 mb-4 leading-tight">
             {t('supportTitle')}
@@ -43,7 +43,7 @@ function OfficialSupport() {
             <div className="relative z-10">
               {/* Nama Instansi */}
               <h3 className="text-xs font-black tracking-widest text-slate-400 uppercase mb-6 border-b border-slate-200/60 pb-3 w-fit">
-                Balai Besar TNBTS
+                {t('supportInstitution1')}
               </h3>
               {/* Petikan Isi Surat Dukungan */}
               <p className="text-base md:text-xl text-slate-700 italic font-semibold leading-relaxed mb-10">
@@ -77,7 +77,7 @@ function OfficialSupport() {
             <div className="relative z-10">
               {/* Nama Instansi */}
               <h3 className="text-xs font-black tracking-widest text-slate-400 uppercase mb-6 border-b border-slate-200/60 pb-3 w-fit">
-                Pemerintah Daerah
+                {t('supportInstitution2')}
               </h3>
               {/* Petikan Isi Surat Dukungan */}
               <p className="text-base md:text-xl text-slate-700 italic font-semibold leading-relaxed mb-10">
