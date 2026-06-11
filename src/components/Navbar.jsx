@@ -54,9 +54,9 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-4 lg:gap-8">
             <a href="/" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navHome')}</a>
             <a href="/articles" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navArticles')}</a>
-            <a href="#safety" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navSafety')}</a>
-            <a href="#about" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navAbout')}</a>
-            <a href="#contact" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navContact')}</a>
+            <a href="/safety" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navSafety')}</a>
+            <a href="/about" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navAbout')}</a>
+            <a href="/contact" className="text-sm font-semibold text-slate-600 hover:text-brand-orange transition-colors">{t('navContact')}</a>
           </div>
 
           {/* RIGHT CONTROLS */}
@@ -109,8 +109,8 @@ function Navbar() {
           <a href="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navHome')}</a>
           <a href="/articles" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navArticles')}</a>
           <a href="#safety" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navSafety')}</a>
-          <a href="#about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navAbout')}</a>
-          <a href="#contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navContact')}</a>
+          <a href="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navAbout')}</a>
+          <a href="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">{t('navContact')}</a>
           <div className="pt-2 px-3">
             <button className="w-full py-2.5 bg-brand-orange text-white text-sm font-bold rounded-lg hover:bg-brand-orange-hover transition-colors cursor-pointer">
               {t('btnEmergency')}

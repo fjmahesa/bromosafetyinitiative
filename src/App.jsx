@@ -8,6 +8,8 @@ import PostDetail from './pages/PostDetail';
 import ArticlesPage from './pages/ArticlesPage';
 import CategoryPage from './pages/CategoryPage';
 import NotFound from './pages/NotFound';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 // 1. Komponen Layout Global
 function GlobalLayout() {
@@ -38,6 +40,8 @@ function App() {
           
           {/* Halaman Detail Artikel Berdasarkan ID WordPress */}
           <Route path="articles" element={<ArticlesPage />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="post/:slug" element={<PostDetail />} />
           <Route path="category/:categorySlug" element={<CategoryPage />} />
           <Route path="post" element={<Navigate to="/articles" replace />} />
