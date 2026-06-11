@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+// 1. IMPORT TOAST DAN TOASTER
+import toast, { Toaster } from 'react-hot-toast'; 
 import {
     FaEnvelope,
     FaPhoneAlt,
@@ -20,35 +22,19 @@ function Contact() {
         setIsSubmitting(true);
 
         const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
-        const FORM_ID = 'd92d773';
+        
+        // Pemicu animasi loading saat proses pengiriman data sedang berjalan
+        const loadingToast = toast.loading(currentLang === 'id' ? 'Sedang mengirim pesan...' : 'Sending message...');
 
-        // 1. Gunakan URLSearchParams untuk membungkus data form
-        const wpAjaxData = new URLSearchParams();
-        wpAjaxData.append('_wpcf7', FORM_ID);
-        wpAjaxData.append('_wpcf7_version', '5.9');
-        wpAjaxData.append('_wpcf7_locale', currentLang === 'id' ? 'id_ID' : 'en_US');
-        wpAjaxData.append('_wpcf7_unit_tag', `wpcf7-f${FORM_ID}-p1-o1`);
-
-        // Masukkan isian dari state React
-        wpAjaxData.append('your-name', formData.name);
-        wpAjaxData.append('your-email', formData.email);
-        wpAjaxData.append('your-subject', formData.subject);
-        wpAjaxData.append('your-message', formData.message);
-
-        // ===================================================================================
-        // PERUBAHAN KRUSIAL: Memaksa parameter ?action=wpcf7_submit masuk lewat URL string.
-        // Ini menghentikan eror 400 karena WordPress langsung mendeteksi jenis aksinya dari awal.
-        // ===================================================================================
-        const endpoint = 'https://admin.bromosafetyinitiative.com/wp-admin/admin-ajax.php?action=wpcf7_submit';
-        // ===================================================================================
+        const FORMSPREE_ID = 'mjgderdq'; 
+        const endpoint = `https://formspree.io/f/${FORMSPREE_ID}`;
 
         try {
             const response = await fetch(endpoint, {
                 method: 'POST',
-                body: wpAjaxData.toString(), // Kirim data dalam format string url-encoded
-                mode: 'cors',
+                body: JSON.stringify(formData),
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
             });
@@ -57,18 +43,40 @@ function Contact() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const result = await response.json();
+            // 2. KUSTOMISASI PESAN SUKSES DENGAN DESAIN KHAS BROMO SAFETY
+            toast.success(
+                currentLang === 'id' 
+                    ? 'Pesan diterima! Terima kasih telah ikut peduli dan mendukung keselamatan di kawasan Bromo.' 
+                    : 'Message received! Thank you for supporting safety in the Bromo region.',
+                {
+                    id: loadingToast, // Menggantikan animasi loading secara instan
+                    duration: 5000,
+                    style: {
+                        background: '#0f172a', // Slate 900 (Menyesuaikan warna tema heromu)
+                        color: '#ffffff',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        borderRadius: '16px',
+                        padding: '16px',
+                        border: '1px solid rgba(249, 115, 22, 0.2)', // Border oranye tipis
+                    },
+                    iconTheme: {
+                        primary: '#f97316', // Warna Oranye Brand sebagai ikon sukses
+                        secondary: '#ffffff',
+                    },
+                }
+            );
 
-            // 2. Baca respon kesuksesan dari Contact Form 7
-            if (result.status === 'mail_sent' || result.mail_sent === true || result.success === true) {
-                alert(currentLang === 'id' ? 'Terima kasih! Pesan Anda telah berhasil dikirim.' : 'Thank you! Your message has been successfully sent.');
-                setFormData({ name: '', email: '', subject: '', message: '' });
-            } else {
-                alert(result.message || (currentLang === 'id' ? 'Gagal mengirim pesan. Periksa kembali form Anda.' : 'Failed to send message. Please check your form.'));
-            }
+            setFormData({ name: '', email: '', subject: '', message: '' });
+
         } catch (error) {
-            console.error('Error integrasi form via Ajax:', error);
-            alert(currentLang === 'id' ? 'Terjadi gangguan komunikasi dengan server. Silakan coba kembali.' : 'Communication link with server failed. Please try again.');
+            console.error('Error integrasi form via Formspree:', error);
+            
+            // 3. TAMPILAN JIKA TERJADI GANGGUAN KONEKSI
+            toast.error(
+                currentLang === 'id' ? 'Gagal terhubung dengan server.' : 'Server connection failed.',
+                { id: loadingToast }
+            );
         } finally {
             setIsSubmitting(false);
         }
@@ -76,6 +84,9 @@ function Contact() {
 
     return (
         <div className="bg-slate-50 min-h-screen py-12 md:py-20">
+            {/* 4. WAJIB DILETAKKAN DI SINI SEBAGAI WADAH POP-UP TOAST */}
+            <Toaster position="bottom-center" reverseOrder={false} />
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* ==================== HERO HEADER ==================== */}
@@ -150,8 +161,9 @@ function Contact() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className={`w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-extrabold tracking-widest uppercase py-4 rounded-xl transition-all duration-300 shadow-md select-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                                    }`}
+                                className={`w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-extrabold tracking-widest uppercase py-4 rounded-xl transition-all duration-300 shadow-md select-none ${
+                                    isSubmitting ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                                }`}
                             >
                                 {isSubmitting ? 'Sending...' : t('formBtn')}
                             </button>
