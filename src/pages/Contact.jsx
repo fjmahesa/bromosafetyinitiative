@@ -177,8 +177,8 @@ function Contact() {
                                 </div>
                                 <div className="min-w-0">
                                     <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-0.5">{t('contactOfficialEmail')}</h4>
-                                    <a href="mailto:info@bromosafetyinitiative.com" className="text-sm font-bold text-slate-800 hover:text-[var(--color-brand-orange)] transition-colors block break-all">
-                                        info@bromosafetyinitiative.com
+                                    <a href="mailto:bromosafetyinitiative@gmail.com" className="text-sm font-bold text-slate-800 hover:text-[var(--color-brand-orange)] transition-colors block break-all">
+                                        bromosafetyinitiative@gmail.com
                                     </a>
                                 </div>
                             </div>
