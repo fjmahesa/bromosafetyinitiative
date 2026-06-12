@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   FaCalendarAlt,
@@ -17,6 +17,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 function PostDetail() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate(); // Untuk memaksa mengubah URL address bar secara internal
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState([]);
   const [wpCategories, setWpCategories] = useState([]);
@@ -27,53 +28,64 @@ function PostDetail() {
   const currentUrl = window.location.href;
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
+  const controller = new AbortController();
+  const signal = controller.signal;
 
-    window.scrollTo(0, 0);
-    setIsLoading(true);
+  setPost(null);
+  setIsLoading(true);
 
-    const fetchMainPost = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&slug=${slug}`, { signal })
-      .then((res) => {
-        if (!res.ok) throw new Error('Gagal memuat artikel utama');
-        return res.json();
-      });
+  const langActive = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
 
-    const fetchAllCategories = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/categories`, { signal })
-      .then((res) => {
-        if (!res.ok) throw new Error('Gagal memuat kategori');
-        return res.json();
-      });
+  // Ambil data murni berdasarkan slug di address bar saat ini
+  fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&slug=${slug}`, { signal })
+    .then((res) => {
+      if (!res.ok) throw new Error('Gagal memuat artikel');
+      return res.json();
+    })
+    .then((postsData) => {
+      if (postsData && postsData.length > 0) {
+        const mainPost = postsData[0];
 
-    Promise.all([fetchMainPost, fetchAllCategories])
-      .then(([postsData, catsData]) => {
-        if (postsData && postsData.length > 0) {
-          const mainPost = postsData[0];
-          setPost(mainPost);
+        // Membaca objek translations buatan kita dari functions.php
+        const targetSlug = mainPost.translations?.[langActive];
 
-          const cleanCats = catsData.filter(cat => cat.slug !== 'uncategorized');
-          setWpCategories(cleanCats);
-
-          return fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=4&exclude=${mainPost.id}`, { signal });
-        } else {
-          setPost(null);
-          setIsLoading(false);
+        // KUNCI REDIRECT: Jika bahasa di React berganti dan slug pasangannya ada, paksa ganti URL
+        if (targetSlug && targetSlug !== slug) {
+          navigate(`/post/${targetSlug}`, { replace: true });
+          return;
         }
-      })
-      .then(res => res ? res.json() : null)
-      .then((recentData) => {
-        if (recentData) setRecentPosts(recentData);
+
+        setPost(mainPost);
+
+        // Muat kategori dan artikel rekomendasi
+        const fetchAllCategories = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/categories?lang=${langActive}`, { signal }).then(res => res.json());
+        const fetchRecent = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=4&exclude=${mainPost.id}&lang=${langActive}`, { signal }).then(res => res.json());
+
+        return Promise.all([fetchAllCategories, fetchRecent]);
+      } else {
         setIsLoading(false);
-      })
-      .catch((err) => {
-        if (err.name !== 'AbortError') {
-          console.error('Error memuat data PostDetail:', err);
-          setIsLoading(false);
-        }
-      });
+        return null;
+      }
+    })
+    .then((results) => {
+      if (results) {
+        const [catsData, recentData] = results;
+        const cleanCats = catsData.filter(cat => cat.slug !== 'uncategorized');
+        setWpCategories(cleanCats);
+        setRecentPosts(recentData);
+        setIsLoading(false);
+        window.scrollTo(0, 0);
+      }
+    })
+    .catch((err) => {
+      if (err.name !== 'AbortError') {
+        console.error('Error memuat data:', err);
+        setIsLoading(false);
+      }
+    });
 
-    return () => controller.abort();
-  }, [slug, i18n.language]);
+  return () => controller.abort();
+}, [slug, i18n.language, navigate]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(currentUrl)
@@ -83,6 +95,22 @@ function PostDetail() {
       })
       .catch((err) => console.error('Gagal menyalin tautan:', err));
   };
+
+  // ===================================================================================
+  // LOGIKA UTAMA: Hitung Durasi Baca Otomatis Berdasarkan Jumlah Kata Konten
+  // ===================================================================================
+  const calculateReadingTime = (htmlContent) => {
+    if (!htmlContent) return 1;
+    // 1. Bersihkan semua tag HTML (seperti <p>, <div>, <img>) agar tersisa teks murni saja
+    const cleanText = htmlContent.replace(/<[^>]*>/g, '');
+    // 2. Pecah string teks berdasarkan spasi untuk mendapatkan array kata, lalu hitung totalnya
+    const wordCount = cleanText.trim().split(/\s+/).filter(word => word.length > 0).length;
+    // 3. Rata-rata manusia membaca 200 kata/menit. Ambil batas atasnya menggunakan Math.ceil
+    const minutes = Math.ceil(wordCount / 200);
+    // 4. Pastikan durasi minimal adalah 1 menit
+    return minutes < 1 ? 1 : minutes;
+  };
+  // ===================================================================================
 
   if (isLoading) {
     return (
@@ -106,8 +134,10 @@ function PostDetail() {
     year: 'numeric', month: 'long', day: 'numeric'
   });
   const articleTitle = post.title.rendered;
-
   const activeCategory = wpCategories.find(cat => post.categories.includes(cat.id));
+  
+  // Panggil fungsi hitung waktu baca otomatis dari properti konten murni WordPress
+  const readingTime = calculateReadingTime(post.content.rendered);
 
   return (
     <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10 page-enter">
@@ -150,7 +180,7 @@ function PostDetail() {
         {/* KOLOM 2: AREA ARTIKEL UTAMA DI TENGAH */}
         <article className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-5 sm:p-10 shadow-xs">
 
-          {/* PERUBAHAN: BREADCRUMB MENJADI HOME > ARTIKEL > KATEGORI */}
+          {/* BREADCRUMB */}
           <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-5 select-none">
             <Link to="/" className="hover:text-slate-600 transition-colors">{t('postBreadcrumbHome')}</Link>
             <span className="text-slate-300 font-normal">&gt;</span>
@@ -174,10 +204,9 @@ function PostDetail() {
             dangerouslySetInnerHTML={{ __html: articleTitle }}
           />
 
-          {/* PERUBAHAN: AREA METADATA YANG SUDAH DIRAPIKAN TOTAL SEPERTI PADA IMAGE_FD7AA2.PNG */}
+          {/* AREA METADATA */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5 mb-8 text-xs font-bold text-slate-400 tracking-wide">
             
-            {/* Sisi Kiri: Penulis, Tanggal, dan Kategori (Menggunakan text-slate-500 netral tanpa paksaan uppercase global) */}
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-slate-400">
               <div className="flex items-center gap-1.5">
                 <div className="w-5 h-5 rounded-full bg-[var(--color-brand-orange)] text-white text-[9px] flex items-center justify-center font-black">BSI</div>
@@ -207,9 +236,9 @@ function PostDetail() {
               </div>
             </div>
 
-            {/* Sisi Kanan: Reading Time Box (Mencegah teks terlipat berantakan ke bawah) */}
+            {/* PERUBAHAN: Sekarang menampilkan readingTime hasil kalkulasi otomatis */}
             <div className="inline-flex items-center gap-1.5 text-slate-500 font-extrabold bg-slate-50/80 px-2.5 py-1 rounded-lg border border-slate-100 whitespace-nowrap self-start sm:self-auto">
-              <FaClock className="text-slate-400 text-[11px]" /> 4 {t('postMinsRead')}
+              <FaClock className="text-slate-400 text-[11px]" /> {readingTime} {t('postMinsRead')}
             </div>
 
           </div>
@@ -231,7 +260,7 @@ function PostDetail() {
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />
 
-          {/* PANEL TOMBOL SHARE KE SOSIAL MEDIA */}
+          {/* PANEL TOMBOL SHARE */}
           <div className="border-t border-slate-100 pt-8 mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h4 className="text-sm font-black uppercase tracking-wider text-slate-800">{t('postShareTitle')}</h4>

@@ -13,26 +13,32 @@ function ArticlesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const currentLang = i18n.language.startsWith('en') ? 'en' : 'id';
+  const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
+    
+    // Reset state agar tidak ada kilatan artikel bahasa lama saat berpindah bahasa
+    setArticles([]);
+    setCategories([]);
     setIsLoading(true);
 
-    // 1. Ambil Data Semua Artikel (Maksimal 20 artikel pertama untuk halaman indeks)
-    const fetchPosts = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=20`, { signal })
+    // ===================================================================================
+    // PERBAIKAN: Suntikkan parameter &lang=${currentLang} ke kedua endpoint API
+    // ===================================================================================
+    const fetchPosts = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=20&lang=${currentLang}`, { signal })
       .then((res) => {
         if (!res.ok) throw new Error('Gagal mengambil artikel');
         return res.json();
       });
 
-    // 2. Ambil Data Semua Kategori dari WordPress untuk Tombol Filter
-    const fetchCats = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/categories`, { signal })
+    const fetchCats = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/categories?lang=${currentLang}`, { signal })
       .then((res) => {
         if (!res.ok) throw new Error('Gagal mengambil kategori');
         return res.json();
       });
+    // ===================================================================================
 
     // Jalankan kedua fetch secara bersamaan (Parallel Fetching)
     Promise.all([fetchPosts, fetchCats])
@@ -51,7 +57,7 @@ function ArticlesPage() {
       });
 
     return () => controller.abort();
-  }, [i18n.language]);
+  }, [currentLang]); // <-- Menggunakan currentLang sebagai pelacak sensitif perubahan bahasa
 
   // LOGIKA PENYARINGAN (FILTER & SEARCH)
   const filteredArticles = articles.filter((post) => {
@@ -100,7 +106,7 @@ function ArticlesPage() {
           />
         </div>
 
-        {/* REKAYASA FILTER KATEGORI (KANAN) */}
+        {/* FILTER KATEGORI (KANAN) */}
         <div className="flex flex-wrap items-center gap-2 overflow-x-auto max-w-full no-scrollbar">
           <button
             onClick={() => setSelectedCategory('all')}
@@ -141,7 +147,7 @@ function ArticlesPage() {
       ) : (
         /* KONDISI JIKA HASIL FILTER KOSONG */
         filteredArticles.length === 0 ? (
-          <div className="text-center py-24 bg-white border border-dashed border-slate-200 rounded-3xl p-8 flex flex-col items-center max-w-md mx-auto">
+          <div className="text-center py-24 bg-white border border-dashed border-slate-200 rounded-3xl p-8 flex flex-col items-center max-w-md mx-auto w-full">
             <div className="w-12 h-12 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mb-4 border border-slate-100">
               <FaInbox className="text-xl" />
             </div>

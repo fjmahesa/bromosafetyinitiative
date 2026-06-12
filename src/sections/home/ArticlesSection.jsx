@@ -8,16 +8,20 @@ function ArticlesSection() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const currentLang = i18n.language.startsWith('en') ? 'en' : 'id';
+  // Ambil kode bahasa aktif secara aman
+  const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
 
+    setArticles([]); // Bersihkan data artikel lama saat bahasa berpindah
     setIsLoading(true);
     
-    // Fetch 3 artikel terbaru dari WordPress CMS
-    fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=3`, { signal })
+    // ===================================================================================
+    // PERBAIKAN: Suntikkan parameter &lang=${currentLang} untuk menyaring 3 artikel terbaru
+    // ===================================================================================
+    fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=3&lang=${currentLang}`, { signal })
       .then((res) => {
         if (!res.ok) throw new Error('Gagal memuat data dari WordPress');
         return res.json();
@@ -36,7 +40,7 @@ function ArticlesSection() {
       });
 
     return () => controller.abort();
-  }, [i18n.language]);
+  }, [currentLang]); // <-- Menggunakan currentLang sebagai pelacak sensitif perubahan bahasa
 
   return (
     <section id="articles" className="bg-slate-50 py-20 md:py-32 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60">
