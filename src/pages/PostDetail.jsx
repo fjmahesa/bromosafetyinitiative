@@ -17,13 +17,17 @@ function PostDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
 
-  // STATE BARU: Untuk Fitur Komentar
+  // STATE: Untuk Fitur Komentar & Balasan
   const [comments, setComments] = useState([]);
   const [commentName, setCommentName] = useState('');
   const [commentEmail, setCommentEmail] = useState('');
   const [commentContent, setCommentContent] = useState('');
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [commentStatusMsg, setCommentStatusMsg] = useState({ type: '', text: '' });
+  
+  // LOGIKA BARU: Melacak status balasan komentar
+  const [replyingToId, setReplyingToId] = useState(null); 
+  const [replyingToName, setReplyingToName] = useState('');
 
   const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
   const currentUrl = window.location.href;
@@ -36,6 +40,8 @@ function PostDetail() {
     setPost(null);
     setIsLoading(true);
     setCommentStatusMsg({ type: '', text: '' });
+    setReplyingToId(null);
+    setReplyingToName('');
 
     const langActive = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
 
@@ -85,18 +91,17 @@ function PostDetail() {
     return () => controller.abort();
   }, [slug, i18n.language, navigate]);
 
-  // EFFECT 2: Mengambil Daftar Komentar Terkait (Hanya berjalan jika data post sudah ada)
+  // EFFECT 2: Mengambil Daftar Komentar Terkait
   useEffect(() => {
     if (!post) return;
 
-    // Ambil komentar yang berstatus approved (disetujui) untuk ID post ini
-    fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/comments?post=${post.id}&status=approve`)
+    fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/comments?post=${post.id}&status=approve&per_page=100`)
       .then(res => res.json())
       .then(data => setComments(data))
       .catch(err => console.error("Gagal memuat komentar:", err));
   }, [post]);
 
-  // FUNGSI BARU: Kirim Komentar ke WordPress API
+  // FUNGSI: Kirim Komentar / Balasan ke WordPress API
   const handleSubmitComment = (e) => {
     e.preventDefault();
     if (!commentName || !commentEmail || !commentContent) {
@@ -117,6 +122,7 @@ function PostDetail() {
         author_name: commentName,
         author_email: commentEmail,
         content: commentContent,
+        parent: replyingToId || 0, // Mengirimkan ID induk jika ini berupa balasan
       }),
     })
       .then((res) => {
@@ -125,9 +131,10 @@ function PostDetail() {
       })
       .then((data) => {
         setIsSubmittingComment(false);
-        setCommentContent(''); // Kosongkan form teks saja
-
-        // Beri tahu user bahwa komentar masuk ke tahap moderasi admin
+        setCommentContent(''); 
+        setReplyingToId(null); // Reset mode balasan setelah berhasil kirim
+        setReplyingToName('');
+        
         setCommentStatusMsg({
           type: 'success',
           text: currentLang === 'id'
@@ -340,7 +347,7 @@ function PostDetail() {
           </div>
 
           {/* =================================================================================== */}
-          {/* SEKSI BARU: SISTEM KOMENTAR HEADLESS WORDPRESS */}
+          {/* SEKSI KOMENTAR DENGAN CHRONO-TIME & LOGIKA BALASAN (NESTED) */}
           {/* =================================================================================== */}
           <div className="border-t border-slate-100 pt-10 mt-12 space-y-8">
             <h3 className="text-lg font-black tracking-tight text-slate-900 uppercase flex items-center gap-2">
@@ -349,34 +356,77 @@ function PostDetail() {
             </h3>
 
             {/* DAFTAR LIST KOMENTAR */}
-            <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 no-scrollbar">
+            <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 no-scrollbar">
               {comments.length === 0 ? (
                 <p className="text-xs text-slate-400 font-medium italic py-2">
                   {currentLang === 'id' ? 'Belum ada komentar. Jadilah yang pertama memberikan tanggapan!' : 'No comments yet. Be the first to leave a thought!'}
                 </p>
               ) : (
-                comments.map((comment) => {
+                // Saring Loop Utama: Hanya tampilkan komentar induk saja (parent === 0)
+                comments.filter(c => c.parent === 0).map((comment) => {
                   const commentDate = new Date(comment.date).toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
+                    year: 'numeric', month: 'short', day: 'numeric'
                   });
 
                   const commentTime = new Date(comment.date).toLocaleTimeString(currentLang === 'id' ? 'id-ID' : 'en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: currentLang !== 'id' // Menggunakan format AM/PM khusus untuk bahasa Inggris
+                    hour: '2-digit', minute: '2-digit', hour12: currentLang !== 'id'
                   });
-                  return(
-                    <div key={comment.id} className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex flex-col gap-1.5 animate-fade-in-quick">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-black text-slate-800 capitalize">{comment.author_name}</span>
-                        {/* TAMPILAN BARU: Tanggal, Jam:Menit */}
-                        <span className="text-[10px] font-bold text-slate-400">
-                          {commentDate}, {commentTime}
-                        </span>
+
+                  // Cari data balasan anak untuk id komentar utama ini
+                  const childReplies = comments.filter(reply => reply.parent === comment.id);
+
+                  return (
+                    <div key={comment.id} className="space-y-3">
+                      
+                      {/* KARTU KOMENTAR INDUK */}
+                      <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex flex-col gap-1.5 animate-fade-in-quick">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black text-slate-800 capitalize">{comment.author_name}</span>
+                          <span className="text-[10px] font-bold text-slate-400">
+                            {commentDate}, {commentTime}
+                          </span>
+                        </div>
+                        <div className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: comment.content.rendered }} />
+                        
+                        {/* Tombol Aksi Balas */}
+                        <button 
+                          onClick={() => {
+                            setReplyingToId(comment.id);
+                            setReplyingToName(comment.author_name);
+                            document.getElementById('comment-form-panel')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                          className="text-[10px] font-extrabold text-[var(--color-brand-orange)] uppercase tracking-wider mt-1 self-start hover:text-[var(--color-brand-orange-hover)] cursor-pointer select-none"
+                        >
+                          {currentLang === 'id' ? '← Balas' : '← Reply'}
+                        </button>
                       </div>
-                      <div className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: comment.content.rendered }} />
+
+                      {/* RENDER KOMENTAR BALASAN (CHILD INDENTATION) */}
+                      {childReplies.map((reply) => {
+                        const rDate = new Date(reply.date).toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', {
+                          year: 'numeric', month: 'short', day: 'numeric'
+                        });
+                        const rTime = new Date(reply.date).toLocaleTimeString(currentLang === 'id' ? 'id-ID' : 'en-US', {
+                          hour: '2-digit', minute: '2-digit', hour12: currentLang !== 'id'
+                        });
+
+                        return (
+                          <div key={reply.id} className="ml-8 sm:ml-12 bg-slate-100/60 border border-slate-200/40 rounded-2xl p-4 flex flex-col gap-1.5 animate-fade-in-quick relative">
+                            {/* Garis pemandu relasi visual */}
+                            <div className="absolute -left-4 top-0 bottom-1/2 w-4 border-l-2 border-b-2 border-slate-200 rounded-bl-xl" />
+                            
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-black text-slate-800 capitalize flex items-center gap-1.5">
+                                {reply.author_name} 
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 bg-slate-200 text-slate-400 rounded uppercase tracking-widestScale">Guest</span>
+                              </span>
+                              <span className="text-[10px] font-bold text-slate-400">{rDate}, {rTime}</span>
+                            </div>
+                            <div className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: reply.content.rendered }} />
+                          </div>
+                        );
+                      })}
+
                     </div>
                   );
                 })
@@ -384,10 +434,24 @@ function PostDetail() {
             </div>
 
             {/* FORMULIR MEMBUAT KOMENTAR BARU */}
-            <form onSubmit={handleSubmitComment} className="bg-slate-50 border border-slate-200/60 rounded-3xl p-5 space-y-4">
-              <h4 className="text-xs font-black uppercase tracking-wider text-slate-700">
-                {currentLang === 'id' ? 'Tinggalkan Komentar' : 'Leave a Comment'}
-              </h4>
+            <form id="comment-form-panel" onSubmit={handleSubmitComment} className="bg-slate-50 border border-slate-200/60 rounded-3xl p-5 space-y-4">
+              <div className="flex items-center justify-between">
+                <h4 className="text-xs font-black uppercase tracking-wider text-slate-700">
+                  {replyingToId 
+                    ? (currentLang === 'id' ? `Membalas Komentar ${replyingToName}` : `Replying to ${replyingToName}`)
+                    : (currentLang === 'id' ? 'Tinggalkan Komentar' : 'Leave a Comment')
+                  }
+                </h4>
+                {replyingToId && (
+                  <button 
+                    type="button"
+                    onClick={() => { setReplyingToId(null); setReplyingToName(''); }}
+                    className="text-[10px] font-black text-rose-500 uppercase tracking-wider cursor-pointer select-none hover:text-rose-600"
+                  >
+                    {currentLang === 'id' ? '[ Batal Balas ]' : '[ Cancel Reply ]'}
+                  </button>
+                )}
+              </div>
 
               {commentStatusMsg.text && (
                 <div className={`p-3 rounded-xl text-xs font-bold border ${commentStatusMsg.type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-rose-50 border-rose-200 text-rose-700'}`}>
