@@ -71,7 +71,7 @@ function O2OCampaign() {
           </div>
 
           {/* DYNAMIC CONTENT DISPLAY PANEL KANAN */}
-          <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-10 shadow-xs min-h-[460px] flex flex-col justify-between">
+          <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-10 shadow-xs min-h-[380px] flex flex-col justify-between">
             
             {/* PANEL KONTEN ONLINE */}
             {activeTab === 'online' && (
@@ -118,13 +118,6 @@ function O2OCampaign() {
                 </div>
               </div>
             )}
-
-            {/* PANEL KAKI FOOTNOTE */}
-            <div className="mt-12 pt-4 border-t border-slate-100 text-xs font-bold text-slate-400 flex items-center gap-2 select-none">
-              <span className="w-2 h-2 rounded-full bg-[var(--color-brand-orange)] animate-ping" />
-              {t('o2oFootnote')}
-            </div>
-
           </div>
         </div>
       </div>

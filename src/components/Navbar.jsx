@@ -17,14 +17,10 @@ function Navbar() {
   // Array menu yang disesuaikan dengan tautan PDF eksternal pesanan klien
   const menuItems = [
     { key: 'navHome', path: '/' },
-    { key: 'navAbout', path: '/about' },
-    { 
-      key: 'navSafety', 
-      path: 'https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan.pdf', 
-      isExternal: true // Penanda khusus agar dirender menggunakan tag <a> murni
-    },
+    { key: 'navAbout', path: '/about-us' },
+    { key: 'navSafety', path: '/safety-guide' },
     { key: 'navRestArea', path: '/rest-area' },
-    { key: 'navLocation', path: '/location' },
+    { key: 'navContact', path: '/contact-us' },
   ];
 
   return (

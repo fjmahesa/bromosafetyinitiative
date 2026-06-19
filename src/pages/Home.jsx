@@ -9,6 +9,7 @@ import OfficialSupport from '../sections/home/OfficialSupport';
 import InstagramFeed from '../sections/home/InstagramFeed';
 import O2OCampaign from '../sections/home/O2OCampaign';
 import ArticlesSection from '../sections/home/ArticlesSection';
+import Sponsors from '../components/Sponsors';
 
 function Home() {
   return (
@@ -24,6 +25,7 @@ function Home() {
         {/* <ArticlesSection /> */}
         {/* <SafetyPillars /> */}
         {/* <SponsorshipCall /> */}
+        <Sponsors />
       </div>
     </div>
   );

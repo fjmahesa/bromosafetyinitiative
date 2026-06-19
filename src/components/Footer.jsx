@@ -10,14 +10,10 @@ function Footer() {
   // Array menu baru diselaraskan 100% dengan susunan rute Navbar terbaru
   const footerMenuItems = [
     { key: 'navHome', path: '/' },
-    { key: 'navAbout', path: '/about' },
-    { 
-      key: 'navSafety', 
-      path: 'https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan.pdf', 
-      isExternal: true 
-    },
+    { key: 'navAbout', path: '/about-us' },
+    { key: 'navSafety', path: '/safety-guide' },
     { key: 'navRestArea', path: '/rest-area' },
-    { key: 'navLocation', path: '/location' },
+    { key: 'navContact', path: '/contact-us' },
   ];
 
   return (

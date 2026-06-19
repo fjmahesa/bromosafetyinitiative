@@ -15,6 +15,8 @@ const resources = {
       navRestArea: "Rest Area",
       navLocation: "Location",
       btnMap: "View Rest Area Location",
+      igCtaTitle: "Collaborating Together for Real Change.",
+      igCtaBtn: "Join the Movement",
 
       // Hero Section
       heroBadge: "National Priority Campaign",
@@ -59,9 +61,7 @@ const resources = {
       supportTitle: "Official Endorsement & Validation",
       supportSubtitle: "This movement operates under the official coordination, appreciation, and support from regional authorities and national park management.",
 
-      // ===================================================================================
-      // KONTEN PERBAIKAN BARU: SEKSI KAMPANYE O2O (BAHASA INGGRIS)[cite: 2, 3]
-      // ===================================================================================
+      // Seksi Kampanye O2O (Online to Offline)
       o2oBadge: "O2O Intervention Strategy",
       o2oTitleMain: "Online to Offline (O2O) Safety Campaign",
       o2oSubtitle: "Connecting digital mitigation awareness prior to departure with real physical rescue actions on Bromo's extreme terrain.",
@@ -69,7 +69,7 @@ const resources = {
       o2oTabOnlineSub: "Digital education",
       o2oTabOfflineTitle: "2. Offline Activation",
       o2oTabOfflineSub: "Field intervention",
-
+      sponsorBadge: "Sponsored by",
       o2oOnlineHeader: "Digital Campaign (Digital Education)",
       o2oOnlineSubheader: "Digital campaign to reach tourists before they begin their journey.",
       o2oOnlinePointTitle1: "Integrated Information Center",
@@ -92,19 +92,18 @@ const resources = {
       o2oOfflinePointTitle4: "Community Collaboration",
       o2oOfflinePointDesc4: "Strategic cooperation with related communities for campaign assistance.",
       o2oFootnote: "Connected System: Digital Website Emergency Button Links Directly to Sukapura Ambulance Outpost.",
-      // ===================================================================================
 
       // Validasi Pemangku Kepentingan
       tnbtsQuote: "Expressing our highest appreciation for this initiative aimed at supporting visitor safety improvements and strengthening the positive image of tourism in the Mount Bromo Tengger Semeru National Park area.",
       tnbtsSign: "Rudijanta Tjahja Nugraha, S.Hut., M.Sc.",
-      tnbtsRole: "Kepala Balai Besar Taman Nasional Bromo Tengger Semeru (TNBTS)",
+      tnbtsRole: "Head of the Great Council of Bromo Tengger Semeru National Park (TNBTS)",
       sukapuraQuote: "This rest area is not merely a place to stop by. It is a sanctuary where we actively strive to protect and save lives. Bromo stands as the tourism beacon of Probolinggo Regency, recognized globally. Hence, alongside preserving its natural majesty, we must absolutely ensure that visiting tourists feel secure, comfortable, and guaranteed of their safety.",
       sukapuraSign: "H. Fahmi Abdul Haq Zaini, S.Ag., S.Kom.",
       sukapuraRole: "Vice Regent of Probolinggo",
 
       sponsorTitle: "Strategic Partnership & Executive Sponsorship Opportunities",
       sponsorSubtitle: "Join forces as a strategic partner to build a permanent digital platform and slash traffic accident rates down to zero.",
-      btnDownload: "Download Full Proposal (PDF)",
+      btnDownload: "Download Guide (PDF)",
       tierExclusive: "Exclusive Rights",
       tierPopular: "High Visibility",
       tierEssential: "Community Support",
@@ -125,9 +124,9 @@ const resources = {
       pillarLabel4: "Tourism Value",
       pillarDesc4: "Sustaining a world-class economic engine driven by a safe, orderly, and responsible travel ecosystem.",
 
-      footerDesc: "A digital ecosystem dedicated to education, real-time monitoring, and accident mitigation across the Mount Bromo Tengger Semeru strategic tourism zone.",
+      footerDesc: "Online to Offline strategy for safe, orderly, and sustainable tourism in Mount Bromo area.",
       footerNavTitle: "Quick Links",
-      footerContactTitle: "Emergency Contacts",
+      footerContactTitle: "Contact Us",
       footerEmergencyCall: "Call Command Center",
       footerRights: "All Rights Reserved.",
 
@@ -195,11 +194,14 @@ const resources = {
       contactBtnSending: "Sending...",
       contactOfficialEmail: "Official Email",
       contactSocialMedia: "Movement Social Media",
+      btnMap: "View Rest Area Location",
 
-      // Pusat Data Keselamatan Hub
-      safetyBadge: "Safety Hub",
-      safetyHeroTitle: "Your Safety Guide to Bromo Tourism",
-      safetyHeroDesc: "Comprehensive information, emergency contacts, and safety guidelines to ensure a safe and memorable adventure in the Mount Bromo Tengger Semeru National Park area.",
+      // ===================================================================================
+      // SINKRONISASI BARU: PUSAT DATA KESELAMATAN HUB (BAHASA INGGRIS)[cite: 5, 6]
+      // ===================================================================================
+      safetyBadge: "Official Regional Guide",
+      safetyHeroTitle: "Towards an Orderly, Safe, and Sustainable Bromo Area",
+      safetyHeroDesc: "For mutual safety and comfort, all tourists are urged to always prioritize safety during the journey and while inside the tourist area.",
       safetyEmergencyBtn: "Call Emergency 112",
       safetyGuideBtn: "Read Safety Articles",
       safetyEmergency112: "Emergency Call 112",
@@ -207,25 +209,29 @@ const resources = {
       safetyEmergencyPostPhone: "Command Center Sukapura",
       safetyCoolingPoint: "Brake Cooling Post",
       safetyCoolingPointPhone: "Cooling Point Posko",
-      safetyGuideSectionTitle: "Essential Safety Guidelines for Bromo Visitors",
-      safetyGuideSectionDesc: "Key principles to follow before and during your visit to ensure your safety and the preservation of the national park.",
-      safetyGuideTitle1: "Automatic Motorcycle Brake Safety",
-      safetyGuideDesc1: "Automatic scooters lack engine braking on steep descents. Always stop at cooling points along the Sukapura-Cemoro Lawang route to let your brakes cool down and prevent vapor lock failure.",
-      safetyGuideTitle2: "Extreme Terrain Awareness",
-      safetyGuideDesc2: "Bromo's roads feature steep inclines, sharp blind corners, and narrow cliffside passages. Drive at low speed, use engine braking when possible, and stay fully focused on the road.",
-      safetyGuideTitle3: "Weather & Volcanic Alertness",
-      safetyGuideDesc3: "Weather conditions can change rapidly. Check the latest volcanic status and weather forecast before departure. Fog, strong winds, and extreme cold require proper clothing and preparation.",
-      safetyGuideTitle4: "First Aid & Emergency Readiness",
-      safetyGuideDesc4: "Carry a basic first aid kit, warm clothing, and sufficient supplies. Save emergency numbers (112) before your trip and inform your accommodation of your travel itinerary.",
+      safetyGuideSectionTitle: "Route Alertness & Bromo Regulations",
+      safetyGuideSectionDesc: "Understand the terrain and mandatory regulations before entering the Bromo Tengger Semeru National Park area.",
+      
+      safetyGuideTitle1: "Extreme Terrain Awareness",
+      safetyGuideDesc1: "Beware of inclines, steep descents, and sharp turns along the Bromo route. Drive carefully and maintain your speed.",
+      safetyGuideTitle2: "Mandatory Insurance Wristband",
+      safetyGuideDesc2: "COMPULSORY for all visitors to wear the Barcoded Insurance Wristband from entry to exit as a protection system.",
+      safetyGuideTitle3: "Natural Conditions & Weather",
+      safetyGuideDesc3: "Weather conditions in the Mount Bromo area can change at any time. Always monitor updates and obey officer directions.",
+      safetyGuideTitle4: "Rest Area Utilization",
+      safetyGuideDesc4: "Do not push yourself when tired or sleepy. Use the available rest areas to rest briefly and cool down your vehicle.",
+
       safetyCheckBadge: "Preparation Checklist",
-      safetyCheckTitle: "Pre-Departure Safety Checklist",
-      safetyCheckDesc: "Make sure you have completed all these items before starting your journey to Bromo. This checklist helps you prepare for a safe trip.",
-      safetyCheck1: "Check vehicle condition: brakes, tires, lights, and engine oil",
-      safetyCheck2: "Pack warm layered clothing and rain gear",
-      safetyCheck3: "Download offline maps and save emergency contacts (112)",
-      safetyCheck4: "Inform your hotel or accommodation of your departure schedule",
-      safetyCheck5: "Bring basic supplies: water, snacks, flashlight, power bank",
-      safetyCheck6: "Check the latest weather forecast and volcanic alert status",
+      safetyCheckTitle: "Pre-Departure Preparation",
+      safetyCheckDesc: "Ensure all checklist points below are fully met for the safety of your vacation.",
+      safetyCheck1: "Thoroughly check vehicle roadworthiness (brakes, lights, and tires)",
+      safetyCheck2: "Ensure your physical body condition is perfectly healthy and prime",
+      safetyCheck3: "Do not force yourself to drive when feeling sleepy",
+      safetyCheck4: "Obey all traffic signs and structural road markings",
+      safetyCheck5: "Maintain cleanliness by not littering around the national park",
+      safetyCheck6: "Ensure the insurance wristband barcode is properly attached",
+      // ===================================================================================
+
       safetyCoolingTitle: "Brake Cooling Points Location",
       safetyCoolingDesc: "Free cooling points are available along the hazardous routes, operated by local volunteers. Stop your vehicle, let the brakes cool down, and take a rest before continuing your journey downhill.",
       safetyCoolingBtn: "Learn More in Articles",
@@ -375,9 +381,7 @@ const resources = {
       supportTitle: "Dukungan & Validasi Otoritas Resmi",
       supportSubtitle: "Gerakan ini berjalan atas koordinasi, apresiasi, dan dukungan resmi dari otoritas pengelola kawasan dan pemerintah daerah setempat.",
 
-      // ===================================================================================
-      // KONTEN PERBAIKAN BARU: SEKSI KAMPANYE O2O (BAHASA INDONESIA)[cite: 2, 3]
-      // ===================================================================================
+      // Seksi Kampanye O2O (Online to Offline)
       o2oBadge: "Strategi Intervensi O2O",
       o2oTitleMain: "Kampanye Keselamatan Online to Offline (O2O)",
       o2oSubtitle: "Menghubungkan kesadaran mitigasi digital sebelum keberangkatan dengan aksi penyelamatan fisik nyata di medan ekstrem kawasan Bromo.",
@@ -408,10 +412,9 @@ const resources = {
       o2oOfflinePointTitle4: "Kolaborasi Komunitas",
       o2oOfflinePointDesc4: "Kerjasama strategis dengan komunitas terkait untuk pendampingan kampanye.",
       o2oFootnote: "Sistem Terkoneksi: Tombol Darurat Digital Website Terhubung Langsung ke Posko Ambulans Sukapura.",
-      // ===================================================================================
 
       // Validasi Pemangku Kepentingan
-      tnbtsQuote: "Menyampaikan apresiasi atas inisiatif yang bertujuan mendukung peningkatan keselamatan pengunjung serta penguatan citra positif pariwisata di kawasan Taman Nasional Bromo Tengger Semeru.",
+      tnbtsQuote: "Kami dari Balai Besar Taman Nasional Bromo Tengger Semeru (TNBTS) menyampaikan apresiasi atas inisiatif yang bertujuan mendukung peningkatan keselamatan pengunjung serta penguatan citra positif pariwisata di kawasan Taman Nasional Bromo Tengger Semeru.",
       tnbtsSign: "Rudijanta Tjahja Nugraha, S.Hut., M.Sc.",
       tnbtsRole: "Kepala Balai Besar Taman Nasional Bromo Tengger Semeru (TNBTS)",
       sukapuraQuote: "Rest area ini bukan hanya sekadar tempat istirahat. Ini adalah tempat yang dengan keberadaannya kita berikhtiar untuk menyelamatkan nyawa. Bromo adalah mercusuar pariwisata Kabupaten Probolinggo yang dikenal hingga mancanegara. Karena itu, selain menjaga keindahan alamnya, kita juga harus memastikan wisatawan yang datang merasa aman, nyaman dan keselamatannya terjamin.",
@@ -420,7 +423,7 @@ const resources = {
 
       sponsorTitle: "Peluang Kemitraan & Sponsorship Eksekutif",
       sponsorSubtitle: "Penyatuan kekuatan strategis demi membiayai platform digital permanen dan memotong fatalitas kecelakaan hingga nol.",
-      btnDownload: "Unduh Proposal Lengkap (PDF)",
+      btnDownload: "Unduh Panduan (PDF)",
       tierExclusive: "Hak Eksklusif",
       tierPopular: "Visibilitas Tinggi",
       tierEssential: "Dukungan Esensial",
@@ -429,7 +432,7 @@ const resources = {
       descGold: "Jejak logo ukuran menengah di banner lapangan, konten digital, serta hak distribusi brosur promosi.",
       descPlatinum: "Co-branding dominan di tenda posko, rompi relawan, activation booth, dan aset dokumentasi visual.",
       descTitle: "Dominasi penuh panggung tanpa kompetitor sejenis, hak penamaan program, serta penguasaan digital & PR utama.",
-
+      sponsorBadge: "Disponsori oleh",
       pillarsTitle: "Empat Pilar Nilai Konservasi",
       pillarsSubtitle: "Setiap tindakan keselamatan yang Anda patuhi turut melestarikan aset strategis nasional dengan nilai kelas dunia.",
       pillarLabel1: "Nilai Ekologi",
@@ -513,10 +516,12 @@ const resources = {
       contactSocialMedia: "Media Sosial Gerakan",
       btnMap: "Lihat Lokasi Rest Area",
 
-      // Pusat Data Keselamatan Hub
-      safetyBadge: "Pusat Keselamatan",
-      safetyHeroTitle: "Panduan Keselamatan Wisata Bromo untuk Anda",
-      safetyHeroDesc: "Informasi lengkap, kontak darurat, dan panduan keselamatan untuk memastikan petualangan yang aman dan berkesan di kawasan Taman Nasional Bromo Tengger Semeru.",
+      // ===================================================================================
+      // KONTEN RUJUKAN ACUAN SELEBARAN: PUSAT DATA KESELAMATAN HUB (BAHASA INDONESIA)[cite: 5, 6]
+      // ===================================================================================
+      safetyBadge: "Panduan Resmi Kawasan",
+      safetyHeroTitle: "Menuju Kawasan Bromo yang Tertib, Aman dan Berkelanjutan",
+      safetyHeroDesc: "Demi keselamatan dan kenyamanan bersama, seluruh wisatawan diimbau untuk selalu mengutamakan keselamatan selama perjalanan maupun saat berada di kawasan wisata.",
       safetyEmergencyBtn: "Hubungi Darurat 112",
       safetyGuideBtn: "Baca Artikel Keselamatan",
       safetyEmergency112: "Panggilan Darurat 112",
@@ -524,25 +529,29 @@ const resources = {
       safetyEmergencyPostPhone: "Command Center Sukapura",
       safetyCoolingPoint: "Pos Pendingin Rem",
       safetyCoolingPointPhone: "Posko Cooling Point",
-      safetyGuideSectionTitle: "Panduan Keselamatan Penting untuk Pengunjung Bromo",
-      safetyGuideSectionDesc: "Prinsip-prinsip utama yang harus diikuti sebelum dan selama kunjungan Anda untuk menjamin keselamatan dan kelestarian kawasan taman nasional.",
-      safetyGuideTitle1: "Keselamatan Rem Motor Matic",
-      safetyGuideDesc1: "Motor matic tidak memiliki engine brake di turunan curam. Selalu berhenti di pos pendingin sepanjang jalur Sukapura-Cemoro Lawang untuk mendinginkan rem dan mencegah rem blong.",
-      safetyGuideTitle2: "Waspada Medan Ekstrem",
-      safetyGuideDesc2: "Jalan menuju Bromo memiliki tanjakan curam, tikungan buta tajam, dan jalur sempit di tepi jurang. Berkendaralah dengan kecepatan rendah dan fokus penuh pada jalan.",
-      safetyGuideTitle3: "Kewaspadaan Cuaca & Vulkanik",
-      safetyGuideDesc3: "Kondisi cuaca dapat berubah drastis. Periksa status vulkanik dan prakiraan cuaca terkini sebelum keberangkatan. Kabut, angin kencang, dan dingin ekstrem memerlukan persiapan khusus.",
-      safetyGuideTitle4: "Kesiapan P3K & Darurat",
-      safetyGuideDesc4: "Bawalah kotak P3K dasar, pakaian hangat, dan perlengkapan yang memadai. Simpan nomor darurat (112) sebelum perjalanan dan informasikan rencana perjalanan Anda ke penginapan.",
+      safetyGuideSectionTitle: "Waspada Jalur & Aturan Bromo",
+      safetyGuideSectionDesc: "Kenali medan dan regulasi wajib sebelum memasuki kawasan Taman Nasional Bromo Tengger Semeru.",
+      
+      safetyGuideTitle1: "Kewaspadaan Medan Ekstrem",
+      safetyGuideDesc1: "Waspadai tanjakan, turunan curam, serta tikungan tajam di sepanjang rute Bromo. Berkendara hati-hati dan jaga kecepatan.",
+      safetyGuideTitle2: "Kewajiban Gelang Asuransi",
+      safetyGuideDesc2: "WAJIB bagi seluruh pengunjung memakai Gelang Asuransi Berbarcode sejak masuk hingga keluar kawasan sebagai sistem perlindungan.",
+      safetyGuideTitle3: "Kondisi Alam & Cuaca",
+      safetyGuideDesc3: "Cuaca di kawasan Gunung Bromo dapat berubah sewaktu-waktu. Selalu pantau kondisi terkini dan patuhi arahan petugas.",
+      safetyGuideTitle4: "Pemanfaatan Rest Area",
+      safetyGuideDesc4: "Jangan memaksakan diri saat lelah atau mengantuk. Gunakan rest area yang tersedia untuk beristirahat sejenak dan mendinginkan kendaraan.",
+
       safetyCheckBadge: "Daftar Persiapan",
-      safetyCheckTitle: "Cek List Persiapan Sebelum Keberangkatan",
-      safetyCheckDesc: "Pastikan Anda telah menyelesaikan semua item ini sebelum memulai perjalanan menuju Bromo. Cek list ini membantu Anda mempersiapkan perjalanan yang aman.",
-      safetyCheck1: "Periksa kondisi kendaraan: rem, ban, lampu, dan oli mesin",
-      safetyCheck2: "Bawa pakaian hangat berlapis dan perlengkapan hujan",
-      safetyCheck3: "Unduh peta offline dan simpan kontak darurat (112)",
-      safetyCheck4: "Informasikan jadwal keberangkatan ke hotel atau penginapan",
-      safetyCheck5: "Bawa perlengkapan dasar: air minum, camilan, senter, power bank",
-      safetyCheck6: "Cek prakiraan cuaca dan status waspada vulkanik terkini",
+      safetyCheckTitle: "Persiapan Sebelum Berangkat",
+      safetyCheckDesc: "Pastikan seluruh poin checklist di bawah ini telah terpenuhi demi kelancaran liburan Anda.",
+      safetyCheck1: "Periksa kelayakan kendaraan secara menyeluruh (rem, lampu, dan ban)",
+      safetyCheck2: "Pastikan kondisi fisik tubuh dalam keadaan sehat dan prima",
+      safetyCheck3: "Jangan memaksakan diri berkendara saat mengantuk",
+      safetyCheck4: "Patuhi seluruh rambu lalu lintas dan marka jalan",
+      safetyCheck5: "Jaga kebersihan dengan tidak membuang sampah sembarangan",
+      safetyCheck6: "Pastikan barcode gelang asuransi sudah terpasang dengan benar",
+      // ===================================================================================
+
       safetyCoolingTitle: "Lokasi Pos Pendingin Rem",
       safetyCoolingDesc: "Pos pendingin gratis tersedia di sepanjang jalur rawan, dioperasikan oleh relawan lokal. Hentikan kendaraan, dinginkan rem, dan beristirahatlah sebelum melanjutkan perjalanan menuruni bukit.",
       safetyCoolingBtn: "Pelajari di Artikel",
@@ -636,6 +645,8 @@ const resources = {
       errorFetchCategories: "Gagal mengambil kategori",
       errorFetchPost: "Gagal memuat artikel",
       errorFetchCategory: "Kategori tidak ditemukan",
+      igCtaTitle: "Kolaborasi Bersama Untuk Perubahan Nyata.",
+      igCtaBtn: "Join the Movement",
     }
   }
 };

@@ -1,210 +1,179 @@
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { FaPhoneAlt, FaShieldAlt, FaMotorcycle, FaMapMarkerAlt, FaExclamationTriangle, FaCheckCircle, FaBookOpen, FaHandHoldingHeart, FaArrowRight } from 'react-icons/fa';
-import { useFadeIn } from '../hooks/useFadeIn';
+import { 
+  FaFilePdf, FaMotorcycle, FaCloudSun, FaTriangleExclamation, 
+  FaKitMedical
+} from 'react-icons/fa6';
 
-const emergencyContacts = [
-  { icon: FaPhoneAlt, label: 'safetyEmergency112', phone: '112', color: 'red' },
-  { icon: FaMapMarkerAlt, label: 'safetyEmergencyPost', phone: 'safetyEmergencyPostPhone', color: 'brand-orange' },
-  { icon: FaMotorcycle, label: 'safetyCoolingPoint', phone: 'safetyCoolingPointPhone', color: 'slate' },
-];
-
-const guidelines = [
-  {
-    icon: FaMotorcycle,
-    key: 'safetyGuide1',
-    title: 'safetyGuideTitle1',
-    desc: 'safetyGuideDesc1',
-    color: 'bg-amber-50 border-amber-200 text-amber-700',
-    iconBg: 'bg-amber-100 text-amber-600',
-  },
-  {
-    icon: FaExclamationTriangle,
-    key: 'safetyGuide2',
-    title: 'safetyGuideTitle2',
-    desc: 'safetyGuideDesc2',
-    color: 'bg-red-50 border-red-200 text-red-700',
-    iconBg: 'bg-red-100 text-red-600',
-  },
-  {
-    icon: FaShieldAlt,
-    key: 'safetyGuide3',
-    title: 'safetyGuideTitle3',
-    desc: 'safetyGuideDesc3',
-    color: 'bg-blue-50 border-blue-200 text-blue-700',
-    iconBg: 'bg-blue-100 text-blue-600',
-  },
-  {
-    icon: FaHandHoldingHeart,
-    key: 'safetyGuide4',
-    title: 'safetyGuideTitle4',
-    desc: 'safetyGuideDesc4',
-    color: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-    iconBg: 'bg-emerald-100 text-emerald-600',
-  },
-];
-
-const checklists = [
-  { icon: FaCheckCircle, key: 'safetyCheck1' },
-  { icon: FaCheckCircle, key: 'safetyCheck2' },
-  { icon: FaCheckCircle, key: 'safetyCheck3' },
-  { icon: FaCheckCircle, key: 'safetyCheck4' },
-  { icon: FaCheckCircle, key: 'safetyCheck5' },
-  { icon: FaCheckCircle, key: 'safetyCheck6' },
-];
+import { 
+  FaCheckCircle, FaDownload, FaShieldAlt 
+} from 'react-icons/fa';
 
 function Safety() {
-  const { t } = useTranslation();
-  const [heroRef, heroVisible] = useFadeIn(0);
-  const [guideRef, guideVisible] = useFadeIn(100);
-  const [checklistRef, checklistVisible] = useFadeIn(200);
-  const [emergencyRef, emergencyVisible] = useFadeIn(300);
-  const [ctaRef, ctaVisible] = useFadeIn(400);
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const pdfUrl = "https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan.pdf";
+
+  // Data Panduan Utama hasil ekstraksi materi selebaran BSI
+  const guides = [
+    {
+      icon: <FaTriangleExclamation className="text-xl text-[var(--color-brand-orange)]" />,
+      title: t('safetyGuideTitle1'),
+      desc: t('safetyGuideDesc1')
+    },
+    {
+      icon: <FaShieldAlt className="text-xl text-[var(--color-brand-orange)]" />,
+      title: t('safetyGuideTitle2'),
+      desc: t('safetyGuideDesc2')
+    },
+    {
+      icon: <FaCloudSun className="text-xl text-[var(--color-brand-orange)]" />,
+      title: t('safetyGuideTitle3'),
+      desc: t('safetyGuideDesc3')
+    },
+    {
+      icon: <FaMotorcycle className="text-xl text-[var(--color-brand-orange)]" />,
+      title: t('safetyGuideTitle4'),
+      desc: t('safetyGuideDesc4')
+    }
+  ];
+
+  // Data Checklist Elektronik Pra-Keberangkatan
+  const checklistItems = [
+    t('safetyCheck1'),
+    t('safetyCheck2'),
+    t('safetyCheck3'),
+    t('safetyCheck4'),
+    t('safetyCheck5'),
+    t('safetyCheck6')
+  ];
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-
-      <section className="relative bg-slate-900 text-white py-20 md:py-28 overflow-hidden">
-        <div className="absolute -right-32 -top-32 w-96 h-96 bg-[var(--color-brand-orange)]/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -left-32 -bottom-32 w-96 h-96 bg-slate-800 rounded-full blur-3xl pointer-events-none" />
-        <div ref={heroRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center transition-all duration-700 ${heroVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
-          <span className="text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/30 text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full inline-block mb-4">
-            {t('safetyBadge')}
+    <div className="w-full min-h-screen bg-slate-50/50 pb-24 page-enter">
+      
+      {/* HERO BANNER & DOWNLOAD PROMINENT */}
+      <div className="relative bg-slate-900 text-white py-20 md:py-28 overflow-hidden border-b border-slate-800">
+        <div className="absolute inset-0 opacity-15 bg-[url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=1600')] bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" />
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-fade-in">
+          <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/30 px-3 py-1 rounded-md mb-4">
+            <FaShieldAlt /> {t('safetyGuideBadge')}
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight max-w-3xl mx-auto leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight text-white uppercase max-w-4xl mx-auto leading-tight">
             {t('safetyHeroTitle')}
           </h1>
-          <p className="mt-4 text-slate-400 text-sm sm:text-base font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="max-w-2xl mx-auto text-xs sm:text-sm text-slate-400 font-medium mt-4 leading-relaxed">
             {t('safetyHeroDesc')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            <a href="tel:112" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold tracking-widest uppercase px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md animate-pulse">
-              <FaPhoneAlt /> {t('safetyEmergencyBtn')}
+
+          {/* CTA TOMBOL UNDUH PDF UTAMA */}
+          <div className="mt-10 flex justify-center">
+            <a 
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-hover)] text-white text-xs sm:text-sm font-black tracking-widest uppercase px-8 py-4 rounded-xl shadow-xl shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1 active:scale-95 cursor-pointer select-none"
+            >
+              <FaFilePdf className="text-lg" /> {t('btnDownload')}
             </a>
-            <Link to="/articles" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold tracking-widest uppercase px-8 py-3.5 rounded-xl border border-white/20 transition-all duration-300">
-              <FaBookOpen /> {t('safetyGuideBtn')}
-            </Link>
           </div>
         </div>
-      </section>
+      </div>
 
-      <div className="page-enter">
+      {/* INTI PANDUAN: GRID SYSTEM */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-12 relative z-20">
+        <div className="bg-white border-2 border-slate-200/60 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/30">
+          <div className="max-w-3xl mb-12">
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 uppercase">
+              {t('safetyGuideSectionTitle')}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1.5">
+              {t('safetyGuideSectionDesc')}
+            </p>
+          </div>
 
-      <section ref={emergencyRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20 transition-all duration-700 delay-300 ${emergencyVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {emergencyContacts.map((item, i) => {
-            const Icon = item.icon;
-            const isPhone = item.color === 'red';
-            return (
-              <a key={i} href={isPhone ? `tel:${item.phone}` : '#'}
-                className={`flex items-center gap-4 bg-white border-2 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer ${isPhone ? 'border-red-200 hover:border-red-400 hover:shadow-red-200/50' : item.color === 'brand-orange' ? 'border-[var(--color-brand-orange-border)] hover:border-[var(--color-brand-orange)] hover:shadow-[var(--color-brand-orange)]/10' : 'border-slate-200 hover:border-slate-400'}`}>
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg flex-shrink-0 ${isPhone ? 'bg-red-50 text-red-600' : item.color === 'brand-orange' ? 'bg-[var(--color-brand-orange-light)] text-[var(--color-brand-orange)]' : 'bg-slate-100 text-slate-600'}`}>
-                  <Icon />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {guides.map((guide, idx) => (
+              <div 
+                key={idx} 
+                className="flex gap-5 p-5 rounded-2xl bg-slate-50/50 border border-slate-200/60 hover:bg-white hover:border-slate-300 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center flex-shrink-0 shadow-xs group-hover:bg-[var(--color-brand-orange-light)] transition-colors">
+                  {guide.icon}
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{t(item.label)}</span>
-                  <span className={`text-sm font-black mt-0.5 ${isPhone ? 'text-red-700' : 'text-slate-900'}`}>{isPhone ? item.phone : t(item.phone)}</span>
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      </section>
-
-      <section ref={guideRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 transition-all duration-700 ${guideVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)] border border-[var(--color-brand-orange-border)] text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full inline-block mb-4">
-            {t('safetyGuideBadge')}
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{t('safetyGuideSectionTitle')}</h2>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium mt-3 max-w-xl mx-auto">{t('safetyGuideSectionDesc')}</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {guidelines.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <div key={i} className={`${item.color} border rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:scale-[1.02]`}>
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg flex-shrink-0 ${item.iconBg}`}>
-                    <Icon />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg font-black tracking-tight mb-2">{t(item.title)}</h3>
-                    <p className="text-xs sm:text-sm font-medium leading-relaxed opacity-90">{t(item.desc)}</p>
-                  </div>
+                <div className="space-y-1">
+                  <h4 className="text-base font-black text-slate-900 tracking-tight group-hover:text-[var(--color-brand-orange)] transition-colors">
+                    {guide.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
+                    {guide.desc}
+                  </p>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section className="bg-white border-y border-slate-200/60 py-16 md:py-24">
-        <div ref={checklistRef} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${checklistVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
-              <span className="text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)] border border-[var(--color-brand-orange-border)] text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full inline-block mb-4">
+      {/* SEKSI DAFTAR PERSIAPAN (PRE-DEPARTURE CHECKLIST) */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-24">
+        <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 bottom-0 opacity-5 transform translate-x-10 translate-y-10 pointer-events-none">
+            <FaShieldAlt className="text-[250px]" />
+          </div>
+          
+          <div className="relative z-10">
+            <div className="mb-8">
+              <span className="text-[9px] font-black uppercase tracking-widest text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/20 px-2.5 py-1 rounded-md">
                 {t('safetyCheckBadge')}
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{t('safetyCheckTitle')}</h2>
-              <p className="text-xs sm:text-sm text-slate-500 font-medium mt-3 leading-relaxed">{t('safetyCheckDesc')}</p>
+              <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white uppercase mt-3">
+                {t('safetyCheckTitle')}
+              </h3>
+              <p className="text-xs text-slate-400 font-medium mt-1">
+                {t('safetyCheckDesc')}
+              </p>
             </div>
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {checklists.map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={i} className="flex items-start gap-3 bg-slate-50 border border-slate-200/60 rounded-xl p-4 transition-all duration-300 hover:border-emerald-300 hover:bg-emerald-50/50">
-                      <Icon className="text-emerald-500 text-base mt-0.5 flex-shrink-0" />
-                      <span className="text-xs sm:text-sm font-bold text-slate-700 leading-snug">{t(item.key)}</span>
-                    </div>
-                  );
-                })}
-              </div>
+
+            {/* BARIS CHECKLIST */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {checklistItems.map((item, idx) => (
+                <div key={idx} className="flex gap-3 items-start bg-white/5 border border-white/10 rounded-xl p-4 transition-colors hover:bg-white/10">
+                  <FaCheckCircle className="text-[var(--color-brand-orange)] text-base flex-shrink-0 mt-0.5" />
+                  <span className="text-xs sm:text-sm font-bold text-slate-200 leading-snug">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* SEKSI LINK DOWNLOAD BAWAH */}
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-[11px] text-slate-400 font-semibold text-center sm:text-left">
+                {currentLang === 'id' 
+                  ? "Butuh panduan fisik offline? Simpan versi cetak PDF resmi langsung ke ponsel Anda." 
+                  : "Need offline documentation? Save the official printable PDF version straight to your device."}
+              </p>
+              <a 
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                
+                className="inline-flex items-center gap-2 text-[11px] font-black tracking-widest text-white uppercase bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-2.5 rounded-lg transition-all cursor-pointer whitespace-nowrap select-none"
+              >
+                <FaDownload /> {currentLang === 'id' ? "Unduh PDF" : "Download PDF"}
+              </a>
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-10 relative overflow-hidden border border-slate-800">
-            <div className="absolute -right-16 -bottom-16 w-40 h-40 bg-[var(--color-brand-orange)]/10 rounded-full blur-3xl" />
-            <FaMapMarkerAlt className="text-[var(--color-brand-orange)] text-2xl mb-5" />
-            <h3 className="text-xl font-black tracking-tight mb-3">{t('safetyCoolingTitle')}</h3>
-            <p className="text-xs sm:text-sm text-slate-400 font-medium leading-relaxed mb-6">{t('safetyCoolingDesc')}</p>
-            <Link to="/articles" className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest uppercase text-[var(--color-brand-orange)] hover:text-[var(--color-brand-orange-hover)] transition-colors">
-              {t('safetyCoolingBtn')} <FaArrowRight />
-            </Link>
-          </div>
-          <div className="bg-white border border-slate-200/60 rounded-3xl p-8 sm:p-10">
-            <FaShieldAlt className="text-[var(--color-brand-orange)] text-2xl mb-5" />
-            <h3 className="text-xl font-black text-slate-900 tracking-tight mb-3">{t('safetyReportTitle')}</h3>
-            <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed mb-6">{t('safetyReportDesc')}</p>
-            <Link to="/contact" className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest uppercase text-[var(--color-brand-orange)] hover:text-[var(--color-brand-orange-hover)] transition-colors">
-              {t('safetyReportBtn')} <FaArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section ref={ctaRef} className={`max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24 transition-all duration-700 ${ctaVisible ? 'fade-in-visible' : 'fade-in-hidden'}`}>
-        <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden border border-slate-800 text-center">
-          <div className="absolute -right-20 -bottom-20 w-48 h-48 bg-[var(--color-brand-orange)]/10 rounded-full blur-3xl" />
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-3">{t('safetyCtaTitle')}</h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-medium max-w-xl mx-auto leading-relaxed mb-8">{t('safetyCtaDesc')}</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="tel:112" className="inline-flex w-full sm:w-auto justify-center items-center text-center bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold tracking-widest uppercase px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md gap-2 animate-pulse">
-              <FaPhoneAlt /> {t('safetyEmergencyBtn')}
-            </a>
-            <Link to="/" className="inline-flex w-full sm:w-auto justify-center items-center text-center bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold tracking-widest uppercase px-8 py-3.5 rounded-xl border border-white/20 transition-all duration-300">
-              {t('safetyBackBtn')}
-            </Link>
-          </div>
-        </div>
-      </section>
-
       </div>
+
     </div>
   );
 }
