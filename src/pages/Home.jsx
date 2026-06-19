@@ -16,12 +16,12 @@ function Home() {
       <Hero />
       <div className="page-enter">
         <ImpactStats />
-        <PathAnatomy />
-        <BrakeEducation />
+        {/* <PathAnatomy /> */}
+        {/* <BrakeEducation /> */}
         <OfficialSupport />
         <O2OCampaign />
         <InstagramFeed />
-        <ArticlesSection />
+        {/* <ArticlesSection /> */}
         {/* <SafetyPillars /> */}
         {/* <SponsorshipCall /> */}
       </div>

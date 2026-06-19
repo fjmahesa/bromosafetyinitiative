@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaUsers, FaExclamationCircle, FaChartLine, FaShieldAlt } from 'react-icons/fa';
+import { FaUsers, FaChartLine, FaExclamationCircle, FaShieldAlt } from 'react-icons/fa';
+import { FaLocationDot } from 'react-icons/fa6'; 
 import { useFadeIn } from '../../hooks/useFadeIn';
-import CounterItem from '../../components/CounterItem'; 
+import CounterItem from '../../components/CounterItem';
 
 function ImpactStats() {
   const { t } = useTranslation();
-  
+
   // STATE: Melacak kartu statistik mana yang sedang aktif disorot/disentuh
   const [activeStatId, setActiveStatId] = useState(null);
-  
+
   const [domRef, isVisible] = useFadeIn(200);
 
-  // Basis data riil dengan pemisahan warna tegas kondisi idle vs highlight aktif
+  // Basis data riil yang disesuaikan dengan narasi baru dari klien
   const statsData = [
     {
       id: 1,
       icon: <FaUsers className="text-2xl text-orange-400" />,
-      number: "536.984", 
+      number: "536.984",
       label: t('statsLabel1'),
       desc: t('statsDesc1'),
       // Tema Oranye (Kunjungan Wisatawan)
@@ -29,24 +30,11 @@ function ImpactStats() {
     },
     {
       id: 2,
-      icon: <FaExclamationCircle className="text-2xl text-red-500" />,
-      number: "400+", 
+      icon: <FaChartLine className="text-2xl text-blue-600" />,
+      number: "34,88%",
       label: t('statsLabel2'),
       desc: t('statsDesc2'),
-      // Tema Amber (Risiko Rem Blong)
-      colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
-      colorActive: "bg-red-50/70 border-red-500 shadow-2xl shadow-red-500/15 text-red-950",
-      iconIdle: "bg-white border-slate-200",
-      iconActive: "bg-white border-red-300 scale-110 shadow-md",
-      numberActive: "text-red-600"
-    },
-    {
-      id: 3,
-      icon: <FaChartLine className="text-2xl text-blue-600" />,
-      number: "34,88%", 
-      label: t('statsLabel3'),
-      desc: t('statsDesc3'),
-      // Tema Biru (Jalur Rawan)
+      // Tema Biru (Lonjakan Pengunjung)
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
       colorActive: "bg-blue-50/70 border-blue-500 shadow-2xl shadow-blue-500/15 text-blue-950",
       iconIdle: "bg-white border-slate-200",
@@ -54,12 +42,25 @@ function ImpactStats() {
       numberActive: "text-blue-600"
     },
     {
+      id: 3,
+      icon: <FaExclamationCircle className="text-2xl text-red-500" />,
+      number: "400+",
+      label: t('statsLabel3'),
+      desc: t('statsDesc3'),
+      // Tema Merah/Amber (Pencegahan Rem Blong Matic)
+      colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
+      colorActive: "bg-red-50/70 border-red-500 shadow-2xl shadow-red-500/15 text-red-950",
+      iconIdle: "bg-white border-slate-200",
+      iconActive: "bg-white border-red-300 scale-110 shadow-md",
+      numberActive: "text-red-600"
+    },
+    {
       id: 4,
       icon: <FaShieldAlt className="text-2xl text-emerald-600" />,
-      number: "10.000+", 
+      number: "10.000+",
       label: t('statsLabel4'),
       desc: t('statsDesc4'),
-      // Tema Emerald (Mitigasi/Proteksi)
+      // Tema Emerald (Mitigasi/Proteksi Target Edukasi)
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
       colorActive: "bg-emerald-50/70 border-emerald-500 shadow-2xl shadow-emerald-500/15 text-emerald-950",
       iconIdle: "bg-white border-slate-200",
@@ -69,12 +70,12 @@ function ImpactStats() {
   ];
 
   return (
-    <section 
+    <section
       ref={domRef}
-      className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} bg-white py-20 md:py-28 px-4 sm:px-6 lg:px-8 border-b border-slate-100`}
+      className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} bg-white py-20 md:py-28 px-4 sm:px-6 lg:px-8 border-b border-slate-200`}
     >
       <div className="max-w-7xl mx-auto">
-        
+
         {/* HEADER SECTION */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 md:mb-24">
           <div className="max-w-2xl">
@@ -94,17 +95,13 @@ function ImpactStats() {
             const isCurrentActive = activeStatId === stat.id;
 
             return (
-              <div 
+              <div
                 key={stat.id}
-                // DUAL DEVICE TRIGGERS: Mendukung kursor desktop dan sentuhan layar HP
                 onTouchStart={() => setActiveStatId(stat.id)}
                 onMouseEnter={() => setActiveStatId(stat.id)}
                 onMouseLeave={() => setActiveStatId(null)}
                 className={`flex flex-col p-6 rounded-2xl border-2 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer select-none
-                  /* Efek Transformasi Pop-Up Pegas Mentul Keatas */
                   ${isCurrentActive ? '-translate-y-3 scale-[1.03]' : ''}
-                  
-                  /* Peralihan Warna Latar & Border Tanpa Crash */
                   ${isCurrentActive ? stat.colorActive : stat.colorIdle}
                 `}
               >
@@ -121,14 +118,14 @@ function ImpactStats() {
                 <div className={`text-4xl sm:text-5xl font-black tracking-tight mb-2 tabular-nums transition-colors duration-300
                   ${isCurrentActive ? stat.numberActive : 'text-slate-900'}
                 `}>
-                  <CounterItem 
-                    targetValue={stat.number} 
-                    isVisible={isVisible} 
+                  <CounterItem
+                    targetValue={stat.number}
+                    isVisible={isVisible}
                   />
                 </div>
 
                 {/* Judul Label Keterangan */}
-                <div className={`text-sm font-bold tracking-wide uppercase mb-3 transition-colors duration-300
+                <div className={`text-xs font-black tracking-wide uppercase mb-3 transition-colors duration-300 leading-snug
                   ${isCurrentActive ? stat.numberActive : 'text-slate-800'}
                 `}>
                   {stat.label}
@@ -142,6 +139,16 @@ function ImpactStats() {
             );
           })}
         </div>
+
+        {/* =================================================================================== */}
+        {/* PERBAIKAN: Tata letak tombol tengah diberi margin top yang aman agar tidak menabrak */}
+        {/* =================================================================================== */}
+        <div className="text-center mt-16 md:mt-20">
+          <a href="/rest-area" className="inline-flex items-center gap-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 text-xs font-black uppercase tracking-wider transition-all shadow-md hover:-translate-y-0.5 cursor-pointer select-none active:scale-95">
+            <FaLocationDot className="text-brand-orange text-sm animate-bounce" /> {t('btnMap')}
+          </a>
+        </div>
+        {/* =================================================================================== */}
 
       </div>
     </section>

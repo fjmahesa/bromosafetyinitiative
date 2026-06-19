@@ -11,6 +11,8 @@ import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Safety from './pages/Safety';
+import RestAreaPage from './pages/RestAreaPage';
+import LocationPage from './pages/LocationPage';
 
 // 1. Komponen Layout Global
 function GlobalLayout() {
@@ -42,6 +44,8 @@ function App() {
           {/* Halaman Detail Artikel Berdasarkan ID WordPress */}
           <Route path="articles" element={<ArticlesPage />} />
           <Route path="about" element={<About />} />
+          <Route path="rest-area" element={<RestAreaPage />} />
+          <Route path="location" element={<LocationPage />} />
           <Route path="contact" element={<Contact />} />
           <Route path="safety" element={<Safety />} />
           <Route path="post/:slug" element={<PostDetail />} />

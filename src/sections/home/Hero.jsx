@@ -56,16 +56,16 @@ function Hero() {
         
         {/* Tombol Aksi */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-sm sm:max-w-none mx-auto mb-16">
-          <button className="w-full sm:w-auto rounded-xl bg-brand-orange px-8 py-4 text-sm font-bold text-white border-b-4 border-brand-orange-hover hover:brightness-105 active:border-b-0 active:mt-[4px] transition-all shadow-md">
+          <a href='https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan.pdf' target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto rounded-xl bg-brand-orange px-8 py-4 text-sm font-bold text-white border-b-4 border-brand-orange-hover hover:brightness-105 active:border-b-0 active:mt-[4px] transition-all shadow-md">
             {t('btnGuide')}
-          </button>
+          </a>
           
-          <a href="https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/BRO"
+          {/* <a href="https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/BRO"
              target="_blank"
              rel="noopener noreferrer"
              className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border-2 border-slate-900 bg-white px-8 py-4 text-sm font-bold text-slate-900 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
             <FaExclamationTriangle className="text-amber-500" /> {t('btnStatus')}
-          </a>
+          </a> */}
         </div>
 
         {/* Indikator Scroll Down */}
