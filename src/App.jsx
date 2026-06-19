@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import PostDetail from './pages/PostDetail';
 import ArticlesPage from './pages/ArticlesPage';
@@ -34,6 +35,7 @@ function GlobalLayout() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Menggunakan Layout Global */}
         <Route path="/" element={<GlobalLayout />}>
