@@ -325,6 +325,9 @@ const resources = {
       errorFetchCategories: "Failed to fetch categories",
       errorFetchPost: "Failed to load article",
       errorFetchCategory: "Category not found",
+      camatOldQuote: "We highly welcome and are fully prepared to support this movement by the Bromo Safety Initiative. The route from Sukapura to Cemoro Lawang presents extreme characteristics for unaccustomed riders, particularly automatic scooter users who are prone to brake failure. The presence of this physical rest area post is a concrete mitigation step to save many lives and provide a sense of security for tourists.",
+      camatOldSign: "Nur Rachmad Sholeh, S.Sos., M.M.",
+      camatOldRole: "Camat Sukapura, Probolinggo Regency",
     }
   },
   id: {
@@ -647,6 +650,9 @@ const resources = {
       errorFetchCategory: "Kategori tidak ditemukan",
       igCtaTitle: "Kolaborasi Bersama Untuk Perubahan Nyata.",
       igCtaBtn: "Join the Movement",
+      camatOldQuote: "Kami sangat menyambut baik dan siap mendukung penuh inisiatif dari gerakan Bromo Safety Initiative ini. Jalur Sukapura menuju Cemoro Lawang memiliki karakteristik yang sangat ekstrem bagi pengendara yang belum terbiasa, terutama pengguna motor matic yang rawan mengalami rem blong. Keberadaan posko fisik rest area ini adalah langkah mitigasi yang konkret untuk menyelamatkan banyak nyawa dan memberikan rasa aman bagi para wisatawan.",
+      camatOldSign: "Nur Rachmad Sholeh, S.Sos., M.M.",
+      camatOldRole: "Camat Sukapura, Kabupaten Probolinggo",
     }
   }
 };
