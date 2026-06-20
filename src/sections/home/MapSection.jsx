@@ -26,13 +26,12 @@ function MapSection() {
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed mt-2">
               {currentLang === 'id' 
-                ? 'Titik krusial perlindungan gratis di jalur Sukapura - Cemoro Lawang untuk mendinginkan rem matic dan memulihkan stamina Anda.'
-                : 'Crucial free checkpoint on the Sukapura - Cemoro Lawang route to cool down automatic brakes and restore your riding stamina.'}
+                ? 'Pos istirahat pengendara motor matic untuk mendinginkan rem (mencegah rem blong) serta memulihkan stamina sebelum melanjutkan perjalanan.'
+                : 'Automatic motorcycle rest stop to cool down the brakes (prevent brake failure) and restore stamina before continuing the journey.' }
             </p>
           </div>
 
-          {/* Tombol Aksi Navigasi Eksternal */}
-          <a
+          {/* <a
             href="https://maps.app.goo.gl/7rSMNsha7rDzr6i9A?g_st=aw"
             target="_blank"
             rel="noopener noreferrer"
@@ -41,7 +40,7 @@ function MapSection() {
             <FaMapMarkedAlt className="text-sm text-[var(--color-brand-orange)]" /> 
             <span>{currentLang === 'id' ? 'Buka Petunjuk Arah' : 'Get Directions'}</span>
             <FaExternalLinkAlt className="text-[10px] opacity-50 ml-1" />
-          </a>
+          </a> */}
         </div>
 
         {/* MAP DISPLAY BOX (BENTO CARD STYLE) */}

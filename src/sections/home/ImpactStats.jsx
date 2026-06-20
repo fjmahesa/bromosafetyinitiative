@@ -140,16 +140,13 @@ function ImpactStats() {
           })}
         </div>
 
-        {/* =================================================================================== */}
-        {/* PERBAIKAN: Tata letak tombol tengah diberi margin top yang aman agar tidak menabrak */}
-        {/* =================================================================================== */}
-        <div className="text-center mt-16 md:mt-20">
+        
+        {/* <div className="text-center mt-16 md:mt-20">
           <a href="/rest-area" className="inline-flex items-center gap-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 text-xs font-black uppercase tracking-wider transition-all shadow-md hover:-translate-y-0.5 cursor-pointer select-none active:scale-95">
             <FaLocationDot className="text-brand-orange text-sm animate-bounce" /> {t('btnMap')}
           </a>
-        </div>
-        {/* =================================================================================== */}
-
+        </div> */}
+ 
       </div>
     </section>
   );
