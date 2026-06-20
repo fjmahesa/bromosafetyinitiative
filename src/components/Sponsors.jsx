@@ -22,12 +22,7 @@ function Sponsors() {
     { id: 8, name: "Rumah Zakat", src: "/images/sponsors/logo-rumahzakat.png" },
   ];
 
-  /* 
-    PERBAIKAN KELAS GAMBAR (CLEAN & FULL VISIBILITY):
-    - Efek opacity-50 dan hover-opacity telah dibuang total.
-    - Semua logo menggunakan opacity-100 (selalu terang benderang).
-    - Efek hover pembesaran mikro (md:hover:scale-105) tetap dipertahankan pada desktop agar interaktif.
-  */
+  // Standarisasi ukuran gambar dengan kecerahan penuh (opacity-100)
   const imgClassName = "max-h-20 md:max-h-24 max-w-[140px] md:max-w-[160px] w-auto h-auto object-contain opacity-100 md:hover:scale-105 transition-all duration-500 select-none pointer-events-none flex-shrink-0";
   const imgClassNameSponsors = "max-h-28 md:max-h-35 max-w-[140px] md:max-w-[160px] w-auto h-auto object-contain opacity-100 md:hover:scale-105 transition-all duration-500 select-none pointer-events-none flex-shrink-0";
 
@@ -77,7 +72,8 @@ function Sponsors() {
             </h3>
           </div>
           
-          <div className="bg-slate-50/40 border border-slate-200/50 rounded-3xl p-8 sm:p-10 shadow-xs overflow-hidden max-w-3xl mx-auto">
+          {/* PERBAIKAN: bg-slate-50/40 diubah menjadi bg-white penuh agar menyatu dengan logo berlatar putih */}
+          <div className="bg-white border border-slate-200/60 rounded-3xl p-8 sm:p-10 shadow-sm overflow-hidden max-w-3xl mx-auto">
             <div className="w-full overflow-hidden md:overflow-visible mobile-fade-mask">
               <div className="marquee-track md:grid-cols-3 gap-8 md:gap-12 items-center justify-items-center">
                 
@@ -110,7 +106,8 @@ function Sponsors() {
             </h3>
           </div>
           
-          <div className="bg-slate-50/40 border border-slate-200/50 rounded-3xl p-8 sm:p-12 shadow-xs overflow-hidden">
+          {/* PERBAIKAN: bg-slate-50/40 diubah menjadi bg-white penuh agar menyatu dengan logo berlatar putih */}
+          <div className="bg-white border border-slate-200/60 rounded-3xl p-8 sm:p-12 shadow-sm overflow-hidden">
             <div className="w-full overflow-hidden md:overflow-visible mobile-fade-mask">
               <div className="marquee-track md:grid-cols-5 gap-6 md:gap-10 items-center justify-items-center">
                 
