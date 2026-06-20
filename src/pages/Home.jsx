@@ -10,6 +10,7 @@ import InstagramFeed from '../sections/home/InstagramFeed';
 import O2OCampaign from '../sections/home/O2OCampaign';
 import ArticlesSection from '../sections/home/ArticlesSection';
 import Sponsors from '../components/Sponsors';
+import MapSection from '../sections/home/MapSection';
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
         {/* <BrakeEducation /> */}
         <OfficialSupport />
         <O2OCampaign />
+        <MapSection />
         <InstagramFeed />
         {/* <ArticlesSection /> */}
         {/* <SafetyPillars /> */}

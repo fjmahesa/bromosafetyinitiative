@@ -45,7 +45,7 @@ function InstagramFeed() {
             <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)]/30 mb-4">
               <FaInstagram className="text-sm" /> {t('igBadge')}
             </span>
-            <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl leading-tight uppercase">
+            <h2 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl lg:text-5xl uppercase leading-tight">
               {t('igTitle')}
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed mt-2">
