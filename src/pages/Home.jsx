@@ -6,11 +6,11 @@ import BrakeEducation from '../sections/home/BrakeEducation';
 import OfficialSupport from '../sections/home/OfficialSupport';
 // import SponsorshipCall from '../sections/home/SponsorshipCall';
 // import SafetyPillars from '../sections/home/SafetyPillars';
-import InstagramFeed from '../sections/home/InstagramFeed';
+import SocialFeedsSwitch from '../components/SocialFeedsSwitch';
 import O2OCampaign from '../sections/home/O2OCampaign';
 import ArticlesSection from '../sections/home/ArticlesSection';
-import Sponsors from '../components/Sponsors';
 import MapSection from '../sections/home/MapSection';
+import Sponsors from '../components/Sponsors';
 
 function Home() {
   return (
@@ -23,7 +23,7 @@ function Home() {
         <OfficialSupport />
         <O2OCampaign />
         <MapSection />
-        <InstagramFeed />
+        <SocialFeedsSwitch />
         {/* <ArticlesSection /> */}
         {/* <SafetyPillars /> */}
         {/* <SponsorshipCall /> */}
