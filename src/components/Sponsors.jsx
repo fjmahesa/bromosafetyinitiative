@@ -8,15 +8,15 @@ function Sponsors() {
 
   // Kelompok 1: Otoritas Resmi Kawasan (Supported By)
   const supportedLogos = [
-    { id: 1, name: "Pemerintah Daerah Probolinggo", src: "/images/logo-pemda.png" },
-    { id: 2, name: "TNBTS", src: "/images/logo-tnbts.png" },
-    { id: 3, name: "Kolatmar", src: "/images/logo-kolatmar.png" },
+    { id: 1, name: "TNBTS", src: "/images/logo-tnbts.png" },
+    { id: 2, name: "Kolatmar", src: "/images/logo-kolatmar.png" },
+    { id: 3, name: "Pemerintah Daerah Probolinggo", src: "/images/logo-pemda.png" },
   ];
 
   // Kelompok 2: Lembaga Pendukung/Mitra (Sponsored By)
   const sponsoredLogos = [
-    { id: 4, name: "Salam Setara", src: "/images/sponsors/logo-salamsetara.png" },
-    { id: 5, name: "KitaBisa", src: "/images/sponsors/logo-kitabisa.png" },
+    { id: 4, name: "KitaBisa", src: "/images/sponsors/logo-kitabisa.png" },
+    { id: 5, name: "Salam Setara", src: "/images/sponsors/logo-salamsetara.png" },
   ];
 
   // Kelas utility gambar untuk standarisasi ukuran besar yang konsisten
