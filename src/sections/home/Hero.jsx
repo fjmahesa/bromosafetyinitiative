@@ -1,20 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaShieldAlt, FaExclamationTriangle, FaChevronDown } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Ditambahkan untuk navigasi rute internal React Router
+import { FaShieldAlt, FaChevronDown } from 'react-icons/fa';
 import { useFadeIn } from '../../hooks/useFadeIn';
-import bromoBg from '../../assets/bromo-bg.webp'; // Import gambar latar belakang
+import bromoBg from '../../assets/bromo-bg.webp';
 
 function Hero() {
   const { t } = useTranslation();
   const [domRef, isVisible] = useFadeIn(150);
 
   return (
-    /* 1. KONTEN UTAMA & PEMBUNGKUS UTAMA SEKARANG DIPISAH.
-         Tag utama <section> sekarang bersih dari ref animasi agar background langsung render 100%.
-    */
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50 py-18 px-4 sm:px-6 lg:px-8">
       
-      {/* BACKGROUND LAYER: Sekarang bebas dari efek animasi fade-in, langsung tampil instan */}
+      {/* BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0">
         <img 
           src={bromoBg} 
@@ -24,9 +22,7 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-slate-50/90 mix-blend-normal" />
       </div>
 
-      {/* 2. INNER CONTAINER: Di sinilah kita memindahkan `ref={domRef}` dan kelas animasinya.
-           Efek fade-in hanya akan memengaruhi teks, badge, tombol, dan indikator scroll.
-      */}
+      {/* INNER CONTAINER */}
       <div 
         ref={domRef}
         className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} relative z-10 max-w-5xl mx-auto text-center w-full`}
@@ -54,18 +50,14 @@ function Hero() {
           {t('heroSubtitle')}
         </p>
         
-        {/* Tombol Aksi */}
+        {/* Tombol Aksi (DIUBAH MENJADI ROUTE INTERNAL LINK) */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-sm sm:max-w-none mx-auto mb-16">
-          <a href='https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan.pdf' target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto rounded-xl bg-brand-orange px-8 py-4 text-sm font-bold text-white border-b-4 border-brand-orange-hover hover:brightness-105 active:border-b-0 active:mt-[4px] transition-all shadow-md">
+          <Link 
+            to="/safety-guide" 
+            className="w-full sm:w-auto text-center rounded-xl bg-brand-orange px-8 py-4 text-sm font-bold text-white border-b-4 border-brand-orange-hover hover:brightness-105 active:border-b-0 active:mt-[4px] transition-all shadow-md select-none cursor-pointer"
+          >
             {t('btnGuide')}
-          </a>
-          
-          {/* <a href="https://magma.esdm.go.id/v1/gunung-api/informasi-letusan/BRO"
-             target="_blank"
-             rel="noopener noreferrer"
-             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border-2 border-slate-900 bg-white px-8 py-4 text-sm font-bold text-slate-900 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
-            <FaExclamationTriangle className="text-amber-500" /> {t('btnStatus')}
-          </a> */}
+          </Link>
         </div>
 
         {/* Indikator Scroll Down */}
