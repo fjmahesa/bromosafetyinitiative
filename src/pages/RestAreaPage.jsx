@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaMapMarkedAlt } from 'react-icons/fa';
+import GalleryCarousel from '../components/GalleryCarousel';
 
 function RestAreaPage() {
     const { i18n } = useTranslation();
@@ -46,6 +47,10 @@ function RestAreaPage() {
                         referrerPolicy="no-referrer-when-downgrade"
                     />
                 </div>
+            </div>
+            
+            <div className="mt-12">
+                <GalleryCarousel />
             </div>
 
         </div>
