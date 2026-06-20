@@ -20,9 +20,12 @@ function ContactUs() {
   };
 
   const contactData = {
-    address: "Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820",
+    address: "Menara MTH. Lt. 15 - Suite 1508. Letjen MT Haryono Kav 23, Jakarta. 12820",
     email: "bromosafetyinitiative@gmail.com",
-    phone: "0811 8000 1091"
+    phones: [
+      { id: 'phone1', number: "021-50606093" },
+      { id: 'phone2', number: "021-83789544" }
+    ]
   };
 
   return (
@@ -98,25 +101,36 @@ function ContactUs() {
               </button>
             </div>
 
-            {/* TELEPON */}
+            {/* TELEPON (Mendukung Multi-line Nomor Baru) */}
             <div className="flex gap-4 items-start p-5 rounded-2xl bg-slate-50/60 border border-slate-100 hover:border-slate-200 transition-all justify-between group">
-              <div className="flex gap-4 items-start">
+              <div className="flex gap-4 items-start w-full">
                 <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
                   <FaPhoneAlt className="text-base text-[var(--color-brand-orange)]" />
                 </div>
-                <div className="space-y-0.5">
-                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Hotline Telepon</span>
-                  <a href={`tel:${contactData.phone.replace(/\s/g, '')}`} className="block text-xs sm:text-sm font-bold text-slate-900 hover:text-[var(--color-brand-orange)] transition-colors">
-                    {contactData.phone}
-                  </a>
+                <div className="space-y-3 flex-1">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 block -mb-1">Hotline Telepon</span>
+                  
+                  {/* Mapping Iterasi Dua Nomor Baru */}
+                  {contactData.phones.map((phone) => (
+                    <div key={phone.id} className="flex items-center justify-between gap-2 border-b border-slate-200/40 pb-2 last:border-none last:pb-0">
+                      <a 
+                        href={`tel:${phone.number.replace(/\s/g, '')}`} 
+                        className="block text-xs sm:text-sm font-bold text-slate-900 hover:text-[var(--color-brand-orange)] transition-colors"
+                      >
+                        {phone.number}
+                      </a>
+                      <button 
+                        onClick={() => handleCopy(phone.number, phone.id)}
+                        className="p-1.5 rounded-md border border-slate-200 hover:bg-white text-slate-400 hover:text-slate-700 transition-all cursor-pointer"
+                        title="Salin Nomor"
+                      >
+                        {copiedType === phone.id ? <FaCheck className="text-green-600 text-[10px]" /> : <FaCopy className="text-[10px]" />}
+                      </button>
+                    </div>
+                  ))}
+
                 </div>
               </div>
-              <button 
-                onClick={() => handleCopy(contactData.phone, 'phone')}
-                className="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-400 hover:text-slate-700 transition-all cursor-pointer"
-              >
-                {copiedType === 'phone' ? <FaCheck className="text-green-600" /> : <FaCopy className="text-xs" />}
-              </button>
             </div>
 
           </div>

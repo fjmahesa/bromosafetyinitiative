@@ -17,7 +17,7 @@ function Safety() {
     window.scrollTo(0, 0);
   }, []);
 
-  const pdfUrl = "https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan.pdf";
+  const pdfUrl = "https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan-Jalur-Bromo.pdf";
 
   // Data Panduan Utama hasil ekstraksi materi selebaran BSI
   const guides = [

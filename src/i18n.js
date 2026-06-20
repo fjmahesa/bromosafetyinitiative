@@ -285,7 +285,7 @@ const resources = {
       navLogoAlt: "Bromo Safety Initiative Logo",
       footerTitleBack: "Back to top",
       footerLogoAlt: "Bromo Safety Initiative Logo",
-      footerAddress: "Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820",
+      footerAddress: "Menara MTH. Lt. 15 - Suite 1508. Letjen MT Haryono Kav 23, Jakarta. 12820",
       footerEmergencySuffix: "(112)",
       footerCopyright: "Bromo Safety Initiative",
       footerPrivacy: "Privacy Policy",
@@ -343,7 +343,7 @@ const resources = {
 
       // Hero Section
       heroBadge: "Kampanye Prioritas Nasional",
-      heroTitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Gunung Bromo yang Aman, Tertib dan Berkelanjutan",
+      heroTitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Taman Nasional Bromo Tengger Semeru yang Aman, Tertib dan Berkelanjutan",
       heroSubtitle: "Keselamatan di jalur Bromo adalah hasil dari edukasi yang presisi, intervensi yang terukur, dan kesiapan ekosistem wisata. Bersama, kita wujudkan mandat pariwisata yang aman dan berkelanjutan.",
       btnGuide: "Panduan Keselamatan",
       btnStatus: "Cek Status Gunung Bromo",
@@ -447,7 +447,7 @@ const resources = {
       pillarLabel4: "Nilai Pariwisata",
       pillarDesc4: "Menjaga daya tarik ekonomi kelas dunia melalui ekosistem perjalanan yang aman dan tertib.",
 
-      footerDesc: "Strategi Online to Offline untuk Pariwisata Kawasan Gunung Bromo yang Aman, Tertib dan Berkelanjutan.",
+      footerDesc: "Strategi Online to Offline untuk Pariwisata Kawasan Taman Nasional Bromo Tengger Semeru yang Aman, Tertib dan Berkelanjutan.",
       footerNavTitle: "Navigasi Ringkas",
       footerContactTitle: "Hubungi Kami",
       footerEmergencyCall: "Hubungi Posko Fisik",
@@ -483,7 +483,7 @@ const resources = {
       aboutValuesTitle: "Nilai-Nilai",
       aboutValuesHighlight: "BSI",
       aboutValuesDesc: "Prinsip fundamental dasar pergerakan yang dipegang erat oleh seluruh elemen komite Bromo Safety Initiative.",
-      aboutSlogan: "\"Bersama Menjaga Bromo, Bersama Mengutamakan Keselamatan.\"",
+      aboutSlogan: "\"Bersama Menjaga Bromo Tengger Semeru, Bersama Mengutamakan Keselamatan\"",
       aboutValueSafetyTitle: "Safety First",
       aboutValueSafetyDesc: "Keselamatan sebagai prioritas utama dalam setiap aspek aktivitas.",
       aboutValueCollabTitle: "Collaboration",
@@ -491,7 +491,7 @@ const resources = {
       aboutValueRespTitle: "Responsibility",
       aboutValueRespDesc: "Bertanggung jawab penuh terhadap keselamatan manusia dan kelestarian lingkungan.",
       aboutValueSustTitle: "Sustainability",
-      aboutValueSustDesc: "Menjaga keberlanjutan ekosistem kawasan Bromo untuk masa depan.",
+      aboutValueSustDesc: "Menjaga keberlanjutan ekosistem Kawasan Taman Nasional Bromo Tengger Semeru untuk masa depan.",
       aboutValueCommTitle: "Community Empowerment",
       aboutValueCommDesc: "Memberdayakan masyarakat lokal sebagai bagian dari fondasi solusi.",
       aboutValueServiceTitle: "Service Excellence",
@@ -523,7 +523,7 @@ const resources = {
       // KONTEN RUJUKAN ACUAN SELEBARAN: PUSAT DATA KESELAMATAN HUB (BAHASA INDONESIA)[cite: 5, 6]
       // ===================================================================================
       safetyBadge: "Panduan Resmi Kawasan",
-      safetyHeroTitle: "Menuju Kawasan Bromo yang Tertib, Aman dan Berkelanjutan",
+      safetyHeroTitle: "Menuju Kawasan Taman Nasional Bromo Tengger Semeru yang Tertib, Aman dan Berkelanjutan",
       safetyHeroDesc: "Demi keselamatan dan kenyamanan bersama, seluruh wisatawan diimbau untuk selalu mengutamakan keselamatan selama perjalanan maupun saat berada di kawasan wisata.",
       safetyEmergencyBtn: "Hubungi Darurat 112",
       safetyGuideBtn: "Baca Artikel Keselamatan",
@@ -608,7 +608,7 @@ const resources = {
       navLogoAlt: "Logo Bromo Safety Initiative",
       footerTitleBack: "Kembali ke atas",
       footerLogoAlt: "Logo Bromo Safety Initiative",
-      footerAddress: "Menara MTH. Lt. 15. Jl. Letjen M.T. Haryono Kav. 23, Jakarta. 12820",
+      footerAddress: "Menara MTH. Lt. 15 - Suite 1508. Letjen MT Haryono Kav 23, Jakarta. 12820",
       footerEmergencySuffix: "(112)",
       footerCopyright: "Bromo Safety Initiative",
       footerPrivacy: "Kebijakan Privasi",
