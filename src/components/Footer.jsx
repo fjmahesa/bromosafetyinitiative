@@ -20,10 +20,10 @@ function Footer() {
     <footer className="bg-white border-t border-slate-200 text-slate-600 pt-16 pb-8 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-7xl mx-auto">
         
-        {/* MULTI-COLUMN GRID[cite: 4] */}
+        {/* MULTI-COLUMN GRID */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-12">
           
-          {/* KOLOM 1: AREA LOGO & DESKRIPSI[cite: 4] */}
+          {/* KOLOM 1: AREA LOGO & DESKRIPSI */}
           <div className="md:col-span-5 flex flex-col gap-4">
             <Link 
               to="/" 
@@ -53,7 +53,7 @@ function Footer() {
             </p>
           </div>
 
-          {/* KOLOM 2: DAFTAR MENU (JUDUL NAVIGASI RINGKAS TELAH DIHAPUS)[cite: 4] */}
+          {/* KOLOM 2: DAFTAR MENU (JUDUL NAVIGASI RINGKAS TELAH DIHAPUS) */}
           <div className="md:col-span-3 pt-2">
             <ul className="space-y-3 text-xs sm:text-sm font-black uppercase tracking-wider">
               {footerMenuItems.map((item) => {
@@ -88,7 +88,7 @@ function Footer() {
             </ul>
           </div>
 
-          {/* KOLOM 3: KONTAK & ALAMAT[cite: 4] */}
+          {/* KOLOM 3: KONTAK & ALAMAT */}
           <div className="md:col-span-4 flex flex-col gap-4">
             <h3 className="text-sm font-bold text-slate-900 tracking-wider uppercase mb-1">
               {t('footerContactTitle')}
@@ -104,12 +104,25 @@ function Footer() {
                   bromosafetyinitiative@gmail.com
                 </a>
               </li>
+              {/* PERBAIKAN: Menambahkan dua kontak nomor telepon baru di bawah email */}
+              <li className="flex items-center gap-2.5">
+                <FaPhoneAlt className="text-slate-400 flex-shrink-0 text-[11px] sm:text-xs" />
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                  <a href="tel:02150606093" className="hover:text-brand-orange transition-colors">
+                    021-50606093
+                  </a>
+                  <span className="hidden sm:inline text-slate-300">|</span>
+                  <a href="tel:02183789544" className="hover:text-brand-orange transition-colors">
+                    021-83789544
+                  </a>
+                </div>
+              </li>
             </ul>
           </div>
 
         </div>
 
-        {/* BOTTOM SECTION: COPYRIGHT[cite: 4] */}
+        {/* BOTTOM SECTION: COPYRIGHT */}
         <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] sm:text-xs font-semibold text-slate-400">
           <div>
             &copy; {currentYear} {t('footerCopyright')}. {t('footerRights')}

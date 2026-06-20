@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGlobe, FaUserPlus } from 'react-icons/fa';
 
 function Navbar() {
   const { t, i18n } = useTranslation();
@@ -22,6 +22,9 @@ function Navbar() {
     { key: 'navRestArea', path: '/rest-area' },
     { key: 'navContact', path: '/contact-us' },
   ];
+
+  // 🛠️ VARIABEL LINK GOOGLE FORM (Silakan ganti dengan link asli milikmu)
+  const googleFormUrl = "https://forms.gle/89pGdiQ7SJwwxjYk7";
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-xs transition-all duration-300">
@@ -60,7 +63,6 @@ function Navbar() {
                 isActive ? 'text-brand-orange' : 'text-slate-600 hover:text-brand-orange'
               }`;
 
-              // RENDER OPTION: Jika eksternal (PDF), gunakan tag <a> biasa dengan target _blank
               if (item.isExternal) {
                 return (
                   <a 
@@ -75,7 +77,6 @@ function Navbar() {
                 );
               }
 
-              // Jika internal, gunakan Link Router
               return (
                 <Link key={item.key} to={item.path} className={className}>
                   {t(item.key)}
@@ -84,8 +85,9 @@ function Navbar() {
             })}
           </div>
 
-          {/* RIGHT CONTROLS */}
+          {/* RIGHT CONTROLS (DESKTOP) */}
           <div className="hidden md:flex items-center gap-4">
+            {/* Pemilih Bahasa */}
             <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs font-bold">
               <button 
                 onClick={() => changeLanguage('id')} 
@@ -100,9 +102,20 @@ function Navbar() {
                 EN
               </button>
             </div>
+
+            {/* PERBAIKAN: Mengubah target tautan langsung ke Google Form eksternal */}
+            <a
+              href={googleFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange)]/90 text-white text-xs lg:text-sm font-black uppercase tracking-wider rounded-xl shadow-xs transition-all active:scale-95 cursor-pointer select-none"
+            >
+              <FaUserPlus />
+              {currentLang === 'id' ? 'Daftar Relawan' : 'Register Volunteer'}
+            </a>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE CONTROLS HEADER */}
           <div className="flex items-center gap-3 md:hidden">
             <button 
               onClick={() => changeLanguage(currentLang === 'id' ? 'en' : 'id')}
@@ -123,8 +136,8 @@ function Navbar() {
       </div>
 
       {/* MOBILE & TABLET DROPDOWN MENU */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[340px] opacity-100 border-b border-slate-200' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="px-4 pt-2 pb-6 space-y-2 bg-white">
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[420px] opacity-100 border-b border-slate-200' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className="px-4 pt-2 pb-6 space-y-3 bg-white">
           {menuItems.map((item) => {
             const isActive = location.pathname === item.path;
             const className = `block px-3 py-2.5 rounded-md text-base font-bold uppercase tracking-wide text-xs ${
@@ -157,6 +170,20 @@ function Navbar() {
               </Link>
             );
           })}
+
+          {/* PERBAIKAN: Mengubah tautan tombol mobile langsung ke Google Form eksternal */}
+          <div className="pt-2 px-3">
+            <a
+              href={googleFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--color-brand-orange)] text-white text-sm font-black uppercase tracking-wider rounded-xl shadow-md transition-all active:scale-95 text-center"
+            >
+              <FaUserPlus />
+              {currentLang === 'id' ? 'Daftar Relawan' : 'Register Volunteer'}
+            </a>
+          </div>
         </div>
       </div>
     </nav>
