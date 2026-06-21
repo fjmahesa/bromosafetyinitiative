@@ -9,20 +9,18 @@ function GalleryCarousel() {
   const [domRef, isVisible] = useFadeIn(150);
 
   const [images, setImages] = useState([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0); // Bergeser per indeks foto tunggal
   const [loading, setLoading] = useState(true);
-  
   const [itemsPerSlide, setItemsPerSlide] = useState(3);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [slideDirection, setSlideDirection] = useState('');
-  const [isAnimating, setIsAnimating] = useState(false);
 
+  // Deteksi ukuran layar untuk menentukan pembagi layout
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setItemsPerSlide(1);
+        setItemsPerSlide(1); // Mobile: Geser 1 per 1 foto
       } else {
-        setItemsPerSlide(3);
+        setItemsPerSlide(3); // Desktop: Tampilkan 3 foto sekaligus
       }
     };
 
@@ -62,50 +60,31 @@ function GalleryCarousel() {
     fetchGallery();
   }, []);
 
-  const totalSlides = Math.ceil(images.length / itemsPerSlide);
-
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, [itemsPerSlide]);
-
-  const triggerSlideAnimation = (targetSlide, direction) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setSlideDirection(direction);
-    
-    setTimeout(() => {
-      setCurrentSlide(targetSlide);
-      setSlideDirection(direction === 'slide-left' ? 'enter-right' : 'enter-left');
-      
-      setTimeout(() => {
-        setIsAnimating(false);
-        setSlideDirection('');
-      }, 500);
-    }, 200);
-  };
+  // Total langkah geser maksimum agar tidak kebablasan menyisakan ruang kosong di kanan desktop
+  const maxIndex = Math.max(0, images.length - itemsPerSlide);
 
   const prevSlide = () => {
-    if (totalSlides <= 1 || isAnimating) return;
-    const target = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
-    triggerSlideAnimation(target, 'slide-right');
+    if (images.length <= itemsPerSlide) return;
+    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
   };
 
   const nextSlide = () => {
-    if (totalSlides <= 1 || isAnimating) return;
-    const target = currentSlide === totalSlides - 1 ? 0 : currentSlide + 1;
-    triggerSlideAnimation(target, 'slide-left');
+    if (images.length <= itemsPerSlide) return;
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
   useEffect(() => {
-    if (totalSlides <= 1 || selectedImage) return;
-    const interval = setInterval(nextSlide, 7000);
+    if (images.length <= itemsPerSlide || selectedImage) return;
+    const interval = setInterval(nextSlide, 6000);
     return () => clearInterval(interval);
-  }, [currentSlide, totalSlides, selectedImage, isAnimating]);
+  }, [currentIndex, images, itemsPerSlide, selectedImage]);
 
-  const activeImages = images.slice(
-    currentSlide * itemsPerSlide,
-    (currentSlide * itemsPerSlide) + itemsPerSlide
-  );
+  // Jaga agar indeks tidak out-of-bounds jika user memutar layar dari desktop ke mobile
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [itemsPerSlide, maxIndex, currentIndex]);
 
   if (loading) {
     return (
@@ -121,19 +100,6 @@ function GalleryCarousel() {
 
   return (
     <section className="bg-white py-12 px-4 sm:px-6 lg:px-8 relative block clear-both overflow-hidden">
-      
-      <style>{`
-        .slide-item {
-          transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
-          opacity: 1;
-          transform: translateX(0);
-        }
-        .slide-left .slide-item { transform: translateX(-40px); opacity: 0; }
-        .slide-right .slide-item { transform: translateX(40px); opacity: 0; }
-        .enter-right .slide-item { transform: translateX(40px); opacity: 0; }
-        .enter-left .slide-item { transform: translateX(-40px); opacity: 0; }
-      `}</style>
-
       <div className="max-w-7xl mx-auto relative group">
         
         {/* HEADER */}
@@ -146,52 +112,60 @@ function GalleryCarousel() {
           </h2>
         </div>
 
-        {/* CONTAINER SLIDER */}
-        <div className="w-full relative px-2 sm:px-12">
+        {/* CONTAINER SLIDER UTAMA */}
+        <div className="w-full relative px-2 sm:px-12 overflow-hidden">
           
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 ${slideDirection}`}>
-            {activeImages.map((image, index) => (
+          {/* TRACK CAROUSEL BERBASIS TRANSLATE CSS (ANTI GLITCH/KEDIP PUTIH) */}
+          <div 
+            className="flex transition-transform duration-500 ease-out"
+            style={{ 
+              transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)` 
+            }}
+          >
+            {images.map((image) => (
               <div 
-                key={image.id} 
+                key={image.id}
                 onClick={() => setSelectedImage(image)}
-                className="slide-item relative w-full h-auto bg-transparent rounded-2xl overflow-hidden cursor-pointer group/card hover:scale-[1.01]"
-                style={{ 
-                  transitionDelay: `${isAnimating || slideDirection.startsWith('enter') ? index * 80 : 0}ms`
-                }}
+                /* 
+                  Lebar item dihitung dinamis: 
+                  - Mobile: w-full (100%) 
+                  - Desktop: w-1/3 (33.333%)
+                */
+                className="w-full md:w-1/3 flex-shrink-0 px-3"
               >
-                <img 
-                  src={image.url} 
-                  alt={image.alt} 
-                  className="w-full h-auto object-contain block opacity-100 visible select-none transition-transform duration-500 group-hover/card:scale-102"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
-                  loading="lazy"
-                />
-                
-                {/* Hover Overlay View Image */}
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
-                  <span className="bg-slate-900/90 text-white p-3 rounded-full text-xs shadow-xl backdrop-blur-md flex items-center gap-1.5 font-bold tracking-wide scale-90 group-hover/card:scale-100 transition-transform duration-300">
-                    <FaSearchPlus /> {currentLang === 'id' ? 'Lihat Foto' : 'View Image'}
-                  </span>
+                <div className="relative w-full h-auto bg-transparent rounded-2xl overflow-hidden cursor-pointer group/card hover:scale-[1.01] transition-transform duration-300">
+                  <img 
+                    src={image.url} 
+                    alt={image.alt} 
+                    className="w-full h-auto object-contain block opacity-100 visible select-none transition-transform duration-500 group-hover/card:scale-102"
+                    style={{ display: 'block', width: '100%', height: 'auto' }}
+                    loading="lazy"
+                  />
+                  
+                  {/* Hover Overlay View Image */}
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
+                    <span className="bg-slate-900/90 text-white p-3 rounded-full text-xs shadow-xl backdrop-blur-md flex items-center gap-1.5 font-bold tracking-wide scale-90 group-hover/card:scale-100 transition-transform duration-300">
+                      <FaSearchPlus /> {currentLang === 'id' ? 'Lihat Foto' : 'View Image'}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* BUTTON NAVIGASI */}
-          {totalSlides > 1 && (
+          {images.length > itemsPerSlide && (
             <>
               <button 
                 onClick={prevSlide}
-                disabled={isAnimating}
-                className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-900 disabled:opacity-50 text-white flex items-center justify-center shadow-lg z-20 cursor-pointer active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-lg z-20 cursor-pointer active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
               >
                 <FaChevronLeft className="text-xs" />
               </button>
 
               <button 
                 onClick={nextSlide}
-                disabled={isAnimating}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-900 disabled:opacity-50 text-white flex items-center justify-center shadow-lg z-20 cursor-pointer active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-lg z-20 cursor-pointer active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
               >
                 <FaChevronRight className="text-xs" />
               </button>
@@ -200,22 +174,18 @@ function GalleryCarousel() {
 
         </div>
 
-        {/* DOTS INDICATOR */}
-        {totalSlides > 1 && (
+        {/* DOTS INDICATOR - Dibuat per foto agar navigasi tetap presisi di semua device */}
+        {images.length > itemsPerSlide && (
           <div className="flex items-center justify-center gap-2 mt-8 z-20">
-            {Array.from({ length: totalSlides }).map((_, index) => (
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
                 key={index}
-                onClick={() => !isAnimating && triggerSlideAnimation(index, index > currentSlide ? 'slide-left' : 'slide-right')}
-                /* PERBAIKAN WARNA KELAS:
-                  - Menggunakan style inline background dari var(--color-brand-orange) 
-                    saat index sama dengan currentSlide, agar selaras dengan index.css
-                */
+                onClick={() => setCurrentIndex(index)}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  index === currentSlide ? 'w-6' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  index === currentIndex ? 'w-6' : 'w-2 bg-slate-300 hover:bg-slate-400'
                 }`}
                 style={{
-                  backgroundColor: index === currentSlide ? 'var(--color-brand-orange)' : undefined
+                  backgroundColor: index === currentIndex ? 'var(--color-brand-orange)' : undefined
                 }}
               />
             ))}
