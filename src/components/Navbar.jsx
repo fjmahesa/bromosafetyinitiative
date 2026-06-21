@@ -16,7 +16,7 @@ function Navbar() {
 
   // Array menu yang disesuaikan dengan tautan PDF eksternal pesanan klien
   const menuItems = [
-    { key: 'navHome', path: '/' },
+    // { key: 'navHome', path: '/' },
     { key: 'navAbout', path: '/about-us' },
     { key: 'navSafety', path: '/safety-guide' },
     { key: 'navRestArea', path: '/rest-area' },

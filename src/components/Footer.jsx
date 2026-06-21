@@ -9,7 +9,7 @@ function Footer() {
 
   // Array menu baru diselaraskan 100% dengan susunan rute Navbar terbaru
   const footerMenuItems = [
-    { key: 'navHome', path: '/' },
+    // { key: 'navHome', path: '/' },
     { key: 'navAbout', path: '/about-us' },
     { key: 'navSafety', path: '/safety-guide' },
     { key: 'navRestArea', path: '/rest-area' },
