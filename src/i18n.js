@@ -449,7 +449,7 @@ const resources = {
 
       footerDesc: "Strategi Online to Offline untuk Pariwisata Kawasan Taman Nasional Bromo Tengger Semeru yang Aman, Tertib dan Berkelanjutan.",
       footerNavTitle: "Navigasi Ringkas",
-      footerContactTitle: "Hubungi Kami",
+      footerContactTitle: "Kantor",
       footerEmergencyCall: "Hubungi Posko Fisik",
       footerRights: "Hak Cipta Dilindungi Undang-Undang.",
 
@@ -462,11 +462,11 @@ const resources = {
       aboutTitleMain: "Tentang",
       aboutTitleHighlight: "Kami",
       aboutDescMain: "Inisiatif multipihak untuk mewujudkan ekosistem pariwisata Kawasan Bromo Tengger Semeru yang aman, nyaman, dan bertanggung jawab.",
-      aboutParagraph1: "Bromo Safety Initiative (BSI) adalah gerakan kolaboratif yang lahir dari kepedulian terhadap keselamatan wisatawan, masyarakat, dan seluruh pelaku wisata di kawasan Kawasan Bromo Tengger Semeru.",
+      aboutParagraph1: "Bromo Safety Initiative (BSI) adalah gerakan kolaboratif yang lahir dari kepedulian terhadap keselamatan wisatawan, masyarakat, dan seluruh pelaku wisata di Kawasan Bromo Tengger Semeru.",
       aboutParagraph2: "Berangkat dari tingginya aktivitas wisata di Kawasan Bromo Tengger Semeru yang memiliki karakteristik jalur pegunungan dengan tanjakan dan turunan ekstrem, BSI berupaya membangun budaya keselamatan melalui edukasi, kampanye publik, penyediaan fasilitas pendukung keselamatan, serta penguatan kolaborasi antara pemerintah, masyarakat, pelaku usaha wisata, komunitas, dan berbagai pemangku kepentingan lainnya.",
       aboutRestAreaTitle: "Rest Area Bromo Safety Initiative",
-      aboutRestAreaDesc: "Salah satu wujud nyata gerakan ini adalah pembangunan Rest Area Bromo Safety Initiative sebagai titik istirahat dan edukasi keselamatan bagi wisatawan pengguna motor matic sebelum dan sesudah memasuki kawasan wisata Bromo.",
-      aboutParagraph3: "BSI meyakini bahwa keselamatan bukan hanya tanggung jawab satu pihak, melainkan tanggung jawab bersama untuk menjaga Bromo sebagai destinasi kelas dunia yang aman, ramah, dan berkelanjutan bagi generasi sekarang maupun yang akan datang.",
+      aboutRestAreaDesc: "Salah satu wujud nyata gerakan ini adalah pembangunan Rest Area Bromo Safety Initiative sebagai titik istirahat dan edukasi keselamatan bagi wisatawan pengguna motor matic sebelum dan sesudah memasuki Kawasan Bromo Tengger Semeru.",
+      aboutParagraph3: "BSI meyakini bahwa keselamatan bukan hanya tanggung jawab satu pihak, melainkan tanggung jawab bersama untuk menjaga Kawasan Bromo Tengger Semeru sebagai destinasi kelas dunia yang aman, ramah, dan berkelanjutan bagi generasi sekarang maupun yang akan datang.",
       aboutVisionBadge: "Core Vision",
       aboutVisionTitle: "Visi",
       aboutVisionDesc: "\"Menjadi gerakan kolaboratif terdepan dalam mewujudkan Kawasan Bromo Tengger Semeru yang aman, nyaman, berkelanjutan, dan berdaya saing melalui budaya keselamatan dan pemberdayaan masyarakat.\"",
@@ -540,7 +540,7 @@ const resources = {
       safetyGuideTitle2: "Kewajiban Gelang Asuransi",
       safetyGuideDesc2: "WAJIB bagi seluruh pengunjung memakai Gelang Asuransi Berbarcode sejak masuk hingga keluar kawasan sebagai sistem perlindungan.",
       safetyGuideTitle3: "Kondisi Alam & Cuaca",
-      safetyGuideDesc3: "Cuaca di kawasan Kawasan Bromo Tengger Semeru dapat berubah sewaktu-waktu. Selalu pantau kondisi terkini dan patuhi arahan petugas.",
+      safetyGuideDesc3: "Cuaca di Kawasan Bromo Tengger Semeru dapat berubah sewaktu-waktu. Selalu pantau kondisi terkini dan patuhi arahan petugas.",
       safetyGuideTitle4: "Pemanfaatan Rest Area",
       safetyGuideDesc4: "Jangan memaksakan diri saat lelah atau mengantuk. Gunakan rest area yang tersedia untuk beristirahat sejenak dan mendinginkan kendaraan.",
 
