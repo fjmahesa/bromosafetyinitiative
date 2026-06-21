@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom'; // <-- Menggunakan Link untuk navigasi internal SPA
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 
 function Footer() {
   const { t } = useTranslation();
@@ -104,7 +104,6 @@ function Footer() {
                   bromosafetyinitiative@gmail.com
                 </a>
               </li>
-              {/* PERBAIKAN: Menambahkan dua kontak nomor telepon baru di bawah email */}
               <li className="flex items-center gap-2.5">
                 <FaPhoneAlt className="text-slate-400 flex-shrink-0 text-[11px] sm:text-xs" />
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
@@ -116,6 +115,18 @@ function Footer() {
                     021-83789544
                   </a>
                 </div>
+              </li>
+              {/* PERBAIKAN: Menambahkan kontak nomor WhatsApp aktif di bawah nomor telepon */}
+              <li className="flex items-center gap-2.5">
+                <FaWhatsapp className="text-slate-400 flex-shrink-0 text-sm sm:text-base" />
+                <a 
+                  href="https://wa.me/6281180001091" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-brand-orange transition-colors"
+                >
+                  +62 811-8000-1091
+                </a>
               </li>
             </ul>
           </div>

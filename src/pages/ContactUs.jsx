@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaCopy, FaCheck } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaCopy, FaCheck, FaWhatsapp } from 'react-icons/fa';
 
 function ContactUs() {
   const { t, i18n } = useTranslation();
@@ -22,6 +22,8 @@ function ContactUs() {
   const contactData = {
     address: "Menara MTH. Lt. 15 - Suite 1508. Letjen MT Haryono Kav 23, Jakarta. 12820",
     email: "bromosafetyinitiative@gmail.com",
+    whatsapp: "+62 811-8000-1091",
+    whatsappLink: "https://wa.me/6281180001091",
     phones: [
       { id: 'phone1', number: "021-50606093" },
       { id: 'phone2', number: "021-83789544" }
@@ -52,7 +54,7 @@ function ContactUs() {
       </div>
 
       {/* HUB KONTAK UTAMA */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-12 relative z-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-12 relative z-20">
         <div className="bg-white border-2 border-slate-200/60 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/40 grid grid-cols-1 gap-8">
           
           {/* BARIS KARTU 1: ALAMAT KANTOR */}
@@ -77,8 +79,8 @@ function ContactUs() {
             </button>
           </div>
 
-          {/* DUA KOLOM: EMAIL & TELEPON */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* PERBAIKAN GRID: Diubah dari md:grid-cols-2 menjadi md:grid-cols-3 untuk menampung komponen ketiga */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             {/* EMAIL */}
             <div className="flex gap-4 items-start p-5 rounded-2xl bg-slate-50/60 border border-slate-100 hover:border-slate-200 transition-all justify-between group">
@@ -95,13 +97,35 @@ function ContactUs() {
               </div>
               <button 
                 onClick={() => handleCopy(contactData.email, 'email')}
-                className="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-400 hover:text-slate-700 transition-all cursor-pointer"
+                className="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-400 hover:text-slate-700 transition-all cursor-pointer self-start"
               >
                 {copiedType === 'email' ? <FaCheck className="text-green-600" /> : <FaCopy className="text-xs" />}
               </button>
             </div>
 
-            {/* TELEPON (Mendukung Multi-line Nomor Baru) */}
+            {/* WHATSAPP */}
+            <div className="flex gap-4 items-start p-5 rounded-2xl bg-slate-50/60 border border-slate-100 hover:border-slate-200 transition-all justify-between group">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
+                  <FaWhatsapp className="text-base text-emerald-500" />
+                </div>
+                <div className="space-y-0.5">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">WhatsApp Chat</span>
+                  <a href={contactData.whatsappLink} target="_blank" rel="noopener noreferrer" className="block text-xs sm:text-sm font-bold text-slate-900 hover:text-[var(--color-brand-orange)] transition-colors break-all">
+                    {contactData.whatsapp}
+                  </a>
+                </div>
+              </div>
+              <button 
+                onClick={() => handleCopy(contactData.whatsapp, 'whatsapp')}
+                className="p-2 rounded-lg border border-slate-200 hover:bg-white text-slate-400 hover:text-slate-700 transition-all cursor-pointer self-start"
+                title="Salin Nomor WhatsApp"
+              >
+                {copiedType === 'whatsapp' ? <FaCheck className="text-green-600" /> : <FaCopy className="text-xs" />}
+              </button>
+            </div>
+
+            {/* TELEPON */}
             <div className="flex gap-4 items-start p-5 rounded-2xl bg-slate-50/60 border border-slate-100 hover:border-slate-200 transition-all justify-between group">
               <div className="flex gap-4 items-start w-full">
                 <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
@@ -110,7 +134,7 @@ function ContactUs() {
                 <div className="space-y-3 flex-1">
                   <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 block -mb-1">Hotline Telepon</span>
                   
-                  {/* Mapping Iterasi Dua Nomor Baru */}
+                  {/* Mapping Iterasi Dua Nomor */}
                   {contactData.phones.map((phone) => (
                     <div key={phone.id} className="flex items-center justify-between gap-2 border-b border-slate-200/40 pb-2 last:border-none last:pb-0">
                       <a 

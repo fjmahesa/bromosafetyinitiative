@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaChevronLeft, FaChevronRight, FaImages, FaTimes, FaSearchPlus } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaImages, FaTimes, FaSearchPlus, FaSearchMinus, FaUndo } from 'react-icons/fa';
 import { useFadeIn } from '../hooks/useFadeIn';
 
 function GalleryCarousel() {
@@ -9,18 +9,18 @@ function GalleryCarousel() {
   const [domRef, isVisible] = useFadeIn(150);
 
   const [images, setImages] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0); // Bergeser per indeks foto tunggal
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [itemsPerSlide, setItemsPerSlide] = useState(3);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [zoomScale, setZoomScale] = useState(1);
 
-  // Deteksi ukuran layar untuk menentukan pembagi layout
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setItemsPerSlide(1); // Mobile: Geser 1 per 1 foto
+        setItemsPerSlide(1);
       } else {
-        setItemsPerSlide(3); // Desktop: Tampilkan 3 foto sekaligus
+        setItemsPerSlide(3);
       }
     };
 
@@ -60,7 +60,6 @@ function GalleryCarousel() {
     fetchGallery();
   }, []);
 
-  // Total langkah geser maksimum agar tidak kebablasan menyisakan ruang kosong di kanan desktop
   const maxIndex = Math.max(0, images.length - itemsPerSlide);
 
   const prevSlide = () => {
@@ -79,12 +78,20 @@ function GalleryCarousel() {
     return () => clearInterval(interval);
   }, [currentIndex, images, itemsPerSlide, selectedImage]);
 
-  // Jaga agar indeks tidak out-of-bounds jika user memutar layar dari desktop ke mobile
   useEffect(() => {
     if (currentIndex > maxIndex) {
       setCurrentIndex(maxIndex);
     }
   }, [itemsPerSlide, maxIndex, currentIndex]);
+
+  const handleZoomIn = () => setZoomScale((prev) => Math.min(prev + 0.25, 3));
+  const handleZoomOut = () => setZoomScale((prev) => Math.max(prev - 0.25, 0.5));
+  const handleZoomReset = () => setZoomScale(1);
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    setZoomScale(1);
+  };
 
   if (loading) {
     return (
@@ -115,7 +122,6 @@ function GalleryCarousel() {
         {/* CONTAINER SLIDER UTAMA */}
         <div className="w-full relative px-2 sm:px-12 overflow-hidden">
           
-          {/* TRACK CAROUSEL BERBASIS TRANSLATE CSS (ANTI GLITCH/KEDIP PUTIH) */}
           <div 
             className="flex transition-transform duration-500 ease-out"
             style={{ 
@@ -126,18 +132,13 @@ function GalleryCarousel() {
               <div 
                 key={image.id}
                 onClick={() => setSelectedImage(image)}
-                /* 
-                  Lebar item dihitung dinamis: 
-                  - Mobile: w-full (100%) 
-                  - Desktop: w-1/3 (33.333%)
-                */
                 className="w-full md:w-1/3 flex-shrink-0 px-3"
               >
                 <div className="relative w-full h-auto bg-transparent rounded-2xl overflow-hidden cursor-pointer group/card hover:scale-[1.01] transition-transform duration-300">
                   <img 
                     src={image.url} 
                     alt={image.alt} 
-                    className="w-full h-auto object-contain block opacity-100 visible select-none transition-transform duration-500 group-hover/card:scale-102"
+                    className="w-full h-full object-contain block opacity-100 visible select-none transition-transform duration-500 group-hover/card:scale-102"
                     style={{ display: 'block', width: '100%', height: 'auto' }}
                     loading="lazy"
                   />
@@ -174,18 +175,17 @@ function GalleryCarousel() {
 
         </div>
 
-        {/* DOTS INDICATOR - Dibuat per foto agar navigasi tetap presisi di semua device */}
+        {/* DOTS INDICATOR */}
         {images.length > itemsPerSlide && (
           <div className="flex items-center justify-center gap-2 mt-8 z-20">
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  index === currentIndex ? 'w-6' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                className="h-2 rounded-full transition-all duration-300 cursor-pointer"
                 style={{
-                  backgroundColor: index === currentIndex ? 'var(--color-brand-orange)' : undefined
+                  width: index === currentIndex ? '24px' : '8px',
+                  backgroundColor: index === currentIndex ? 'var(--color-brand-orange)' : '#cbd5e1'
                 }}
               />
             ))}
@@ -197,29 +197,81 @@ function GalleryCarousel() {
       {/* PORTAL MODAL VIEWIMAGE (LIGHTBOX OVERLAY) */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-fade-in"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-fade-in"
+          onClick={closeLightbox}
         >
-          <button 
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-xl flex items-center justify-center backdrop-blur-md transition-colors border border-white/10 cursor-pointer text-lg z-50 active:scale-95"
-          >
-            <FaTimes />
-          </button>
-
+          {/* CONTAINER KONTROL POJOK KANAN ATAS */}
           <div 
-            className="relative max-w-6xl w-full h-[75vh] md:h-[80vh] flex items-center justify-center select-none"
+            className="absolute top-4 right-4 md:top-6 md:right-6 flex items-center gap-3 z-50 select-none"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* PANEL CONTROL ZOOM */}
+            <div className="hidden md:flex items-center gap-1.5 bg-slate-900/80 border border-white/10 p-1.5 rounded-xl backdrop-blur-lg shadow-2xl">
+              <button 
+                onClick={handleZoomIn}
+                className="w-9 h-9 bg-white/10 hover:bg-white/20 text-white rounded-lg flex items-center justify-center transition-colors cursor-pointer text-xs"
+                title="Zoom In"
+              >
+                <FaSearchPlus />
+              </button>
+              <button 
+                onClick={handleZoomOut}
+                className="w-9 h-9 bg-white/10 hover:bg-white/20 text-white rounded-lg flex items-center justify-center transition-colors cursor-pointer text-xs"
+                title="Zoom Out"
+              >
+                <FaSearchMinus />
+              </button>
+              <button 
+                onClick={handleZoomReset}
+                className="w-9 h-9 bg-white/10 hover:bg-white/20 text-white rounded-lg flex items-center justify-center transition-colors cursor-pointer text-xs"
+                title="Reset Zoom"
+              >
+                <FaUndo />
+              </button>
+              <span className="text-white/60 text-xs font-bold px-2.5 whitespace-nowrap min-w-[50px] text-center">
+                {Math.round(zoomScale * 100)}%
+              </span>
+            </div>
+
+            {/* Tombol Close Utama */}
+            <button 
+              onClick={closeLightbox}
+              className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-xl flex items-center justify-center backdrop-blur-md transition-colors border border-white/10 cursor-pointer text-lg active:scale-95 shadow-2xl"
+              title="Close Preview"
+            >
+              <FaTimes />
+            </button>
+          </div>
+
+          {/* PERBAIKAN UTAMA:
+            - Menggunakan overflow-scroll/auto yang tegas.
+            - Jika sedang di-zoom (zoomScale > 1), block alignment diubah agar scrollbar berfungsi normal dari pojok kiri atas.
+          */}
+          <div 
+            className={`w-full h-[75vh] md:h-[80vh] overflow-auto p-4 flex justify-center ${
+              zoomScale > 1 ? 'items-start content-start' : 'items-center'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* - Lebar dikontrol dinamis lewat inline style width berbasis persentase.
+              - max-w-none memaksa browser mengabaikan batas layar saat gambar membesar.
+            */}
             <img 
               src={selectedImage.url} 
               alt={selectedImage.alt} 
-              className="max-w-full max-h-full object-contain rounded-xl shadow-2xl border-2 border-white/5 animate-zoom-in"
+              className="rounded-xl shadow-2xl border-2 border-white/5 transition-all duration-250 ease-out block"
+              style={{ 
+                width: `${zoomScale * 100}%`,
+                maxHeight: zoomScale > 1 ? 'none' : '100%',
+                maxWidth: zoomScale > 1 ? 'none' : '100%',
+                objectFit: 'contain'
+              }}
             />
           </div>
 
+          {/* Caption Teks Judul Dokumentasi di Bawah Gambar */}
           {selectedImage.alt && (
-            <p className="text-white/80 text-xs sm:text-sm font-semibold tracking-wide mt-4 bg-slate-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/5 max-w-xl text-center">
+            <p className="text-white/80 text-xs sm:text-sm font-semibold tracking-wide mt-4 bg-slate-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/5 max-w-xl text-center z-10">
               {selectedImage.alt}
             </p>
           )}
