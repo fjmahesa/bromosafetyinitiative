@@ -11,8 +11,8 @@ function SocialFeedsSwitch() {
   // State untuk mengatur tab aktif ('instagram' atau 'tiktok')
   const [activeTab, setActiveTab] = useState('instagram');
 
-  useEffect(() => {
-    // Memuat script platform Elfsight secara dinamis agar aman untuk kedua widget
+ useEffect(() => {
+    // 1. Memuat script platform Elfsight secara dinamis
     const scriptId = 'elfsight-platform-script';
     let script = document.getElementById(scriptId);
 
@@ -23,7 +23,60 @@ function SocialFeedsSwitch() {
       script.async = true;
       document.body.appendChild(script);
     }
-  }, []);
+
+    // 2. 🛠️ TRIK AGRESIF: Interval Berulang + Penargetan Struktur Shadow DOM Baru
+    const obliterateWatermark = () => {
+      const apps = document.querySelectorAll('[class*="elfsight-app"]');
+      
+      apps.forEach(app => {
+        if (app.shadowRoot) {
+          // Susup ke dalam Shadow DOM dan cari semua tag anchor (tautan)
+          const shadowElements = app.shadowRoot.querySelectorAll('a, [class*="Badge"], [class*="Container"] a, [class*="Control"]');
+          
+          shadowElements.forEach(el => {
+            const href = el.getAttribute('href') || '';
+            const className = el.className || '';
+            
+            // Jika elemen mengarah ke elfsight atau memiliki karakteristik logo/badge gratisan
+            if (
+              href.includes('elfsight.com') || 
+              className.includes('Badge') || 
+              className.includes('Logo') ||
+              el.textContent.toLowerCase().includes('free') ||
+              el.textContent.toLowerCase().includes('powered')
+            ) {
+              // Potong total tampilannya secara fisik dan visual
+              el.style.setProperty('display', 'none', 'important');
+              el.style.setProperty('opacity', '0', 'important');
+              el.style.setProperty('visibility', 'hidden', 'important');
+              el.style.setProperty('height', '0', 'important');
+              el.style.setProperty('width', '0', 'important');
+              el.style.setProperty('padding', '0', 'important');
+              el.style.setProperty('margin', '0', 'important');
+              el.style.setProperty('position', 'absolute', 'important');
+              el.style.setProperty('top', '-9999px', 'important');
+              el.style.setProperty('pointer-events', 'none', 'important');
+            }
+          });
+        }
+      });
+    };
+
+    // Jalankan pembersihan super ketat setiap 100ms agar Elfsight tidak sempat memunculkan kembali iklannya
+    const activeInterval = setInterval(obliterateWatermark, 100);
+
+    // Tetap gunakan Observer untuk efisiensi saat terjadi mutasi halaman besar
+    const observer = new MutationObserver(obliterateWatermark);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Jalankan eksekusi awal
+    obliterateWatermark();
+
+    return () => {
+      clearInterval(activeInterval); // Matikan interval saat komponen ditutup
+      observer.disconnect(); // Matikan observer
+    };
+  }, [activeTab]); // Selalu refresh pertahanan setiap kali tab bertukar
 
   // WhatsApp setup
   const waMessage = currentLang === 'en'
@@ -56,7 +109,7 @@ function SocialFeedsSwitch() {
             </p>
           </div>
 
-          {/* ⚡ SWITCHER BUTTONS (Gaya O2O Campaign Premium) */}
+          {/* ⚡ SWITCHER BUTTONS */}
           <div className="flex items-center bg-slate-200/60 p-1.5 rounded-2xl w-fit h-fit border border-slate-300/30">
             <button
               onClick={() => setActiveTab('instagram')}
@@ -81,8 +134,7 @@ function SocialFeedsSwitch() {
           </div>
         </div>
 
-        {/* CONTAINER PLUG-IN ELFSIGHT DENGAN KONDISI SWITCH */}
-        <div className="w-full rounded-3xl border-2 border-slate-200/60 p-4 sm:p-6 bg-white shadow-xl shadow-slate-200/40 min-h-[400px]">
+        <div className="w-full rounded-3xl border-2 border-slate-200/60 p-4 sm:p-6 bg-white shadow-xl shadow-slate-200/40 min-h-[400px] relative overflow-hidden">
           
           {/* RENDER INSTAGRAM FEED */}
           {activeTab === 'instagram' && (
@@ -97,20 +149,18 @@ function SocialFeedsSwitch() {
           {/* RENDER TIKTOK FEED */}
           {activeTab === 'tiktok' && (
             <div className="animate-fade-in-quick">
-              {/* 
-                CRITICAL: Ganti ID di bawah ini dengan ID unik baru 
-                yang kamu dapat dari widget TikTok Feed di dashboard Elfsight-mu
-              */}
               <div 
                 className="elfsight-app-f84483fc-c1f8-4720-8b0c-a450084e0867" 
                 data-elfsight-app-lazy 
               />
             </div>
           )}
+
+          <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-white z-[40] pointer-events-none border-t border-transparent" />
           
         </div>
 
-        {/* KARTU CTA BANNER BENTO (DIBAWAH SWITCHER) */}
+        {/* KARTU CTA BANNER BENTO */}
         <div className="mt-20 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
