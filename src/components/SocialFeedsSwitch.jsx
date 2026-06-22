@@ -7,76 +7,49 @@ function SocialFeedsSwitch() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
   const [domRef, isVisible] = useFadeIn(150);
-  
+
   // State untuk mengatur tab aktif ('instagram' atau 'tiktok')
   const [activeTab, setActiveTab] = useState('instagram');
 
- useEffect(() => {
-    // 1. Memuat script platform Elfsight secara dinamis
-    const scriptId = 'elfsight-platform-script';
-    let script = document.getElementById(scriptId);
+  // State baru untuk menampung data foto Instagram dari WordPress API
+  const [igFeeds, setIgFeeds] = useState([]);
+  const [loadingIg, setLoadingIg] = useState(true);
 
-    if (!script) {
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.src = 'https://static.elfsight.com/platform/platform.js';
-      script.async = true;
-      document.body.appendChild(script);
+  // 1. Pastikan fungsi fetch di dalam useEffect mengarah ke endpoint kustom yang baru
+  useEffect(() => {
+    if (activeTab === 'instagram') {
+      setLoadingIg(true);
+
+      fetch('https://admin.bromosafetyinitiative.com/wp-json/bsi/v1/instagram')
+        .then((res) => {
+          if (!res.ok) throw new Error("Gagal mengambil data");
+          return res.json();
+        })
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setIgFeeds(data);
+          }
+          setLoadingIg(false);
+        })
+        .catch((err) => {
+          console.error("Gagal memuat Custom Instagram API:", err);
+          setLoadingIg(false);
+        });
     }
 
-    // 2. 🛠️ TRIK AGRESIF: Interval Berulang + Penargetan Struktur Shadow DOM Baru
-    const obliterateWatermark = () => {
-      const apps = document.querySelectorAll('[class*="elfsight-app"]');
-      
-      apps.forEach(app => {
-        if (app.shadowRoot) {
-          // Susup ke dalam Shadow DOM dan cari semua tag anchor (tautan)
-          const shadowElements = app.shadowRoot.querySelectorAll('a, [class*="Badge"], [class*="Container"] a, [class*="Control"]');
-          
-          shadowElements.forEach(el => {
-            const href = el.getAttribute('href') || '';
-            const className = el.className || '';
-            
-            // Jika elemen mengarah ke elfsight atau memiliki karakteristik logo/badge gratisan
-            if (
-              href.includes('elfsight.com') || 
-              className.includes('Badge') || 
-              className.includes('Logo') ||
-              el.textContent.toLowerCase().includes('free') ||
-              el.textContent.toLowerCase().includes('powered')
-            ) {
-              // Potong total tampilannya secara fisik dan visual
-              el.style.setProperty('display', 'none', 'important');
-              el.style.setProperty('opacity', '0', 'important');
-              el.style.setProperty('visibility', 'hidden', 'important');
-              el.style.setProperty('height', '0', 'important');
-              el.style.setProperty('width', '0', 'important');
-              el.style.setProperty('padding', '0', 'important');
-              el.style.setProperty('margin', '0', 'important');
-              el.style.setProperty('position', 'absolute', 'important');
-              el.style.setProperty('top', '-9999px', 'important');
-              el.style.setProperty('pointer-events', 'none', 'important');
-            }
-          });
-        }
-      });
-    };
+    if (activeTab === 'tiktok') {
+      const scriptId = 'elfsight-platform-script';
+      let script = document.getElementById(scriptId);
 
-    // Jalankan pembersihan super ketat setiap 100ms agar Elfsight tidak sempat memunculkan kembali iklannya
-    const activeInterval = setInterval(obliterateWatermark, 100);
-
-    // Tetap gunakan Observer untuk efisiensi saat terjadi mutasi halaman besar
-    const observer = new MutationObserver(obliterateWatermark);
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Jalankan eksekusi awal
-    obliterateWatermark();
-
-    return () => {
-      clearInterval(activeInterval); // Matikan interval saat komponen ditutup
-      observer.disconnect(); // Matikan observer
-    };
-  }, [activeTab]); // Selalu refresh pertahanan setiap kali tab bertukar
+      if (!script) {
+        script = document.createElement('script');
+        script.id = scriptId;
+        script.src = 'https://static.elfsight.com/platform/platform.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+  }, [activeTab]);
 
   // WhatsApp setup
   const waMessage = currentLang === 'en'
@@ -85,14 +58,14 @@ function SocialFeedsSwitch() {
   const whatsappUrl = `https://wa.me/6281180001091?text=${encodeURIComponent(waMessage)}`;
 
   return (
-    <section 
-      ref={domRef} 
+    <section
+      ref={domRef}
       className={`zoom-in-hidden ${isVisible ? 'zoom-in-visible' : ''} bg-slate-50/50 pt-20 pb-20 md:pt-32 md:pb-28 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 relative overflow-hidden`}
     >
       <div className="absolute inset-0 opacity-25 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* HEADER SECTION */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
@@ -103,7 +76,7 @@ function SocialFeedsSwitch() {
               {currentLang === 'id' ? 'Pantau Kabar Terbaru' : 'Stay Updated'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed mt-2">
-              {currentLang === 'id' 
+              {currentLang === 'id'
                 ? 'Ikuti dokumentasi aksi lapangan, infografis keselamatan, dan laporan lalu lintas riil langsung dari akun resmi kami.'
                 : 'Follow field action documentation, safety infographics, and real-time traffic reports directly from our official accounts.'}
             </p>
@@ -113,51 +86,57 @@ function SocialFeedsSwitch() {
           <div className="flex items-center bg-slate-200/60 p-1.5 rounded-2xl w-fit h-fit border border-slate-300/30">
             <button
               onClick={() => setActiveTab('instagram')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                activeTab === 'instagram'
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeTab === 'instagram'
+                ? 'bg-slate-900 text-white shadow-md'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <FaInstagram className={activeTab === 'instagram' ? 'text-[var(--color-brand-orange)]' : ''} /> Instagram
             </button>
             <button
               onClick={() => setActiveTab('tiktok')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                activeTab === 'tiktok'
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black tracking-wider uppercase transition-all duration-300 cursor-pointer ${activeTab === 'tiktok'
+                ? 'bg-slate-900 text-white shadow-md'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
             >
               <FaTiktok className={activeTab === 'tiktok' ? 'text-cyan-400' : ''} /> TikTok
             </button>
           </div>
         </div>
 
+        {/* CONTAINER UTAMA */}
         <div className="w-full rounded-3xl border-2 border-slate-200/60 p-4 sm:p-6 bg-white shadow-xl shadow-slate-200/40 min-h-[400px] relative overflow-hidden">
-          
-          {/* RENDER INSTAGRAM FEED */}
+
+          {/* RENDER INSTAGRAM FEED (MENGGUNAKAN TAILWIND MURNI DARI SPOTLIGHT) */}
           {activeTab === 'instagram' && (
-            <div className="animate-fade-in-quick">
-              <div 
-                className="elfsight-app-0702755a-c92f-4a04-913e-5d8a7e497183" 
-                data-elfsight-app-lazy 
+            <div className="animate-fade-in-quick w-full h-full">
+              {/* MENGGUNAKAN IFRAME UNTUK MERENDER SHORTCODE SPOTLIGHT DARI WORDPRESS 
+      - h-[500px] bisa kamu sesuaikan dengan tinggi feed instagram kamu
+    */}
+              <iframe
+                src="https://admin.bromosafetyinitiative.com/instagram-feed"
+                title="Instagram BSI Feed"
+                className="w-full h-[685px] border-none rounded-2xl overflow-hidden dynamic-iframe"
+                scrolling="no"
+                loading="lazy"
               />
             </div>
           )}
 
-          {/* RENDER TIKTOK FEED */}
+          {/* 🎵 TAB TIKTOK FEED */}
           {activeTab === 'tiktok' && (
-            <div className="animate-fade-in-quick">
-              <div 
-                className="elfsight-app-f84483fc-c1f8-4720-8b0c-a450084e0867" 
-                data-elfsight-app-lazy 
+            <div className="animate-fade-in-quick w-full h-full">
+              <iframe 
+                src="https://admin.bromosafetyinitiative.com/tiktok-feed/" 
+                title="TikTok BSI Feed"
+                className="w-full h-[650px] border-none rounded-2xl overflow-hidden"
+                scrolling="no"
+                loading="lazy"
               />
             </div>
           )}
 
-          <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-white z-[40] pointer-events-none border-t border-transparent" />
-          
         </div>
 
         {/* KARTU CTA BANNER BENTO */}
@@ -166,7 +145,7 @@ function SocialFeedsSwitch() {
 
           <div className="relative bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 md:p-16 border border-slate-800 shadow-2xl overflow-hidden max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 group">
             <div className="absolute right-0 top-0 w-80 h-80 bg-radial from-white/5 to-transparent rounded-full pointer-events-none -mr-20 -mt-20 transition-transform duration-700 group-hover:scale-110" />
-            
+
             <div className="space-y-3 text-center md:text-left relative z-10 max-w-md">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/20 px-3 py-1 rounded-md">
                 {currentLang === 'en' ? "TAKE ACTION" : "AKSI NYATA"}
@@ -177,13 +156,13 @@ function SocialFeedsSwitch() {
             </div>
 
             <div className="relative z-10 flex-shrink-0">
-              <a 
+              <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4.5 bg-[var(--color-brand-orange)] hover:bg-[var(--color-brand-orange-hover)] text-white text-xs font-black tracking-widest uppercase rounded-xl shadow-xl shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1 active:scale-95 cursor-pointer select-none border border-orange-400/20 group/btn"
               >
-                <FaWhatsapp className="text-base text-white transition-transform group-hover/btn:rotate-12" /> 
+                <FaWhatsapp className="text-base text-white transition-transform group-hover/btn:rotate-12" />
                 <span>{t('igCtaBtn')}</span>
               </a>
             </div>
