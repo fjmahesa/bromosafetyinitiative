@@ -117,7 +117,7 @@ function SocialFeedsSwitch() {
               <iframe
                 src="https://admin.bromosafetyinitiative.com/instagram-feed"
                 title="Instagram BSI Feed"
-                className="w-full h-[685px] border-none rounded-2xl overflow-hidden dynamic-iframe"
+                className="w-full max-sm:h-[500px] sm:h-[575px] border-none rounded-2xl overflow-hidden dynamic-iframe"
                 scrolling="no"
                 loading="lazy"
               />
@@ -130,7 +130,7 @@ function SocialFeedsSwitch() {
               <iframe 
                 src="https://admin.bromosafetyinitiative.com/tiktok-feed/" 
                 title="TikTok BSI Feed"
-                className="w-full h-[650px] border-none rounded-2xl overflow-hidden"
+                className="w-full max-sm:h-[770px] sm:h-[640px] border-none rounded-2xl overflow-hidden"
                 scrolling="no"
                 loading="lazy"
               />
