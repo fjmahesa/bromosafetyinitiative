@@ -8,12 +8,12 @@ import CounterItem from '../../components/CounterItem';
 function ImpactStats() {
   const { t } = useTranslation();
 
-  // STATE: Melacak kartu statistik mana yang sedang aktif disorot/disentuh
+  
   const [activeStatId, setActiveStatId] = useState(null);
 
   const [domRef, isVisible] = useFadeIn(200);
 
-  // Basis data riil yang disesuaikan dengan narasi baru dari klien
+  
   const statsData = [
     {
       id: 1,
@@ -21,7 +21,7 @@ function ImpactStats() {
       number: "536.984",
       label: t('statsLabel1'),
       desc: t('statsDesc1'),
-      // Tema Oranye (Kunjungan Wisatawan)
+      
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
       colorActive: "bg-orange-50/70 border-orange-500 shadow-2xl shadow-orange-500/15 text-orange-950",
       iconIdle: "bg-white border-slate-200",
@@ -34,7 +34,7 @@ function ImpactStats() {
       number: "34,88%",
       label: t('statsLabel2'),
       desc: t('statsDesc2'),
-      // Tema Biru (Lonjakan Pengunjung)
+      
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
       colorActive: "bg-blue-50/70 border-blue-500 shadow-2xl shadow-blue-500/15 text-blue-950",
       iconIdle: "bg-white border-slate-200",
@@ -47,7 +47,7 @@ function ImpactStats() {
       number: "400+",
       label: t('statsLabel3'),
       desc: t('statsDesc3'),
-      // Tema Merah/Amber (Pencegahan Rem Blong Matic)
+      
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
       colorActive: "bg-red-50/70 border-red-500 shadow-2xl shadow-red-500/15 text-red-950",
       iconIdle: "bg-white border-slate-200",
@@ -60,7 +60,7 @@ function ImpactStats() {
       number: "10.000+",
       label: t('statsLabel4'),
       desc: t('statsDesc4'),
-      // Tema Emerald (Mitigasi/Proteksi Target Edukasi)
+      
       colorIdle: "bg-slate-50/50 border-slate-200/60 shadow-xs text-slate-900",
       colorActive: "bg-emerald-50/70 border-emerald-500 shadow-2xl shadow-emerald-500/15 text-emerald-950",
       iconIdle: "bg-white border-slate-200",
@@ -76,7 +76,7 @@ function ImpactStats() {
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* HEADER SECTION */}
+        
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 md:mb-24">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl lg:text-5xl mb-4">
@@ -89,7 +89,7 @@ function ImpactStats() {
           <div className="hidden lg:block w-32 h-1 bg-slate-200 rounded mb-4" />
         </div>
 
-        {/* STATS GRID WITH HIGH-CONTRAST INTERACTION */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 items-stretch">
           {statsData.map((stat) => {
             const isCurrentActive = activeStatId === stat.id;
@@ -105,7 +105,7 @@ function ImpactStats() {
                   ${isCurrentActive ? stat.colorActive : stat.colorIdle}
                 `}
               >
-                {/* Bulatan Lingkaran Ikon */}
+                
                 <div className={`p-3 rounded-xl border w-fit mb-6 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
                   ${isCurrentActive ? stat.iconActive : stat.iconIdle}
                 `}>
@@ -114,7 +114,7 @@ function ImpactStats() {
                   </div>
                 </div>
 
-                {/* Nilai Counter Angka */}
+                
                 <div className={`text-4xl sm:text-5xl font-black tracking-tight mb-2 tabular-nums transition-colors duration-300
                   ${isCurrentActive ? stat.numberActive : 'text-slate-900'}
                 `}>
@@ -124,14 +124,14 @@ function ImpactStats() {
                   />
                 </div>
 
-                {/* Judul Label Keterangan */}
+                
                 <div className={`text-xs font-black tracking-wide uppercase mb-3 transition-colors duration-300 leading-snug
                   ${isCurrentActive ? stat.numberActive : 'text-slate-800'}
                 `}>
                   {stat.label}
                 </div>
 
-                {/* Deskripsi Info Ringkas */}
+                
                 <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium mt-auto">
                   {stat.desc}
                 </p>

@@ -7,7 +7,7 @@ function CounterItem({ targetValue, isVisible }) {
   useEffect(() => {
     if (!isVisible) return;
 
-    // Jika persen, hilangkan tanda % dan ubah koma menjadi titik agar dibaca desimal oleh JS
+    
     const cleanValue = isPercent 
       ? targetValue.replace('%', '').replace(',', '.') 
       : targetValue.replace(/[^0-9]/g, '');
@@ -15,7 +15,7 @@ function CounterItem({ targetValue, isVisible }) {
     const numericTarget = parseFloat(cleanValue);
     
     let start = 0;
-    const duration = 1500; // 1.5 detik
+    const duration = 1500; 
     const frameRate = 1000 / 60;
     const totalFrames = Math.round(duration / frameRate);
     const step = numericTarget / totalFrames;
@@ -33,15 +33,15 @@ function CounterItem({ targetValue, isVisible }) {
     return () => clearInterval(timer);
   }, [targetValue, isVisible, isPercent]);
 
-  // Format ribuan untuk angka bulat
+  
   const formatNumber = (num) => {
     return Math.floor(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
-  // Cetak output akhir
+  
   const renderOutput = () => {
     if (isPercent) {
-      // Tampilkan dua angka di belakang koma, lalu ubah titik menjadi koma khas Indonesia
+      
       return `+${count.toFixed(2).replace('.', ',')}%`;
     }
     if (targetValue.includes('+')) {

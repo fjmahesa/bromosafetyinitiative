@@ -66,7 +66,7 @@ function SafetyPillars() {
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER */}
+        
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
           <span className="text-xs font-extrabold tracking-widest text-brand-orange uppercase bg-orange-50 px-3 py-1 rounded-md border border-orange-100">
             {t('pillarsSectionBadge')}
@@ -79,7 +79,7 @@ function SafetyPillars() {
           </p>
         </div>
 
-        {/* 4-COLUMN SYMMETRIC GRID */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {pillarsData.map((pillar) => {
             const isCurrentActive = activePillarId === pillar.id;
@@ -87,10 +87,10 @@ function SafetyPillars() {
             return (
               <div 
                 key={pillar.id}
-                // PEMICU MOBILE (Touchscreen)
+                
                 onTouchStart={() => setActivePillarId(pillar.id)}
                 
-                // BARU! PEMICU DESKTOP (Mouse Hover)
+                
                 onMouseEnter={() => setActivePillarId(pillar.id)}
                 onMouseLeave={() => setActivePillarId(null)}
                 
@@ -102,7 +102,7 @@ function SafetyPillars() {
                   ${isCurrentActive ? pillar.colorActive : pillar.colorIdle}
                 `}
               >
-                {/* Bulatan Lingkaran Ikon */}
+                
                 <div className={`p-5 rounded-full border mb-6 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
                   ${isCurrentActive ? pillar.iconActive : pillar.iconIdle}
                 `}>
@@ -111,14 +111,14 @@ function SafetyPillars() {
                   </div>
                 </div>
 
-                {/* Judul Pilar */}
+                
                 <h3 className={`text-lg font-black tracking-tight mb-3 transition-colors duration-300
                   ${isCurrentActive ? pillar.titleActive : 'text-slate-900'}
                 `}>
                   {pillar.title}
                 </h3>
 
-                {/* Keterangan Deskripsi */}
+                
                 <p className={`text-xs sm:text-sm leading-relaxed font-semibold transition-colors duration-300
                   ${isCurrentActive ? pillar.descActive : 'text-slate-500'}
                 `}>

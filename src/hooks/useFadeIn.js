@@ -6,13 +6,13 @@ export function useFadeIn(delayMs = 0) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      // Jika komponen masuk layar, set true dan stop observe (agar animasi hanya running sekali)
+      
       if (entry.isIntersecting) {
         setTimeout(() => {
           setIsIntersecting(true);
         }, delayMs);
       }
-    }, { threshold: 0.1 }); // Animasi jalan saat 10% bagian komponen terlihat
+    }, { threshold: 0.1 }); 
 
     const currentRef = domRef.current;
     if (currentRef) {

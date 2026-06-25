@@ -17,7 +17,7 @@ function PostDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
 
-  // STATE: Untuk Fitur Komentar & Balasan
+  
   const [comments, setComments] = useState([]);
   const [commentName, setCommentName] = useState('');
   const [commentEmail, setCommentEmail] = useState('');
@@ -25,14 +25,14 @@ function PostDetail() {
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [commentStatusMsg, setCommentStatusMsg] = useState({ type: '', text: '' });
   
-  // LOGIKA BARU: Melacak status balasan komentar
+  
   const [replyingToId, setReplyingToId] = useState(null); 
   const [replyingToName, setReplyingToName] = useState('');
 
   const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
   const currentUrl = window.location.href;
 
-  // EFFECT 1: Mengambil Data Artikel Utama
+  
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -91,7 +91,7 @@ function PostDetail() {
     return () => controller.abort();
   }, [slug, i18n.language, navigate]);
 
-  // EFFECT 2: Mengambil Daftar Komentar Terkait
+  
   useEffect(() => {
     if (!post) return;
 
@@ -101,7 +101,7 @@ function PostDetail() {
       .catch(err => console.error("Gagal memuat komentar:", err));
   }, [post]);
 
-  // FUNGSI: Kirim Komentar / Balasan ke WordPress API
+  
   const handleSubmitComment = (e) => {
     e.preventDefault();
     if (!commentName || !commentEmail || !commentContent) {
@@ -122,7 +122,7 @@ function PostDetail() {
         author_name: commentName,
         author_email: commentEmail,
         content: commentContent,
-        parent: replyingToId || 0, // Mengirimkan ID induk jika ini berupa balasan
+        parent: replyingToId || 0, 
       }),
     })
       .then((res) => {
@@ -132,7 +132,7 @@ function PostDetail() {
       .then((data) => {
         setIsSubmittingComment(false);
         setCommentContent(''); 
-        setReplyingToId(null); // Reset mode balasan setelah berhasil kirim
+        setReplyingToId(null); 
         setReplyingToName('');
         
         setCommentStatusMsg({
@@ -195,7 +195,7 @@ function PostDetail() {
     <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10 page-enter">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
 
-        {/* KOLOM 1: KATEGORI (STICKY LEFT) */}
+        
         <aside className="hidden lg:block lg:col-span-2 lg:sticky lg:top-28 bg-white border border-slate-200/60 rounded-3xl p-4 shadow-xs">
           <h3 className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-4 pb-2 border-b border-slate-100 flex items-center gap-1.5">
             <FaFolderOpen /> {t('postCategory')}
@@ -225,9 +225,9 @@ function PostDetail() {
           </nav>
         </aside>
 
-        {/* KOLOM 2: MAIN ARTIKEL CONTENT */}
+        
         <article className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-5 sm:p-10 shadow-xs">
-          {/* BREADCRUMB */}
+          
           <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-5 select-none">
             <Link to="/" className="hover:text-slate-600 transition-colors">{t('postBreadcrumbHome')}</Link>
             <span className="text-slate-300 font-normal">&gt;</span>
@@ -242,7 +242,7 @@ function PostDetail() {
 
           <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-6" dangerouslySetInnerHTML={{ __html: articleTitle }} />
 
-          {/* METADATA */}
+          
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5 mb-8 text-xs font-bold text-slate-400 tracking-wide">
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-slate-400">
               <div className="flex items-center gap-1.5">
@@ -268,15 +268,15 @@ function PostDetail() {
             </div>
           </div>
 
-          {/* HERO IMAGE */}
+          
           <div className="aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-md bg-slate-100 mb-10">
             <img src={featuredImage} alt={articleTitle} className="w-full h-full object-cover" />
           </div>
 
-          {/* BODY */}
+          
           <div className="prose prose-slate max-w-none prose-p:text-base prose-p:text-slate-600 prose-p:leading-relaxed prose-p:mb-6 prose-headings:font-black prose-headings:text-slate-900 prose-headings:tracking-tight prose-headings:mt-8 prose-headings:mb-4 prose-h2:text-xl prose-h2:sm:text-2xl prose-strong:font-black prose-strong:text-slate-900 prose-img:rounded-2xl prose-img:shadow-md prose-a:text-[var(--color-brand-orange)] prose-a:font-bold hover:prose-a:text-[var(--color-brand-orange-hover)] mb-12" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
 
-          {/* SOSIAL MEDIA SHARE */}
+          
           <div className="border-t border-slate-100 pt-8 mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h4 className="text-sm font-black uppercase tracking-wider text-slate-800">{t('postShareTitle')}</h4>
@@ -346,23 +346,23 @@ function PostDetail() {
             </div>
           </div>
 
-          {/* =================================================================================== */}
-          {/* SEKSI KOMENTAR DENGAN CHRONO-TIME & LOGIKA BALASAN (NESTED) */}
-          {/* =================================================================================== */}
+          
+          
+          
           <div className="border-t border-slate-100 pt-10 mt-12 space-y-8">
             <h3 className="text-lg font-black tracking-tight text-slate-900 uppercase flex items-center gap-2">
               <FaCommentAlt className="text-[var(--color-brand-orange)] text-sm" />
               {currentLang === 'id' ? `Komentar (${comments.length})` : `Comments (${comments.length})`}
             </h3>
 
-            {/* DAFTAR LIST KOMENTAR */}
+            
             <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 no-scrollbar">
               {comments.length === 0 ? (
                 <p className="text-xs text-slate-400 font-medium italic py-2">
                   {currentLang === 'id' ? 'Belum ada komentar. Jadilah yang pertama memberikan tanggapan!' : 'No comments yet. Be the first to leave a thought!'}
                 </p>
               ) : (
-                // Saring Loop Utama: Hanya tampilkan komentar induk saja (parent === 0)
+                
                 comments.filter(c => c.parent === 0).map((comment) => {
                   const commentDate = new Date(comment.date).toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', {
                     year: 'numeric', month: 'short', day: 'numeric'
@@ -372,13 +372,13 @@ function PostDetail() {
                     hour: '2-digit', minute: '2-digit', hour12: currentLang !== 'id'
                   });
 
-                  // Cari data balasan anak untuk id komentar utama ini
+                  
                   const childReplies = comments.filter(reply => reply.parent === comment.id);
 
                   return (
                     <div key={comment.id} className="space-y-3">
                       
-                      {/* KARTU KOMENTAR INDUK */}
+                      
                       <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex flex-col gap-1.5 animate-fade-in-quick">
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-black text-slate-800 capitalize">{comment.author_name}</span>
@@ -388,7 +388,7 @@ function PostDetail() {
                         </div>
                         <div className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed" dangerouslySetInnerHTML={{ __html: comment.content.rendered }} />
                         
-                        {/* Tombol Aksi Balas */}
+                        
                         <button 
                           onClick={() => {
                             setReplyingToId(comment.id);
@@ -401,7 +401,7 @@ function PostDetail() {
                         </button>
                       </div>
 
-                      {/* RENDER KOMENTAR BALASAN (CHILD INDENTATION) */}
+                      
                       {childReplies.map((reply) => {
                         const rDate = new Date(reply.date).toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', {
                           year: 'numeric', month: 'short', day: 'numeric'
@@ -412,7 +412,7 @@ function PostDetail() {
 
                         return (
                           <div key={reply.id} className="ml-8 sm:ml-12 bg-slate-100/60 border border-slate-200/40 rounded-2xl p-4 flex flex-col gap-1.5 animate-fade-in-quick relative">
-                            {/* Garis pemandu relasi visual */}
+                            
                             <div className="absolute -left-4 top-0 bottom-1/2 w-4 border-l-2 border-b-2 border-slate-200 rounded-bl-xl" />
                             
                             <div className="flex items-center justify-between">
@@ -433,7 +433,7 @@ function PostDetail() {
               )}
             </div>
 
-            {/* FORMULIR MEMBUAT KOMENTAR BARU */}
+            
             <form id="comment-form-panel" onSubmit={handleSubmitComment} className="bg-slate-50 border border-slate-200/60 rounded-3xl p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <h4 className="text-xs font-black uppercase tracking-wider text-slate-700">
@@ -498,11 +498,11 @@ function PostDetail() {
               </button>
             </form>
           </div>
-          {/* =================================================================================== */}
+          
 
         </article>
 
-        {/* KOLOM 3: SIDEBAR REKOMENDASI */}
+        
         <aside className="lg:col-span-3 lg:sticky lg:top-28 space-y-8">
           <div className="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-xs">
             <h3 className="text-sm font-black tracking-wider text-slate-900 uppercase mb-6 pb-3 border-b border-slate-100 flex items-center justify-between">

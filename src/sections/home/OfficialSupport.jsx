@@ -6,12 +6,12 @@ import { useFadeIn } from '../../hooks/useFadeIn';
 function OfficialSupport() {
   const { t } = useTranslation();
   
-  // Memisahkan observer untuk masing-masing kolom agar efek transisi berjalan mulus
+  
   const [leftRef, leftVisible] = useFadeIn(100);
   const [centerRef, centerVisible] = useFadeIn(200);
   const [rightRef, rightVisible] = useFadeIn(300);
 
-  // Kelas utilitas kartu yang seragam untuk menjaga kebersihan kode (DRY Principle)
+  
   const cardClassName = "flex flex-col justify-between bg-slate-50/70 border border-slate-300/80 rounded-3xl p-6 md:p-8 relative hover:bg-white hover:shadow-2xl hover:border-slate-300 transition-all duration-300 group";
   const quoteIconClassName = "text-5xl text-slate-200/80 absolute top-6 right-6 group-hover:text-[var(--color-brand-orange-border)] transition-colors duration-300";
   const badgeClassName = "text-xs font-black tracking-widest text-slate-400 uppercase mb-6 border-b border-slate-200/60 pb-3 w-fit";
@@ -19,12 +19,12 @@ function OfficialSupport() {
 
   return (
     <section className="bg-white py-20 md:py-32 px-4 sm:px-6 lg:px-8 border-b border-slate-100 relative overflow-hidden">
-      {/* Pola dekoratif garis topografi tipis di latar belakang */}
+      
       <div className="absolute inset-0 opacity-5 pointer-events-none mix-blend-overlay bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]" />
 
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER SECTION */}
+        
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
           <span className="text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)]">
             {t('supportBadge')}
@@ -37,10 +37,10 @@ function OfficialSupport() {
           </p>
         </div>
 
-        {/* THREE-COLUMN STATEMENT LAYOUT (DIUBAH MENJADI GRID 3 KOLOM) */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-8 items-stretch">
           
-          {/* KOLOM 1: DUKUNGAN BB-TNBTS[cite: 4] */}
+          
           <div 
             ref={leftRef}
             className={`slide-left-hidden ${leftVisible ? 'slide-left-visible' : ''} ${cardClassName}`}
@@ -70,7 +70,7 @@ function OfficialSupport() {
             </div>
           </div>
 
-          {/* KOLOM 2: DUKUNGAN WAKIL BUPATI PROBOLINGGO[cite: 4] */}
+          
           <div 
             ref={centerRef}
             className={`zoom-in-hidden ${centerVisible ? 'zoom-in-visible' : ''} ${cardClassName}`}
@@ -100,7 +100,7 @@ function OfficialSupport() {
             </div>
           </div>
 
-          {/* KOLOM 3: DUKUNGAN CAMAT SUKAPURA PERIODE SEBELUMNYA (TERBARU)[cite: 4] */}
+          
           <div 
             ref={rightRef}
             className={`slide-right-hidden ${rightVisible ? 'slide-right-visible' : ''} ${cardClassName}`}

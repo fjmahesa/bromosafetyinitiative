@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Kamus Terjemahan Objek Multi-Bahasa
+
 const resources = {
   en: {
     translation: {
@@ -18,14 +18,14 @@ const resources = {
       igCtaTitle: "Collaborating Together for Real Change.",
       igCtaBtn: "Join the Movement",
 
-      // Hero Section
+      
       heroBadge: "National Priority Campaign",
       heroTitle: "Safety Campaign for Safe, Orderly, and Sustainable Tourism in Bromo Tengger Semeru National Park Area",
       heroSubtitle: "Safety on Bromo Tengger Semeru National Park Area pathways is the result of precise education, measured intervention, and tourism ecosystem readiness. Together, we realize the mandate for safe and sustainable tourism.",
       btnGuide: "Safety Guidelines",
       btnStatus: "Check Mount Bromo Status",
 
-      // Seksi Statistik
+      
       statsTitle: "Impact & Statistics",
       statsSubtitle: "Track record of tourism visits, route risk analysis, and concrete achievements of the Bromo Safety Initiative education movement.",
       statsLabel1: "GLOBAL TOURISTS IN 2025",
@@ -41,7 +41,7 @@ const resources = {
       pathSubtitle: "This infrastructure consists of limited nature conservation access paths, not high-capacity mass transportation routes.",
       pathWarning: "WARNING: High accident risks stem from systemic structural road hazards.",
 
-      // Titik Medan Jalur Hazard
+      
       pointTitle1: "Steep Inclines & Long Declines",
       pointDesc1: "Drains engine power on the way up, and drastically overburdens the braking system during prolonged descents.",
       pointTitle2: "Sharp Hairpin Turns",
@@ -61,7 +61,7 @@ const resources = {
       supportTitle: "Official Endorsement & Validation",
       supportSubtitle: "This movement operates under the official coordination, appreciation, and support from regional authorities and national park management.",
 
-      // Seksi Kampanye O2O (Online to Offline)
+      
       o2oBadge: "O2O Intervention Strategy",
       o2oTitleMain: "Online to Offline (O2O) Safety Campaign",
       o2oSubtitle: "Connecting digital mitigation awareness prior to departure with real physical rescue actions on Bromo Tengger Semeru National Park Area's extreme terrain.",
@@ -93,7 +93,7 @@ const resources = {
       o2oOfflinePointDesc4: "Strategic cooperation with related communities for campaign assistance.",
       o2oFootnote: "Connected System: Digital Website Emergency Button Links Directly to Sukapura Ambulance Outpost.",
 
-      // Validasi Pemangku Kepentingan
+      
       tnbtsQuote: "Expressing our highest appreciation for this initiative aimed at supporting visitor safety improvements and strengthening the positive image of tourism in the Mount Bromo Tengger Semeru National Park area.",
       tnbtsSign: "Rudijanta Tjahja Nugraha, S.Hut., M.Sc.",
       tnbtsRole: "Head of the Great Council of Bromo Tengger Semeru National Park (TNBTS)",
@@ -134,7 +134,7 @@ const resources = {
       errorDesc: "The page you are looking for could not be found or has been moved to a different path.",
       btnHome: "Back to Home",
 
-      // Halaman Tentang Kami
+      
       aboutBadge: "Get to Know Our Movement",
       aboutTitleMain: "About",
       aboutTitleHighlight: "Us",
@@ -174,7 +174,7 @@ const resources = {
       aboutValueServiceTitle: "Service Excellence",
       aboutValueServiceDesc: "Delivering safe, hospitable, and high-quality tourism service experiences.",
 
-      // Halaman Kontak
+      
       contactBadge: "Contact Us",
       contactTitle: "We Are Ready to Hear and Help You",
       contactDesc: "Have questions about safety standardization, partnerships, or need coordination assistance? Feel free to send a message or reach out through our official channels.",
@@ -196,9 +196,9 @@ const resources = {
       contactSocialMedia: "Movement Social Media",
       btnMap: "View Rest Area Location",
 
-      // ===================================================================================
-      // SINKRONISASI BARU: PUSAT DATA KESELAMATAN HUB (BAHASA INGGRIS)[cite: 5, 6]
-      // ===================================================================================
+      
+      
+      
       safetyBadge: "Official Regional Guide",
       safetyHeroTitle: "Towards an Orderly, Safe, and Sustainable Bromo Tengger Semeru National Park Area",
       safetyHeroDesc: "For mutual safety and comfort, all tourists are urged to always prioritize safety during the journey and while inside the tourist area.",
@@ -230,7 +230,7 @@ const resources = {
       safetyCheck4: "Obey all traffic signs and structural road markings",
       safetyCheck5: "Maintain cleanliness by not littering around the national park",
       safetyCheck6: "Ensure the insurance wristband barcode is properly attached",
-      // ===================================================================================
+      
 
       safetyCoolingTitle: "Brake Cooling Points Location",
       safetyCoolingDesc: "Free cooling points are available along the hazardous routes, operated by local volunteers. Stop your vehicle, let the brakes cool down, and take a rest before continuing your journey downhill.",
@@ -242,7 +242,7 @@ const resources = {
       safetyCtaDesc: "Don't let your dream vacation be disrupted by lack of preparation. Always monitor the latest information and save emergency numbers before starting your journey.",
       safetyBackBtn: "Back to Homepage",
 
-      // Articles Page Indeks
+      
       articlesBadge: "BSI Education & Literacy Center",
       articlesTitleMain: "Articles Collection & ",
       articlesTitleHighlight: "Safety Guide",
@@ -254,7 +254,7 @@ const resources = {
       articlesAuthor: "Admin BSI",
       articlesReadMore: "Read More",
 
-      // Post Detail Komponen
+      
       postNotFound: "Article not found.",
       postCategory: "Category",
       postBreadcrumbHome: "Home",
@@ -276,7 +276,7 @@ const resources = {
       postCtaDesc: "Press the emergency button to connect directly to the Sukapura Ambulance Command Center.",
       postCtaBtn: "Call 112 Now",
 
-      // Lainnya
+      
       catBadge: "Article Category",
       catArchive: "Archive:",
       catEmpty: "No articles in this category yet.",
@@ -341,14 +341,14 @@ const resources = {
       navRestArea: "Rest Area",
       navLocation: "Alamat",
 
-      // Hero Section
+      
       heroBadge: "Kampanye Prioritas Nasional",
       heroTitle: "Kampanye Keselamatan untuk Pariwisata di Kawasan Taman Nasional Bromo Tengger Semeru yang Aman, Tertib dan Berkelanjutan",
       heroSubtitle: "Keselamatan di jalur Bromo adalah hasil dari edukasi yang presisi, intervensi yang terukur, dan kesiapan ekosistem wisata. Bersama, kita wujudkan mandat pariwisata yang aman dan berkelanjutan.",
       btnGuide: "Panduan Keselamatan",
       btnStatus: "Cek Status Kawasan Bromo Tengger Semeru",
 
-      // Seksi Statistik
+      
       statsTitle: "Dampak & Statistik",
       statsSubtitle: "Rekam jejak kunjungan wisata, analisis risiko jalur, serta capaian nyata gerakan edukasi Bromo Safety Initiative.",
       statsLabel1: "WISATAWAN GLOBAL TAHUN 2025",
@@ -364,7 +364,7 @@ const resources = {
       pathSubtitle: "Infrastruktur ini adalah jalur akses kawasan konservasi alam terbatas, bukan jalur transportasi massal berkapasitas tinggi.",
       pathWarning: "PERINGATAN: Risiko kecelakaan tinggi berakar dari bahaya struktural medan jalan.",
 
-      // Titik Medan Jalur Hazard
+      
       pointTitle1: "Tanjakan Curam & Turunan Panjang",
       pointDesc1: "Menguras tenaga mesin saat menanjak, dan secara drastis membebani sistem rem secara ekstrem saat turun panjang.",
       pointTitle2: "Tikungan Tajam",
@@ -384,7 +384,7 @@ const resources = {
       supportTitle: "Dukungan & Validasi Otoritas Resmi",
       supportSubtitle: "Gerakan ini berjalan atas koordinasi, apresiasi, dan dukungan resmi dari otoritas pengelola kawasan dan pemerintah daerah setempat.",
 
-      // Seksi Kampanye O2O (Online to Offline)
+      
       o2oBadge: "Strategi Intervensi O2O",
       o2oTitleMain: "Kampanye Keselamatan Online to Offline (O2O)",
       o2oSubtitle: "Menghubungkan kesadaran mitigasi digital sebelum keberangkatan dengan aksi penyelamatan fisik nyata di medan ekstrem Kawasan Bromo Tengger Semeru.",
@@ -416,7 +416,7 @@ const resources = {
       o2oOfflinePointDesc4: "Kerjasama strategis dengan komunitas terkait untuk pendampingan kampanye.",
       o2oFootnote: "Sistem Terkoneksi: Tombol Darurat Digital Website Terhubung Langsung ke Posko Ambulans Sukapura.",
 
-      // Validasi Pemangku Kepentingan
+      
       tnbtsQuote: "Kami dari Balai Besar Taman Nasional Bromo Tengger Semeru (TNBTS) menyampaikan apresiasi atas inisiatif yang bertujuan mendukung peningkatan keselamatan pengunjung serta penguatan citra positif pariwisata di kawasan Taman Nasional Bromo Tengger Semeru.",
       tnbtsSign: "Rudijanta Tjahja Nugraha, S.Hut., M.Sc.",
       tnbtsRole: "Kepala Balai Besar Taman Nasional Bromo Tengger Semeru (TNBTS)",
@@ -457,7 +457,7 @@ const resources = {
       errorDesc: "Halaman yang Anda cari tidak dapat ditemukan atau telah dipindahkan ke jalur yang berbeda.",
       btnHome: "Kembali ke Beranda",
 
-      // Halaman Tentang Kami
+      
       aboutBadge: "Mengenal Gerakan Kami",
       aboutTitleMain: "Tentang",
       aboutTitleHighlight: "Kami",
@@ -497,7 +497,7 @@ const resources = {
       aboutValueServiceTitle: "Service Excellence",
       aboutValueServiceDesc: "Memberikan pengalaman pelayanan wisata yang aman, ramah, dan berkualitas.",
 
-      // Halaman Kontak
+      
       contactBadge: "Hubungi Kami",
       contactTitle: "Kami Siap Mendengar dan Membantu Anda",
       contactDesc: "Punya pertanyaan seputar standarisasi keselamatan, kemitraan, atau butuh bantuan koordinasi? Jangan ragu untuk mengirimkan pesan atau menghubungi jaringan resmi kami.",
@@ -519,9 +519,9 @@ const resources = {
       contactSocialMedia: "Media Sosial Gerakan",
       btnMap: "Lihat Lokasi Rest Area",
 
-      // ===================================================================================
-      // KONTEN RUJUKAN ACUAN SELEBARAN: PUSAT DATA KESELAMATAN HUB (BAHASA INDONESIA)[cite: 5, 6]
-      // ===================================================================================
+      
+      
+      
       safetyBadge: "Panduan Resmi Kawasan",
       safetyHeroTitle: "Menuju Kawasan Taman Nasional Bromo Tengger Semeru yang Tertib, Aman dan Berkelanjutan",
       safetyHeroDesc: "Demi keselamatan dan kenyamanan bersama, seluruh wisatawan diimbau untuk selalu mengutamakan keselamatan selama perjalanan maupun saat berada di kawasan wisata.",
@@ -553,7 +553,7 @@ const resources = {
       safetyCheck4: "Patuhi seluruh rambu lalu lintas dan marka jalan",
       safetyCheck5: "Jaga kebersihan dengan tidak membuang sampah sembarangan",
       safetyCheck6: "Pastikan barcode gelang asuransi sudah terpasang dengan benar",
-      // ===================================================================================
+      
 
       safetyCoolingTitle: "Lokasi Pos Pendingin Rem",
       safetyCoolingDesc: "Pos pendingin gratis tersedia di sepanjang jalur rawan, dioperasikan oleh relawan lokal. Hentikan kendaraan, dinginkan rem, dan beristirahatlah sebelum melanjutkan perjalanan menuruni bukit.",
@@ -565,7 +565,7 @@ const resources = {
       safetyCtaDesc: "Jangan biarkan liburan impian terganggu oleh minimnya persiapan. Selalu pantau informasi terkini dan simpan nomor darurat sebelum memulai perjalanan Anda.",
       safetyBackBtn: "Kembali ke Beranda",
 
-      // Articles Page Indeks
+      
       articlesBadge: "Pusat Edukasi & Literasi BSI",
       articlesTitleMain: "Kumpulan Artikel & ",
       articlesTitleHighlight: "Panduan Keselamatan",
@@ -577,7 +577,7 @@ const resources = {
       articlesAuthor: "Admin BSI",
       articlesReadMore: "Selengkapnya",
 
-      // Post Detail Komponen
+      
       postNotFound: "Artikel tidak ditemukan.",
       postCategory: "Kategori",
       postBreadcrumbHome: "Beranda",
@@ -599,7 +599,7 @@ const resources = {
       postCtaDesc: "Tekan tombol darurat fisik untuk langsung tersambung ke Command Center Ambulans Sukapura.",
       postCtaBtn: "Hubungi 112 Sekarang",
 
-      // Lainnya
+      
       catBadge: "Kategori Artikel",
       catArchive: "Arsip:",
       catEmpty: "Belum ada artikel di kategori ini.",

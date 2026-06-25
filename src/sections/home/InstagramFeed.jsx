@@ -9,7 +9,7 @@ function InstagramFeed() {
   const [domRef, isVisible] = useFadeIn(150);
 
   useEffect(() => {
-    // Memuat script platform Elfsight secara dinamis agar aman di React SPA
+    
     const scriptId = 'elfsight-platform-script';
     let script = document.getElementById(scriptId);
 
@@ -22,7 +22,7 @@ function InstagramFeed() {
     }
   }, []);
 
-  // Teks pesan WhatsApp otomatis dinamis
+  
   const waMessage = currentLang === 'en'
     ? "Hello Bromo Safety Initiative, I would like to join the movement and collaborate."
     : "Halo Bromo Safety Initiative, saya ingin bergabung dengan gerakan ini dan berkolaborasi.";
@@ -34,12 +34,12 @@ function InstagramFeed() {
       ref={domRef} 
       className={`zoom-in-hidden ${isVisible ? 'zoom-in-visible' : ''} bg-slate-50/50 pt-20 pb-20 md:pt-32 md:pb-28 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 relative overflow-hidden`}
     >
-      {/* Ornamen Latar Belakang Geometris Tipis */}
+      
       <div className="absolute inset-0 opacity-25 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* HEADER SECTION */}
+        
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 md:mb-24">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)]/30 mb-4">
@@ -53,7 +53,7 @@ function InstagramFeed() {
             </p>
           </div>
           
-          {/* Tombol Follow Premium Slate-Orange */}
+          
           <a 
             href="https://www.instagram.com/bromosafetyinitiative/" 
             target="_blank" 
@@ -64,9 +64,9 @@ function InstagramFeed() {
           </a>
         </div>
 
-        {/* =================================================================================== */}
-        {/* CONTAINER UTAMA WIDGET ELFSIGHT DYNAMIC FEEDS (Tinggi Maksimal & Margin Minus Dihapus) */}
-        {/* =================================================================================== */}
+        
+        
+        
         <div className="w-full rounded-3xl border-2 border-slate-200/60 p-4 sm:p-6 bg-white shadow-xl shadow-slate-200/40">
           <div 
             className="elfsight-app-0702755a-c92f-4a04-913e-5d8a7e497183" 
@@ -74,19 +74,19 @@ function InstagramFeed() {
           />
         </div>
 
-        {/* =================================================================================== */}
-        {/* KARTU CTA BANNER BENTO PREMIUM UNTUK KOLABORASI KLIEN[cite: 4] */}
-        {/* =================================================================================== */}
+        
+        
+        
         <div className="mt-20 relative">
-          {/* Efek Pendaran Glow Oranye di Belakang Kartu */}
+          
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 md:p-16 border border-slate-800 shadow-2xl overflow-hidden max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 group">
             
-            {/* Dekorasi Pola Lingkaran Abstrak Internal */}
+            
             <div className="absolute right-0 top-0 w-80 h-80 bg-radial from-white/5 to-transparent rounded-full pointer-events-none -mr-20 -mt-20 transition-transform duration-700 group-hover:scale-110" />
             
-            {/* Sisi Kiri: Teks Ajakan */}
+            
             <div className="space-y-3 text-center md:text-left relative z-10 max-w-md">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/20 px-3 py-1 rounded-md">
                 {currentLang === 'en' ? "TAKE ACTION" : "AKSI NYATA"}
@@ -96,7 +96,7 @@ function InstagramFeed() {
               </h3>
             </div>
 
-            {/* Sisi Kanan: Tombol Tindakan Masuk WhatsApp */}
+            
             <div className="relative z-10 flex-shrink-0">
               <a 
                 href={whatsappUrl}
@@ -111,7 +111,7 @@ function InstagramFeed() {
 
           </div>
         </div>
-        {/* =================================================================================== */}
+        
 
       </div>
     </section>

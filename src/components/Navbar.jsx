@@ -14,16 +14,16 @@ function Navbar() {
 
   const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
 
-  // Array menu yang disesuaikan dengan tautan PDF eksternal pesanan klien
+  
   const menuItems = [
-    // { key: 'navHome', path: '/' },
+    
     { key: 'navAbout', path: '/about-us' },
     { key: 'navSafety', path: '/safety-guide' },
     { key: 'navRestArea', path: '/rest-area' },
     { key: 'navContact', path: '/contact-us' },
   ];
 
-  // 🛠️ VARIABEL LINK GOOGLE FORM (Silakan ganti dengan link asli milikmu)
+  
   const googleFormUrl = "https://forms.gle/89pGdiQ7SJwwxjYk7";
 
   return (
@@ -31,7 +31,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* LOGO AREA */}
+          
           <Link 
             to="/" 
             className="flex-shrink-0 flex items-center gap-3 group transition-transform duration-200 active:scale-95 cursor-pointer"
@@ -55,7 +55,7 @@ function Navbar() {
             </div>
           </Link>
 
-          {/* DESKTOP & TABLET MENU */}
+          
           <div className="hidden md:flex items-center gap-4 lg:gap-6">
             {menuItems.map((item) => {
               const isActive = location.pathname === item.path;
@@ -85,9 +85,9 @@ function Navbar() {
             })}
           </div>
 
-          {/* RIGHT CONTROLS (DESKTOP) */}
+          
           <div className="hidden md:flex items-center gap-4">
-            {/* Pemilih Bahasa */}
+            
             <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs font-bold">
               <button 
                 onClick={() => changeLanguage('id')} 
@@ -103,7 +103,7 @@ function Navbar() {
               </button>
             </div>
 
-            {/* PERBAIKAN: Mengubah target tautan langsung ke Google Form eksternal */}
+            
             <a
               href={googleFormUrl}
               target="_blank"
@@ -115,7 +115,7 @@ function Navbar() {
             </a>
           </div>
 
-          {/* MOBILE CONTROLS HEADER */}
+          
           <div className="flex items-center gap-3 md:hidden">
             <button 
               onClick={() => changeLanguage(currentLang === 'id' ? 'en' : 'id')}
@@ -135,7 +135,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE & TABLET DROPDOWN MENU */}
+      
       <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[420px] opacity-100 border-b border-slate-200' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-4 pt-2 pb-6 space-y-3 bg-white">
           {menuItems.map((item) => {
@@ -171,7 +171,7 @@ function Navbar() {
             );
           })}
 
-          {/* PERBAIKAN: Mengubah tautan tombol mobile langsung ke Google Form eksternal */}
+          
           <div className="pt-2 px-3">
             <a
               href={googleFormUrl}

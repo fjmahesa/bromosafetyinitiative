@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom'; // <-- Menggunakan Link untuk navigasi SPA
+import { Link } from 'react-router-dom'; 
 import { FaCalendarAlt, FaUser, FaArrowRight } from 'react-icons/fa';
 
 function ArticlesSection() {
@@ -8,19 +8,19 @@ function ArticlesSection() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Ambil kode bahasa aktif secara aman
+  
   const currentLang = i18n.language && i18n.language.startsWith('en') ? 'en' : 'id';
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    setArticles([]); // Bersihkan data artikel lama saat bahasa berpindah
+    setArticles([]); 
     setIsLoading(true);
     
-    // ===================================================================================
-    // PERBAIKAN: Suntikkan parameter &lang=${currentLang} untuk menyaring 3 artikel terbaru
-    // ===================================================================================
+    
+    
+    
     fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=3&lang=${currentLang}`, { signal })
       .then((res) => {
         if (!res.ok) throw new Error('Gagal memuat data dari WordPress');
@@ -40,13 +40,13 @@ function ArticlesSection() {
       });
 
     return () => controller.abort();
-  }, [currentLang]); // <-- Menggunakan currentLang sebagai pelacak sensitif perubahan bahasa
+  }, [currentLang]); 
 
   return (
     <section id="articles" className="bg-slate-50 py-20 md:py-32 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60">
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER SEKSI */}
+        
         <div className="max-w-3xl mb-16">
           <span className="text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)]">
             {t('navArticles')}
@@ -56,7 +56,7 @@ function ArticlesSection() {
           </h2>
         </div>
 
-        {/* LOADING STATE (SKELETON) */}
+        
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((n) => (
@@ -67,10 +67,10 @@ function ArticlesSection() {
           /* DYNAMIC ARTICLES GRID */
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             {articles.map((post) => {
-              // Mengambil gambar utama secara aman dari objek _embed WordPress
+              
               const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1605540435647-88d707f7f4a2?w=600';
               
-              // Format tampilan tanggal sesuai bahasa aktif
+              
               const formattedDate = new Date(post.date).toLocaleDateString(currentLang === 'id' ? 'id-ID' : 'en-US', {
                 year: 'numeric', month: 'long', day: 'numeric'
               });
@@ -78,10 +78,10 @@ function ArticlesSection() {
               return (
                 <Link 
                   key={post.id}
-                  to={`/post/${post.slug}`} // <-- TUJUAN DIREDIREKSI KE HALAMAN POST DETAIL
+                  to={`/post/${post.slug}`} 
                   className="flex flex-col rounded-3xl border-2 border-slate-200/80 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-orange)] hover:shadow-2xl hover:shadow-[var(--color-brand-orange)]/5 group cursor-pointer select-none"
                 >
-                  {/* Foto Utama Artikel */}
+                  
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                     <img 
                       src={featuredImage} 
@@ -90,9 +90,9 @@ function ArticlesSection() {
                     />
                   </div>
 
-                  {/* Konten Teks */}
+                  
                   <div className="p-6 flex flex-col flex-grow">
-                    {/* Meta Data */}
+                    
                     <div className="flex items-center gap-4 text-xs font-bold text-slate-400 mb-4 uppercase tracking-wider">
                       <div className="flex items-center gap-1.5">
                         <FaCalendarAlt /> {formattedDate}
@@ -102,19 +102,19 @@ function ArticlesSection() {
                       </div>
                     </div>
 
-                    {/* Judul Artikel */}
+                    
                     <h3 
                       className="text-lg font-black text-slate-900 leading-snug mb-3 group-hover:text-[var(--color-brand-orange)] transition-colors line-clamp-2"
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     />
 
-                    {/* Ringkasan Konten */}
+                    
                     <div 
                       className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium line-clamp-3 mb-6 mt-auto"
                       dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
                     />
 
-                    {/* Penanda Tombol Aksi */}
+                    
                     <div className="inline-flex items-center gap-2 text-xs font-extrabold text-[var(--color-brand-orange)] uppercase tracking-widest pt-4 border-t border-slate-100 w-full group-hover:text-[var(--color-brand-orange-hover)] transition-colors">
                       {t('articlesSectionReadMore')} <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
                     </div>

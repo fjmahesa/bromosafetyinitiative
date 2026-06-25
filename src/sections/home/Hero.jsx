@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom'; // Ditambahkan untuk navigasi rute internal React Router
+import { Link } from 'react-router-dom'; 
 import { FaShieldAlt, FaChevronDown } from 'react-icons/fa';
 import { useFadeIn } from '../../hooks/useFadeIn';
 import bromoBg from '../../assets/bromo-bg.webp';
@@ -12,7 +12,7 @@ function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50 py-18 px-4 sm:px-6 lg:px-8">
       
-      {/* BACKGROUND LAYER */}
+      
       <div className="absolute inset-0 z-0">
         <img 
           src={bromoBg} 
@@ -22,18 +22,18 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-slate-50/90 mix-blend-normal" />
       </div>
 
-      {/* INNER CONTAINER */}
+      
       <div 
         ref={domRef}
         className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} relative z-10 max-w-5xl mx-auto text-center w-full`}
       >
         
-        {/* Badge */}
+        
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--color-brand-orange-light)] text-brand-orange text-xs sm:text-sm font-semibold border border-[var(--color-brand-orange-border)] mb-8 backdrop-blur-xs">
           <FaShieldAlt className="animate-pulse" /> {t('heroBadge')}
         </div>
         
-        {/* Judul Utama */}
+        
         <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-[1.1]">
           {t('heroTitle').split(' ').map((word, i) => {
             const isHighlight = word === 'Confidence' || word === 'Percaya' || word === 'Diri';
@@ -45,12 +45,12 @@ function Hero() {
           })}
         </h1>
         
-        {/* Subtitle */}
+        
         <p className="text-base sm:text-xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
           {t('heroSubtitle')}
         </p>
         
-        {/* Tombol Aksi (DIUBAH MENJADI ROUTE INTERNAL LINK) */}
+        
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-sm sm:max-w-none mx-auto mb-16">
           <Link 
             to="/safety-guide" 
@@ -60,7 +60,7 @@ function Hero() {
           </Link>
         </div>
 
-        {/* Indikator Scroll Down */}
+        
         <div className="animate-bounce hidden sm:flex flex-col items-center justify-center text-slate-400 text-xs font-semibold gap-1">
           <span className="tracking-widest uppercase">{t('heroScrollDown')}</span>
           <FaChevronDown />
@@ -68,7 +68,7 @@ function Hero() {
 
       </div>
 
-      {/* Pembatas Organik (Bottom Divider) */}
+      
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
     </section>
   );

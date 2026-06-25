@@ -15,7 +15,7 @@ function MapSection() {
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER SECTION */}
+        
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)]/30 mb-4">
@@ -43,10 +43,10 @@ function MapSection() {
           </a> */}
         </div>
 
-        {/* MAP DISPLAY BOX (BENTO CARD STYLE) */}
+        
         <div className="relative group rounded-3xl border-2 border-slate-200/60 p-3 sm:p-4 bg-slate-50 shadow-xl shadow-slate-200/40 overflow-hidden">
           
-          {/* Bingkai Peta Interaktif */}
+          
           <div className="w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-slate-200/80 shadow-inner">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.780156943912!2d112.97672999999999!3d-7.918018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd63700712858ed%3A0x3545ff180b928282!2sRest%20Area%20Bromo%20Safety%20Initiative!5e0!3m2!1sid!2sid!4v1781841687662!5m2!1sid!2sid"

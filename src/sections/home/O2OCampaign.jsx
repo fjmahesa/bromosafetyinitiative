@@ -11,7 +11,7 @@ function O2OCampaign() {
   const [activeTab, setActiveTab] = useState('online');
   const [domRef, isVisible] = useFadeIn(150);
 
-  // Struktur data dinamis untuk tab Digital Online
+  
   const onlinePoints = [
     { id: 1, icon: <FaLaptopCode />, bg: "bg-blue-50 text-blue-500", title: t('o2oOnlinePointTitle1'), desc: t('o2oOnlinePointDesc1') },
     { id: 2, icon: <FaShareAlt />, bg: "bg-emerald-50 text-emerald-500", title: t('o2oOnlinePointTitle2'), desc: t('o2oOnlinePointDesc2') },
@@ -19,7 +19,7 @@ function O2OCampaign() {
     { id: 4, icon: <FaHashtag />, bg: "bg-orange-50 text-orange-500", title: t('o2oOnlinePointTitle4'), desc: t('o2oOnlinePointDesc4') },
   ];
 
-  // Struktur data dinamis untuk tab Intervensi Offline
+  
   const offlinePoints = [
     { id: 1, icon: <FaSign />, bg: "bg-amber-50 text-amber-600", title: t('o2oOfflinePointTitle1'), desc: t('o2oOfflinePointDesc1') },
     { id: 2, icon: <FaIdCard />, bg: "bg-red-50 text-red-500", title: t('o2oOfflinePointTitle2'), desc: t('o2oOfflinePointDesc2') },
@@ -31,7 +31,7 @@ function O2OCampaign() {
     <section ref={domRef} className={`fade-in-hidden ${isVisible ? 'fade-in-visible' : ''} bg-slate-50/60 py-20 md:py-32 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 relative`}>
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER SEKSI */}
+        
         <div className="max-w-3xl mb-16 md:mb-24">
           <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)] mb-4">
             {t('o2oBadge')}
@@ -44,10 +44,10 @@ function O2OCampaign() {
           </p>
         </div>
 
-        {/* INTERACTIVE O2O BOARD GRID */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           
-          {/* PANEL NAVIGASI STRATEGI KIRI */}
+          
           <div className="lg:col-span-4 flex flex-col gap-4">
             <button onClick={() => setActiveTab('online')} className={`w-full flex items-center gap-4 p-5 rounded-2xl border text-left transition-all duration-300 cursor-pointer select-none ${activeTab === 'online' ? 'bg-white border-[var(--color-brand-orange)] shadow-xl' : 'bg-white/50 border-slate-200'}`}>
               <div className={`p-3 rounded-xl border ${activeTab === 'online' ? 'bg-[var(--color-brand-orange-light)] text-[var(--color-brand-orange)]' : 'bg-slate-100 text-slate-400'}`}>
@@ -70,10 +70,10 @@ function O2OCampaign() {
             </button>
           </div>
 
-          {/* DYNAMIC CONTENT DISPLAY PANEL KANAN */}
+          
           <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-10 shadow-xs min-h-[380px] flex flex-col justify-between">
             
-            {/* PANEL KONTEN ONLINE */}
+            
             {activeTab === 'online' && (
               <div className="animate-fade-in-quick space-y-8">
                 <div className="border-b border-slate-100 pb-4">
@@ -96,7 +96,7 @@ function O2OCampaign() {
               </div>
             )}
 
-            {/* PANEL KONTEN OFFLINE */}
+            
             {activeTab === 'offline' && (
               <div className="animate-fade-in-quick space-y-8">
                 <div className="border-b border-slate-100 pb-4">

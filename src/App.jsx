@@ -1,5 +1,5 @@
 import React from 'react';
-// Pastikan 'Route' sudah dimasukkan ke dalam daftar import di bawah ini
+
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -15,14 +15,14 @@ import Safety from './pages/Safety';
 import RestAreaPage from './pages/RestAreaPage';
 import LocationPage from './pages/LocationPage';
 
-// 1. Komponen Layout Global
+
 function GlobalLayout() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col justify-between">
       <Navbar /> 
       
       <main className="flex-grow">
-        {/* Konten halaman akan berganti secara dinamis di sini */}
+        
         <Outlet />
       </main>
       
@@ -31,19 +31,19 @@ function GlobalLayout() {
   );
 }
 
-// 2. Peta Jalan Router Aplikasi
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Routes>
-        {/* Menggunakan Layout Global */}
+        
         <Route path="/" element={<GlobalLayout />}>
           
-          {/* Halaman Beranda Utama */}
+          
           <Route index element={<Home />} />
           
-          {/* Halaman Detail Artikel Berdasarkan ID WordPress */}
+          
           <Route path="articles" element={<ArticlesPage />} />
           <Route path="about-us" element={<About />} />
           <Route path="rest-area" element={<RestAreaPage />} />

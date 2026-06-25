@@ -2,14 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaAngleDoubleUp, FaExchangeAlt, FaCompressArrowsAlt, FaExclamationTriangle } from 'react-icons/fa';
 import { useFadeIn } from '../../hooks/useFadeIn';
-import pathExtremeImg from '../../assets/extreme-path.webp'; // Gambar jalur ekstrem yang sudah disiapkan di folder assets
+import pathExtremeImg from '../../assets/extreme-path.webp'; 
 
 function PathAnatomy() {
   const { t } = useTranslation();
   
-  // Kita buat dua observer terpisah untuk sisi kiri (gambar) dan sisi kanan (konten)
+  
   const [leftRef, leftVisible] = useFadeIn(100);
-  const [rightRef, rightVisible] = useFadeIn(250); // Diberi sedikit delay agar masuknya bergantian
+  const [rightRef, rightVisible] = useFadeIn(250); 
 
   const pathPoints = [
     {
@@ -48,7 +48,7 @@ function PathAnatomy() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* SISI KIRI: Meluncur dari arah KIRI (slide-left) */}
+          
           <div 
             ref={leftRef}
             className={`slide-left-hidden ${leftVisible ? 'slide-left-visible' : ''} lg:col-span-5 relative`}
@@ -75,7 +75,7 @@ function PathAnatomy() {
             </div>
           </div>
 
-          {/* SISI KANAN: Meluncur dari arah KANAN (slide-right) */}
+          
           <div 
             ref={rightRef}
             className={`slide-right-hidden ${rightVisible ? 'slide-right-visible' : ''} lg:col-span-7 flex flex-col justify-center`}

@@ -17,7 +17,7 @@ function CategoryPage() {
     const signal = controller.signal;
     setIsLoading(true);
 
-    // Langkah 1: Cari ID Kategori berdasarkan slug teksnya
+    
     fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/categories?slug=${categorySlug}`, { signal })
       .then(res => res.json())
       .then(categoriesData => {
@@ -25,7 +25,7 @@ function CategoryPage() {
           const catId = categoriesData[0].id;
           setCategoryName(categoriesData[0].name);
 
-          // Langkah 2: Ambil semua artikel yang masuk dalam ID Kategori tersebut
+          
           return fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&categories=${catId}`, { signal });
         } else {
           throw new Error('Kategori tidak ditemukan');
@@ -57,7 +57,7 @@ function CategoryPage() {
 
   return (
     <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-screen page-enter">
-      {/* Breadcrumb / Penanda Kategori */}
+      
       <div className="mb-12">
         <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)] mb-4">
           <FaFolderOpen /> {t('catBadge')}
@@ -80,7 +80,7 @@ function CategoryPage() {
             return (
               <Link 
                 key={post.id}
-                to={`/post/${post.slug}`} // <-- Arahkan menggunakan slug teks
+                to={`/post/${post.slug}`} 
                 className="flex flex-col rounded-3xl border-2 border-slate-200/80 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[var(--color-brand-orange)] shadow-xs group"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">

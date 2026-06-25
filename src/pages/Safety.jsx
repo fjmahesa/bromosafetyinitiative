@@ -19,7 +19,7 @@ function Safety() {
 
   const pdfUrl = "https://admin.bromosafetyinitiative.com/wp-content/uploads/2026/06/Panduan-Keselamatan-Jalur-Bromo.pdf";
 
-  // Data Panduan Utama hasil ekstraksi materi selebaran BSI
+  
   const guides = [
     {
       icon: <FaTriangleExclamation className="text-xl text-[var(--color-brand-orange)]" />,
@@ -43,7 +43,7 @@ function Safety() {
     }
   ];
 
-  // Data Checklist Elektronik Pra-Keberangkatan
+  
   const checklistItems = [
     t('safetyCheck1'),
     t('safetyCheck2'),
@@ -56,7 +56,7 @@ function Safety() {
   return (
     <div className="w-full min-h-screen bg-slate-50/50 pb-24 page-enter">
       
-      {/* HERO BANNER & DOWNLOAD PROMINENT */}
+      
       <div className="relative bg-slate-900 text-white py-20 md:py-28 overflow-hidden border-b border-slate-800">
         <div className="absolute inset-0 opacity-15 bg-[url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=1600')] bg-cover bg-center mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" />
@@ -72,7 +72,7 @@ function Safety() {
             {t('safetyHeroDesc')}
           </p>
 
-          {/* CTA TOMBOL UNDUH PDF UTAMA */}
+          
           <div className="mt-10 flex justify-center">
             <a 
               href={pdfUrl}
@@ -86,7 +86,7 @@ function Safety() {
         </div>
       </div>
 
-      {/* INTI PANDUAN: GRID SYSTEM */}
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-12 relative z-20">
         <div className="bg-white border-2 border-slate-200/60 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/30">
           <div className="max-w-3xl mb-12">
@@ -121,7 +121,7 @@ function Safety() {
         </div>
       </div>
 
-      {/* SEKSI DAFTAR PERSIAPAN (PRE-DEPARTURE CHECKLIST) */}
+      
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-24">
         <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl relative overflow-hidden">
           <div className="absolute right-0 bottom-0 opacity-5 transform translate-x-10 translate-y-10 pointer-events-none">
@@ -141,7 +141,7 @@ function Safety() {
               </p>
             </div>
 
-            {/* BARIS CHECKLIST */}
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {checklistItems.map((item, idx) => (
                 <div key={idx} className="flex gap-3 items-start bg-white/5 border border-white/10 rounded-xl p-4 transition-colors hover:bg-white/10">
@@ -153,7 +153,7 @@ function Safety() {
               ))}
             </div>
 
-            {/* SEKSI LINK DOWNLOAD BAWAH */}
+            
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
               <p className="text-[11px] text-slate-400 font-semibold text-center sm:text-left">
                 {currentLang === 'id' 

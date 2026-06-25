@@ -12,7 +12,7 @@ function AboutPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  // PERBAIKAN: Gunakan key i18n agar array misi fleksibel dan dinamis berubah bahasa
+  
   const missions = [
     "aboutMission1",
     "aboutMission2",
@@ -35,7 +35,7 @@ function AboutPage() {
   return (
     <div className="w-full min-h-screen bg-slate-50/50 pb-24 page-enter">
       
-      {/* HERO HEADER */}
+      
       <div className="relative bg-slate-900 text-white py-24 md:py-36 overflow-hidden border-b border-slate-800">
         <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1605540435647-88d707f7f4a2?w=1600')] bg-cover bg-center mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" />
@@ -53,7 +53,7 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* NARASI UTAMA */}
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 md:-mt-16 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
@@ -74,7 +74,7 @@ function AboutPage() {
             <p className="text-sm sm:text-base">{t('aboutParagraph3')}</p>
           </div>
 
-          {/* VISI CARD */}
+          
           <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-8 shadow-xl border border-slate-800 flex flex-col justify-between relative overflow-hidden group">
             <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[var(--color-brand-orange)] opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-all duration-500" />
             <div>
@@ -94,7 +94,7 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* MISI GRID */}
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 md:mt-28">
         <div className="max-w-3xl mb-12">
           <h2 className="text-2xl md:text-4xl font-black tracking-tight text-slate-900 uppercase">
@@ -111,7 +111,7 @@ function AboutPage() {
                   {index + 1}
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 font-semibold leading-relaxed">
-                  {t(`aboutMission${index + 1}`)} {/* Memanggil key dinamis dari JSON */}
+                  {t(`aboutMission${index + 1}`)} 
                 </p>
               </div>
             </div>
@@ -119,7 +119,7 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* NILAI-NILAI BSI */}
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 md:mt-28">
         <div className="max-w-3xl mb-12">
           <h2 className="text-2xl md:text-4xl font-black tracking-tight text-slate-900 uppercase">
@@ -145,7 +145,7 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* SLOGAN CTA */}
+      
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 text-center">
         <div className="bg-gradient-to-tr from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden border border-slate-800">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-brand-orange)] opacity-5 rounded-full blur-xl pointer-events-none" />

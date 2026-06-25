@@ -14,7 +14,7 @@ function RestAreaPage() {
     return (
         <div className="w-full min-h-screen bg-slate-50/50 pb-20 page-enter">
 
-            {/* HEADER BANNER (JUDUL & SUBJUDUL) */}
+            
             <div className="relative bg-slate-900 text-white py-20 md:py-28 overflow-hidden border-b border-slate-800">
                 {/* <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1605540435647-88d707f7f4a2?w=1600')] bg-cover bg-center mix-blend-overlay" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" /> */}
@@ -34,9 +34,9 @@ function RestAreaPage() {
                 </div>
             </div>
 
-            {/* BLOCK UTAMA: LIVE MAPS ONLY */}
+            
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-12 relative z-20">
-                {/* Lebar Penuh (Full Layout) Menggantikan Grid Lama */}
+                
                 <div className="w-full bg-white border-2 border-slate-200/60 rounded-3xl p-4 shadow-xl shadow-slate-200/30 flex flex-col h-[450px] md:h-[600px] animate-fade-in-quick">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7903.560313887824!2d112.97673!3d-7.918018!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd63700712858ed%3A0x3545ff180b928282!2sRest%20Area%20Bromo%20Safety%20Initiative!5e0!3m2!1sid!2sid!4v1781917502930!5m2!1sid!2sid"
@@ -55,27 +55,27 @@ function RestAreaPage() {
                 <section className="bg-slate-50 py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-100 text-center relative block clear-both">
                     <div className="max-w-3xl mx-auto">
 
-                        {/* Subtitle / Badge kecil */}
+                        
                         <span className="inline-block text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/20 px-3 py-1 rounded-md mb-4">
                             {currentLang === 'id' ? 'Ikuti Perkembangan Kami' : 'Stay Connected'}
                         </span>
 
-                        {/* Judul Utama */}
+                        
                         <h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase tracking-tight mb-3">
                             {currentLang === 'id' ? 'Pantau Aksi BSI di Media Sosial' : 'Follow BSI on Social Media'}
                         </h2>
 
-                        {/* Deskripsi Singkat */}
+                        
                         <p className="text-slate-500 text-xs sm:text-sm font-medium leading-relaxed max-w-xl mx-auto mb-8">
                             {currentLang === 'id'
                                 ? 'Dapatkan informasi edukasi keselamatan berkendara terbaru, dokumentasi kegiatan lapangan, dan kabar terkini mengenai Kawasan Taman Nasional Bromo Tengger Semeru melalui akun resmi kami.'
                                 : 'Get the latest driving safety educational insights, field documentation, and updates regarding the Bromo tourist route through our official accounts.'}
                         </p>
 
-                        {/* Grid Tombol Media Sosial */}
+                        
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
 
-                            {/* Tombol Instagram */}
+                            
                             <a
                                 href="https://www.instagram.com/bromosafetyinitiative"
                                 target="_blank"
@@ -88,7 +88,7 @@ function RestAreaPage() {
                                 Instagram
                             </a>
 
-                            {/* Tombol TikTok */}
+                            
                             <a
                                 href="https://www.tiktok.com/@bromosafetyinitiative"
                                 target="_blank"
@@ -103,7 +103,7 @@ function RestAreaPage() {
 
                         </div>
 
-                        {/* Username handle info */}
+                        
                         <p className="text-slate-400 text-[11px] font-bold tracking-wider mt-4 uppercase">
                             @bromosafetyinitiative
                         </p>

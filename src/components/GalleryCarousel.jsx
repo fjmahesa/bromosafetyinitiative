@@ -109,7 +109,7 @@ function GalleryCarousel() {
     <section className="bg-white py-12 px-4 sm:px-6 lg:px-8 relative block clear-both overflow-hidden">
       <div className="max-w-7xl mx-auto relative group">
         
-        {/* HEADER */}
+        
         <div className="text-center mb-10">
           <span className="inline-block text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)]/20 px-3 py-1 rounded-md mb-2">
             <FaImages className="inline mr-1" /> {currentLang === 'id' ? 'Galeri Aksi' : 'Action Gallery'}
@@ -119,7 +119,7 @@ function GalleryCarousel() {
           </h2>
         </div>
 
-        {/* CONTAINER SLIDER UTAMA */}
+        
         <div className="w-full relative px-2 sm:px-12 overflow-hidden">
           
           <div 
@@ -143,7 +143,7 @@ function GalleryCarousel() {
                     loading="lazy"
                   />
                   
-                  {/* Hover Overlay View Image */}
+                  
                   <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-2xl">
                     <span className="bg-slate-900/90 text-white p-3 rounded-full text-xs shadow-xl backdrop-blur-md flex items-center gap-1.5 font-bold tracking-wide scale-90 group-hover/card:scale-100 transition-transform duration-300">
                       <FaSearchPlus /> {currentLang === 'id' ? 'Lihat Foto' : 'View Image'}
@@ -154,7 +154,7 @@ function GalleryCarousel() {
             ))}
           </div>
 
-          {/* BUTTON NAVIGASI */}
+          
           {images.length > itemsPerSlide && (
             <>
               <button 
@@ -175,7 +175,7 @@ function GalleryCarousel() {
 
         </div>
 
-        {/* DOTS INDICATOR */}
+        
         {images.length > itemsPerSlide && (
           <div className="flex items-center justify-center gap-2 mt-8 z-20">
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
@@ -194,18 +194,18 @@ function GalleryCarousel() {
 
       </div>
 
-      {/* PORTAL MODAL VIEWIMAGE (LIGHTBOX OVERLAY) */}
+      
       {selectedImage && (
         <div 
           className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-fade-in"
           onClick={closeLightbox}
         >
-          {/* CONTAINER KONTROL POJOK KANAN ATAS */}
+          
           <div 
             className="absolute top-4 right-4 md:top-6 md:right-6 flex items-center gap-3 z-50 select-none"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* PANEL CONTROL ZOOM */}
+            
             <div className="hidden md:flex items-center gap-1.5 bg-slate-900/80 border border-white/10 p-1.5 rounded-xl backdrop-blur-lg shadow-2xl">
               <button 
                 onClick={handleZoomIn}
@@ -233,7 +233,7 @@ function GalleryCarousel() {
               </span>
             </div>
 
-            {/* Tombol Close Utama */}
+            
             <button 
               onClick={closeLightbox}
               className="w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-xl flex items-center justify-center backdrop-blur-md transition-colors border border-white/10 cursor-pointer text-lg active:scale-95 shadow-2xl"
@@ -269,7 +269,7 @@ function GalleryCarousel() {
             />
           </div>
 
-          {/* Caption Teks Judul Dokumentasi di Bawah Gambar */}
+          
           {selectedImage.alt && (
             <p className="text-white/80 text-xs sm:text-sm font-semibold tracking-wide mt-4 bg-slate-900/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/5 max-w-xl text-center z-10">
               {selectedImage.alt}

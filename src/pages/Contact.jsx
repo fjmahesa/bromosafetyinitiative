@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// 1. IMPORT TOAST DAN TOASTER
+
 import toast, { Toaster } from 'react-hot-toast'; 
 import {
     FaEnvelope,
@@ -21,7 +21,7 @@ function Contact() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Pemicu animasi loading saat proses pengiriman data sedang berjalan
+        
         const loadingToast = toast.loading(t('contactToastSending'));
 
         const FORMSPREE_ID = 'mjgderdq'; 
@@ -41,22 +41,22 @@ function Contact() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            // 2. KUSTOMISASI PESAN SUKSES DENGAN DESAIN KHAS BROMO SAFETY
+            
             toast.success(t('contactToastSuccess'),
                 {
-                    id: loadingToast, // Menggantikan animasi loading secara instan
+                    id: loadingToast, 
                     duration: 5000,
                     style: {
-                        background: '#0f172a', // Slate 900 (Menyesuaikan warna tema heromu)
+                        background: '#0f172a', 
                         color: '#ffffff',
                         fontSize: '14px',
                         fontWeight: '500',
                         borderRadius: '16px',
                         padding: '16px',
-                        border: '1px solid rgba(249, 115, 22, 0.2)', // Border oranye tipis
+                        border: '1px solid rgba(249, 115, 22, 0.2)', 
                     },
                     iconTheme: {
-                        primary: '#f97316', // Warna Oranye Brand sebagai ikon sukses
+                        primary: '#f97316', 
                         secondary: '#ffffff',
                     },
                 }
@@ -67,7 +67,7 @@ function Contact() {
         } catch (error) {
             console.error('Error integrasi form via Formspree:', error);
             
-            // 3. TAMPILAN JIKA TERJADI GANGGUAN KONEKSI
+            
             toast.error(t('contactToastError'),
                 { id: loadingToast }
             );
@@ -78,12 +78,12 @@ function Contact() {
 
     return (
         <div className="bg-slate-50 min-h-screen py-12 md:py-20 page-enter">
-            {/* 4. WAJIB DILETAKKAN DI SINI SEBAGAI WADAH POP-UP TOAST */}
+            
             <Toaster position="bottom-center" reverseOrder={false} />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                {/* ==================== HERO HEADER ==================== */}
+                
                 <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
                     <span className="text-[var(--color-brand-orange)] bg-[var(--color-brand-orange-light)]/10 border border-[var(--color-brand-orange-border)]/30 text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-full inline-block">
                         {t('contactBadge')}
@@ -96,10 +96,10 @@ function Contact() {
                     </p>
                 </div>
 
-                {/* ==================== MAIN CONTENT GRID ==================== */}
+                
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-                    {/* KOLOM KIRI: FORMULIR HUBUNGI KAMI */}
+                    
                     <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-10 shadow-xs">
                         <h2 className="text-lg font-black text-slate-900 mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
                             <FaPaperPlane className="text-[var(--color-brand-orange)] text-sm" />
@@ -164,7 +164,7 @@ function Contact() {
                         </form>
                     </div>
 
-                    {/* KOLOM KANAN: DETAIL INFO & SOSIAL MEDIA */}
+                    
                     <div className="lg:col-span-5 space-y-6">
                         <div className="bg-white border border-slate-200/60 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
                             <h2 className="text-sm font-black text-slate-900 uppercase tracking-wider pb-3 border-b border-slate-100">

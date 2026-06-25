@@ -9,7 +9,7 @@ function ArticlesPage() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  // State untuk Fitur Pencarian & Filter
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -19,14 +19,14 @@ function ArticlesPage() {
     const controller = new AbortController();
     const signal = controller.signal;
     
-    // Reset state agar tidak ada kilatan artikel bahasa lama saat berpindah bahasa
+    
     setArticles([]);
     setCategories([]);
     setIsLoading(true);
 
-    // ===================================================================================
-    // PERBAIKAN: Suntikkan parameter &lang=${currentLang} ke kedua endpoint API
-    // ===================================================================================
+    
+    
+    
     const fetchPosts = fetch(`https://admin.bromosafetyinitiative.com/wp-json/wp/v2/posts?_embed&per_page=20&lang=${currentLang}`, { signal })
       .then((res) => {
         if (!res.ok) throw new Error('Gagal mengambil artikel');
@@ -38,13 +38,13 @@ function ArticlesPage() {
         if (!res.ok) throw new Error('Gagal mengambil kategori');
         return res.json();
       });
-    // ===================================================================================
+    
 
-    // Jalankan kedua fetch secara bersamaan (Parallel Fetching)
+    
     Promise.all([fetchPosts, fetchCats])
       .then(([postsData, catsData]) => {
         setArticles(postsData);
-        // Saring kategori bawaan WordPress yang bernama "Uncategorized" agar tidak muncul
+        
         const filteredCats = catsData.filter(cat => cat.slug !== 'uncategorized');
         setCategories(filteredCats);
         setIsLoading(false);
@@ -57,16 +57,16 @@ function ArticlesPage() {
       });
 
     return () => controller.abort();
-  }, [currentLang]); // <-- Menggunakan currentLang sebagai pelacak sensitif perubahan bahasa
+  }, [currentLang]); 
 
-  // LOGIKA PENYARINGAN (FILTER & SEARCH)
+  
   const filteredArticles = articles.filter((post) => {
-    // 1. Cocokkan dengan input pencarian (Judul atau Isi konten)
+    
     const matchesSearch = 
       post.title.rendered.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.content.rendered.toLowerCase().includes(searchQuery.toLowerCase());
 
-    // 2. Cocokkan dengan kategori yang dipilih
+    
     const matchesCategory = 
       selectedCategory === 'all' || 
       post.categories.includes(parseInt(selectedCategory));
@@ -77,7 +77,7 @@ function ArticlesPage() {
   return (
     <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-screen page-enter">
       
-      {/* HEADER HALAMAN */}
+      
       <div className="max-w-3xl mb-12">
         <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[var(--color-brand-orange)] uppercase bg-[var(--color-brand-orange-light)] px-3 py-1 rounded-md border border-[var(--color-brand-orange-border)] mb-4">
           {t('articlesBadge')}
@@ -91,10 +91,10 @@ function ArticlesPage() {
         </p>
       </div>
 
-      {/* BAR PENCARIAN & FILTER PANEL */}
+      
       <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between border-b border-slate-200 pb-8 mb-12">
         
-        {/* INPUT PENCARIAN (KIRI) */}
+        
         <div className="relative w-full md:max-w-md flex items-center">
           <FaSearch className="absolute left-4 text-slate-400 text-sm pointer-events-none" />
           <input 
@@ -106,7 +106,7 @@ function ArticlesPage() {
           />
         </div>
 
-        {/* FILTER KATEGORI (KANAN) */}
+        
         <div className="flex flex-wrap items-center gap-2 overflow-x-auto max-w-full no-scrollbar">
           <button
             onClick={() => setSelectedCategory('all')}
@@ -137,7 +137,7 @@ function ArticlesPage() {
         </div>
       </div>
 
-      {/* KONDISI LOADING STATE */}
+      
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6].map((n) => (
